@@ -157,9 +157,8 @@ const ExperienceSection = () => {
       ],
     },
   ];
-
   return (
-    <section className="relative bg-[#000000] text-white">
+    <section className="relative  text-white">
       {/* IBM Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="h-full w-full bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(180deg,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />

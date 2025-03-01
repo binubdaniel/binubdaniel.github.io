@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-[#161616] dark:bg-[#000000] text-white overflow-hidden">
+    <section className="relative min-h-screen text-white overflow-hidden">
       {/* IBM-style grid overlay */}
       <div className="absolute inset-0 opacity-5">
         <div className="h-full w-full bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(180deg,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
