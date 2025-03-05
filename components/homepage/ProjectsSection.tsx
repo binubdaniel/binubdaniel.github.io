@@ -1,6 +1,8 @@
+"use client";
+
 import React from 'react';
 import { Badge } from "@/components/ui/badge";
-import {  ArrowUpRight, Box, Terminal, Cpu, BookOpen } from "lucide-react";
+import { ArrowUpRight, Box, Terminal, Cpu, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
 const containerAnimation = {
@@ -33,31 +35,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => (
   <motion.div 
     variants={itemAnimation}
-    className="group relative border-l-4 border-l-blue-500 bg-[#161616] hover:bg-[#262626] transition-colors duration-200"
+    className="group relative border-l-4 border-l-primary bg-card hover:bg-secondary/20 transition-colors duration-200"
   >
     <div className="p-6 md:p-8">
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div className="flex items-center gap-4">
-          <Icon className="h-6 w-6 text-blue-400" />
-          <h3 className="font-mono text-xl text-white">{title}</h3>
+          <Icon className="h-6 w-6 text-primary" />
+          <h3 className="font-mono text-xl text-foreground">{title}</h3>
         </div>
-        <ArrowUpRight className="h-6 w-6 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+        <ArrowUpRight className="h-6 w-6 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
       </div>
 
       {/* Description */}
-      <p className="text-gray-400 mb-8 leading-relaxed">{description}</p>
+      <p className="text-muted-foreground mb-8 leading-relaxed">{description}</p>
 
       {/* Impact Grid */}
-      <div className="grid grid-cols-2 gap-px bg-gray-800 mb-8">
+      <div className="grid grid-cols-2 gap-px bg-border mb-8">
         {impact.map((item, index) => (
           <div 
             key={index}
-            className="p-4 bg-[#262626]"
+            className="p-4 bg-secondary/10"
           >
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-blue-500" />
-              <p className="text-sm text-gray-300">{item}</p>
+              <div className="w-1.5 h-1.5 bg-primary" />
+              <p className="text-sm text-foreground/80">{item}</p>
             </div>
           </div>
         ))}
@@ -68,7 +70,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {technologies.map((tech, index) => (
           <Badge 
             key={index}
-            className="bg-[#262626] hover:bg-[#363636] text-gray-300 px-3 py-1 rounded-none transition-colors duration-200"
+            variant="secondary"
+            className="px-3 py-1 rounded-none transition-colors duration-200"
           >
             {tech}
           </Badge>
@@ -131,10 +134,10 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section className="relative bg-[#000000] text-white">
+    <section className="relative bg-background text-foreground">
       {/* IBM Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(180deg,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 py-24">
@@ -146,17 +149,17 @@ const ProjectsSection = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemAnimation} className="mb-16">
-            <p className="font-mono text-blue-400 mb-2">Projects</p>
+            <p className="font-mono text-primary mb-2">Projects</p>
             <h2 className="font-mono text-4xl font-medium mb-6">
               Featured Work
             </h2>
-            <p className="text-gray-400 text-xl max-w-2xl leading-relaxed">
+            <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
               Innovative solutions driving real-world impact through advanced technology and thoughtful design.
             </p>
           </motion.div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-800">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {projects.map((project, index) => (
               <ProjectCard
                 key={index}

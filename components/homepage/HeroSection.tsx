@@ -1,15 +1,24 @@
-import React  from 'react';
+"use client";
+
+import React from 'react';
 import { Badge } from "@/components/ui/badge";
-import { Brain, Globe, Linkedin, ArrowUpRight } from "lucide-react";
+import { Brain, Globe, Linkedin, ArrowUpRight, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from 'next/image';
+import { ThemeSwitcher } from '../theme-switcher';
+import Link from 'next/link';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen text-white overflow-hidden">
+    <section className="relative min-h-screen bg-background text-foreground overflow-hidden">
       {/* IBM-style grid overlay */}
       <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(180deg,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      </div>
+
+      {/* Theme switcher in the top right */}
+      <div className="absolute top-4 right-4 z-10">
+        <ThemeSwitcher />
       </div>
 
       <div className="container max-w-6xl mx-auto px-6 relative h-full flex items-center">
@@ -25,10 +34,10 @@ const HeroSection = () => {
               <h1 className="font-mono text-4xl md:text-6xl font-medium tracking-tight">
                 Binu Babu
               </h1>
-              <p className="font-mono text-xl md:text-2xl text-blue-400">
+              <p className="font-mono text-xl md:text-2xl text-primary">
                 AI Product Architect & Technology Consultant
               </p>
-              <p className="text-base md:text-lg text-gray-400 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 Leading technological innovation and AI integration at Bridge Global, 
                 with a proven track record of building future-ready solutions.
               </p>
@@ -41,11 +50,11 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-wrap gap-4"
             >
-              <Badge className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-none transition-colors duration-200">
+              <Badge className="px-4 py-2 bg-primary text-primary-foreground rounded-none transition-colors duration-200 hover:bg-primary/90">
                 <Brain className="mr-2 h-4 w-4" />
                 AI Specialist
               </Badge>
-              <Badge className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-none transition-colors duration-200">
+              <Badge className="px-4 py-2 bg-secondary text-secondary-foreground rounded-none transition-colors duration-200 hover:bg-secondary/90">
                 <Globe className="mr-2 h-4 w-4" />
                 Tech Leader
               </Badge>
@@ -56,20 +65,32 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="pt-6"
+              className="pt-6 flex flex-col sm:flex-row gap-6"
             >
               <a
                 href="https://linkedin.com/in/binubdaniel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 text-lg text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                className="group inline-flex items-center gap-3 text-lg text-primary hover:text-primary/80 transition-colors duration-200"
               >
                 <Linkedin className="w-6 h-6" />
-                <span className="border-b-2 border-blue-400 group-hover:border-blue-300">
+                <span className="border-b-2 border-primary group-hover:border-primary/80">
                   Connect on LinkedIn
                 </span>
                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
+              
+              <Link
+                href="/enquire"
+                className="group inline-flex items-center justify-center gap-3 text-lg bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 transition-colors duration-200 relative overflow-hidden"
+              >
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5" />
+                </div>
+                <span className="font-medium">Schedule with Groot AI</span>
+                <div className="absolute bottom-0 left-0 w-full h-1 opacity-30 bg-white/20" />
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </Link>
             </motion.div>
           </div>
 
@@ -81,8 +102,8 @@ const HeroSection = () => {
             className="md:col-span-4 flex justify-center md:justify-end items-start"
           >
             <div className="relative w-64 h-64 md:w-72 md:h-72">
-              <div className="absolute inset-0 bg-blue-600 transform rotate-3" />
-              <div className="absolute inset-0 bg-white/90 dark:bg-black/90">
+              <div className="absolute inset-0 bg-primary transform rotate-3" />
+              <div className="absolute inset-0 bg-background">
                 <Image
                   src="/picture.png"
                   alt="Binu Babu"
@@ -94,8 +115,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
         </div>
-
-       
       </div>
     </section>
   );

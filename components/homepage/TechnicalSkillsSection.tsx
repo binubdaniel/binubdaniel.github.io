@@ -1,5 +1,7 @@
+"use client";
+
 import React from 'react';
-import {  Cloud, Monitor, Database, BrainCircuit } from "lucide-react";
+import { Cloud, Monitor, Database, BrainCircuit } from "lucide-react";
 import { motion } from "framer-motion";
 
 const containerAnimation = {
@@ -24,22 +26,22 @@ interface SkillCardProps {
 const SkillCard: React.FC<SkillCardProps> = ({ title, skills, icon: Icon }) => (
   <motion.div 
     variants={itemAnimation}
-    className="relative border-l-4 border-l-blue-500 bg-[#161616] hover:bg-[#262626] transition-colors duration-200"
+    className="relative border-l-4 border-l-primary bg-card hover:bg-secondary/20 transition-colors duration-200"
   >
     <div className="p-6 md:p-8">
       <div className="flex items-center gap-4 mb-8">
-        <Icon className="h-6 w-6 text-blue-400" />
-        <h3 className="font-mono text-xl text-white">{title}</h3>
+        <Icon className="h-6 w-6 text-primary" />
+        <h3 className="font-mono text-xl text-foreground">{title}</h3>
       </div>
       
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="flex items-center gap-2 p-2 bg-[#262626] hover:bg-[#363636] transition-colors duration-200"
+            className="flex items-center gap-2 p-2 bg-secondary/10 hover:bg-secondary/20 transition-colors duration-200"
           >
-            <div className="w-1.5 h-1.5 bg-blue-500" />
-            <span className="text-sm text-gray-300">{skill}</span>
+            <div className="w-1.5 h-1.5 bg-primary" />
+            <span className="text-sm text-foreground/80">{skill}</span>
           </div>
         ))}
       </div>
@@ -124,10 +126,10 @@ const TechnicalSkillsSection = () => {
   ];
 
   return (
-    <section className="relative text-white">
+    <section className="relative bg-background text-foreground">
       {/* IBM Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(180deg,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 py-24">
@@ -139,17 +141,17 @@ const TechnicalSkillsSection = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemAnimation} className="mb-16">
-            <p className="font-mono text-blue-400 mb-2">Skills</p>
+            <p className="font-mono text-primary mb-2">Skills</p>
             <h2 className="font-mono text-4xl font-medium mb-6">
               Technical Expertise
             </h2>
-            <p className="text-gray-400 text-xl max-w-2xl leading-relaxed">
+            <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
               Comprehensive skillset across modern technologies and frameworks.
             </p>
           </motion.div>
 
           {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-800">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {skillCategories.map((category, index) => (
               <SkillCard
                 key={index}

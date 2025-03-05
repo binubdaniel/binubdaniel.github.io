@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown, Briefcase, Star, Lightbulb } from "lucide-react";
@@ -38,42 +40,42 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
     viewport={{ once: true }}
   >
     <Accordion.Item value={value} className="group">
-      <div className="relative border-l-4 border-l-blue-500 bg-[#161616] transition-colors duration-200 group-data-[state=open]:bg-[#262626]">
+      <div className="relative border-l-4 border-l-primary bg-card transition-colors duration-200 group-data-[state=open]:bg-secondary/20">
         <Accordion.Trigger className="w-full">
           <div className="flex items-start p-6 w-full text-left">
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-4 mb-4">
-                <Briefcase className="h-5 w-5 text-blue-400" />
-                <span className="font-mono text-sm text-blue-400">{period}</span>
+                <Briefcase className="h-5 w-5 text-primary" />
+                <span className="font-mono text-sm text-primary">{period}</span>
               </div>
-              <h3 className="font-mono text-xl text-white mb-2">{role}</h3>
-              <p className="text-gray-400">{company}</p>
+              <h3 className="font-mono text-xl text-foreground mb-2">{role}</h3>
+              <p className="text-muted-foreground">{company}</p>
             </div>
-            <ChevronDown className="h-5 w-5 text-blue-400 transition-transform duration-200 group-data-[state=open]:rotate-180 ml-4" />
+            <ChevronDown className="h-5 w-5 text-primary transition-transform duration-200 group-data-[state=open]:rotate-180 ml-4" />
           </div>
         </Accordion.Trigger>
 
         <Accordion.Content className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
           <div className="px-6 pb-6 space-y-8">
-            <div className="pt-4 border-t border-gray-800">
-              <p className="text-gray-400 leading-relaxed">
+            <div className="pt-4 border-t border-border">
+              <p className="text-muted-foreground leading-relaxed">
                 {description}
               </p>
             </div>
 
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <Star className="h-4 w-4 text-blue-400" />
-                <h4 className="font-mono text-white">Key Achievements</h4>
+                <Star className="h-4 w-4 text-primary" />
+                <h4 className="font-mono text-foreground">Key Achievements</h4>
               </div>
               <div className="grid gap-2">
                 {achievements.map((achievement, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 p-4 bg-[#262626]"
+                    className="flex items-start gap-3 p-4 bg-secondary/10"
                   >
-                    <div className="w-1.5 h-1.5 mt-2 bg-blue-500" />
-                    <p className="text-gray-400 text-sm">{achievement}</p>
+                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+                    <p className="text-muted-foreground text-sm">{achievement}</p>
                   </div>
                 ))}
               </div>
@@ -81,17 +83,17 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
 
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <Lightbulb className="h-4 w-4 text-blue-400" />
-                <h4 className="font-mono text-white">Key Learnings</h4>
+                <Lightbulb className="h-4 w-4 text-primary" />
+                <h4 className="font-mono text-foreground">Key Learnings</h4>
               </div>
               <div className="grid gap-2">
                 {learnings.map((learning, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 p-4 bg-[#262626]"
+                    className="flex items-start gap-3 p-4 bg-secondary/10"
                   >
-                    <div className="w-1.5 h-1.5 mt-2 bg-blue-500" />
-                    <p className="text-gray-400 text-sm">{learning}</p>
+                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+                    <p className="text-muted-foreground text-sm">{learning}</p>
                   </div>
                 ))}
               </div>
@@ -158,10 +160,10 @@ const ExperienceSection = () => {
     },
   ];
   return (
-    <section className="relative  text-white">
+    <section className="relative bg-background text-foreground">
       {/* IBM Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(180deg,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 py-24">
@@ -172,16 +174,16 @@ const ExperienceSection = () => {
           variants={fadeIn}
           className="mb-16"
         >
-          <p className="font-mono text-blue-400 mb-2">Experience</p>
+          <p className="font-mono text-primary mb-2">Experience</p>
           <h2 className="font-mono text-4xl font-medium mb-6">
             Professional Journey
           </h2>
-          <p className="text-gray-400 text-xl max-w-2xl leading-relaxed">
+          <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
             Building impactful solutions and leading innovative teams across different roles and challenges.
           </p>
         </motion.div>
 
-        <Accordion.Root type="single" collapsible className="space-y-px bg-gray-800">
+        <Accordion.Root type="single" collapsible className="space-y-px bg-border">
           {experiences.map((experience, index) => (
             <ExperiencePanel
               key={index}

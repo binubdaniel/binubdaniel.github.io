@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import { Users2, LineChart, Puzzle, Lightbulb, Zap, Brain, ChevronDown } from "lucide-react";
@@ -25,16 +27,16 @@ interface PhilosophyCardProps {
 const PhilosophyCard: React.FC<PhilosophyCardProps> = ({ title, description, icon: Icon }) => (
   <motion.div 
     variants={itemAnimation}
-    className="group relative border-l-4 border-l-blue-500 bg-[#161616] hover:bg-[#262626] transition-colors duration-200"
+    className="group relative border-l-4 border-l-primary bg-card hover:bg-secondary/20 transition-colors duration-200"
   >
     <div className="p-6">
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0">
-          <Icon className="h-6 w-6 text-blue-400" />
+          <Icon className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <h3 className="font-mono text-lg font-medium text-white mb-2">{title}</h3>
-          <p className="text-gray-400 leading-relaxed">{description}</p>
+          <h3 className="font-mono text-lg font-medium text-foreground mb-2">{title}</h3>
+          <p className="text-muted-foreground leading-relaxed">{description}</p>
         </div>
       </div>
     </div>
@@ -51,22 +53,22 @@ const MetricsPanel: React.FC<MetricsPanelProps> = ({ items }) => (
     initial="hidden"
     whileInView="show"
     viewport={{ once: true }}
-    className="grid gap-px bg-gray-800"
+    className="grid gap-px bg-border"
   >
     {items.map((item, index) => (
       <motion.div 
         key={index}
         variants={itemAnimation}
-        className="group bg-[#161616] hover:bg-[#262626] transition-colors duration-200"
+        className="group bg-card hover:bg-secondary/20 transition-colors duration-200"
       >
         <div className="p-6 flex items-start gap-4">
-          <div className="w-1.5 h-1.5 mt-2 bg-blue-500" />
+          <div className="w-1.5 h-1.5 mt-2 bg-primary" />
           <div>
-            <h4 className="font-mono text-white group-hover:text-blue-400 transition-colors duration-200">
+            <h4 className="font-mono text-foreground group-hover:text-primary transition-colors duration-200">
               {item.text}
             </h4>
             {item.subtext && (
-              <p className="mt-1 text-sm text-gray-400">{item.subtext}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{item.subtext}</p>
             )}
           </div>
         </div>
@@ -84,13 +86,13 @@ interface AccordionSectionProps {
 const AccordionSection: React.FC<AccordionSectionProps> = ({ value, title, children }) => (
   <Accordion.Item 
     value={value} 
-    className="border border-gray-800 bg-[#161616]"
+    className="border border-border bg-card"
   >
     <Accordion.Trigger className="flex items-center justify-between w-full p-6 cursor-pointer group">
-      <h3 className="font-mono text-xl text-white group-hover:text-blue-400 transition-colors duration-200">
+      <h3 className="font-mono text-xl text-foreground group-hover:text-primary transition-colors duration-200">
         {title}
       </h3>
-      <ChevronDown className="h-5 w-5 text-blue-400 transition-transform duration-200 ease-out group-data-[state=open]:rotate-180" />
+      <ChevronDown className="h-5 w-5 text-primary transition-transform duration-200 ease-out group-data-[state=open]:rotate-180" />
     </Accordion.Trigger>
     <Accordion.Content className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
       <div className="p-6 pt-0">
@@ -212,10 +214,10 @@ const ProductVisionSection = () => {
   ];
 
   return (
-    <section className="relative bg-[#000000] text-white">
+    <section className="relative bg-background text-foreground">
       {/* IBM Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(180deg,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 py-24">
@@ -230,11 +232,11 @@ const ProductVisionSection = () => {
             variants={itemAnimation}
             className="max-w-2xl"
           >
-            <p className="font-mono text-blue-400 mb-2">Product Vision</p>
+            <p className="font-mono text-primary mb-2">Product Vision</p>
             <h2 className="font-mono text-4xl font-medium mb-6">
               Philosophy & Approach
             </h2>
-            <p className="text-gray-400 text-xl leading-relaxed">
+            <p className="text-muted-foreground text-xl leading-relaxed">
               Building successful products requires a perfect blend of innovation,
               user-centricity, and technical excellence.
             </p>
@@ -242,7 +244,7 @@ const ProductVisionSection = () => {
 
           <Accordion.Root
             type="multiple"
-            defaultValue={[]}
+            defaultValue={["philosophy"]}
             className="space-y-px"
           >
             <AccordionSection value="philosophy" title="Core Philosophy">
@@ -251,7 +253,7 @@ const ProductVisionSection = () => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-800"
+                className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border"
               >
                 {philosophyItems.map((item, index) => (
                   <PhilosophyCard key={index} {...item} />
