@@ -1,4 +1,4 @@
-// src/types/index.ts
+// src/lib/langgraph/types.ts
 
 // Message Types
 export interface Message {
@@ -51,6 +51,34 @@ export type MeetingState =
   | "READY_FOR_BOOKING"
   | "BOOKED";
 
+// Enhanced Types for Insights
+export interface TechnicalRequirement {
+  name: string;
+  confidence: number;
+}
+
+export interface SentimentAnalysis {
+  overall: "Positive" | "Neutral" | "Negative";
+  details: {
+    excitement: number;
+    interest: number;
+    concern: number;
+  };
+}
+
+export interface KeyEntity {
+  name: string;
+  type: string;
+  significance: number;
+}
+
+export interface ProjectTimeline {
+  estimated: string;
+  complexity: "Low" | "Medium" | "High";
+}
+
+export type MeetingPriority = "Low" | "Medium" | "High";
+
 // State Types
 export interface ConversationStatus {
   messageCount: number;
@@ -83,7 +111,27 @@ export interface ChatState {
     missingInfo: string[];
   };
   shouldOfferMeeting?: boolean;
-  appointmentLinkShown?: boolean; // New field to track if we've shown the appointment link
+  appointmentLinkShown?: boolean;
+  
+  // Enhanced fields for better insights
+  technicalRequirements?: TechnicalRequirement[];
+  sentimentAnalysis?: SentimentAnalysis;
+  keyEntities?: KeyEntity[];
+  projectTimeline?: ProjectTimeline;
+  meetingPriority?: MeetingPriority;
+  
+  // Email summary data
+  lastEmailSent?: string;
+  emailSummary?: EmailSummaryData;
+}
+
+export interface EmailSummaryData {
+  sentAt: string;
+  recipient: string;
+  subject: string;
+  conversationSnippet: string;
+  insights: string[];
+  nextSteps: string[];
 }
 
 // Analysis Types
@@ -142,28 +190,37 @@ export interface Graph<T> {
   end: string;
 }
 
-// Constants
+// Constants - Updated with flexible thresholds
 export const VALIDATION_THRESHOLDS = {
-  MIN_MESSAGES: 7,
-  MIN_CONFIDENCE: 0.8,
+  MIN_CONFIDENCE: 0.7,
   MIN_TECHNICAL_DEPTH: 0.6,
-  MIN_PROJECT_CLARITY: 0.7,
-  MIN_ENGAGEMENT: 0.65,
-  MAX_PIN_ATTEMPTS: 3,
-  MAX_RESEND_ATTEMPTS: 3,
-  PIN_EXPIRY_MINUTES: 15
+  MIN_PROJECT_CLARITY: 0.65,
+  MIN_ENGAGEMENT: 0.6,
+  MEETING_QUALIFICATION_SCORE: 0.7 // Score at which meeting can be suggested
 } as const;
 
-export const ANALYSIS_WEIGHTS = {
-  TECHNICAL_DEPTH: 0.3,
-  PROJECT_CLARITY: 0.3,
-  ENGAGEMENT: 0.2,
-  COMMITMENT: 0.2
+export const CONVERSATION_LIMITS = {
+  MAX_MESSAGES: 50, // Increased max limit but no fixed prompt points
+  SOFT_WARNING_AT: 40, // When to start showing soft warnings about approaching limit
+  WARNING_DEBOUNCE_MESSAGES: 5 // How many messages between repeated warnings
 } as const;
 
-// Google Calendar Appointment link
-export const GOOGLE_CALENDAR_APPOINTMENT_URL = 
-  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3rO2EGQWPlDm9BkvW3xAcBBf8MRuJ7MbaBAQFkn99voBUOjnEOXc0WVL2l9jdHkgJIioCGX_s5?gv=true';
+// Model configuration
+export const MODEL_CONFIG = {
+  DEFAULT_MODEL: "gpt-4o", // Default model for primary analysis
+  FALLBACK_MODEL: "gpt-4o-mini", // Fallback model if primary is unavailable
+  SUMMARY_MODEL: "gpt-4o-mini", // Model for generating summaries
+  MAX_TOKENS: 1000, // Default max tokens for responses
+  TEMPERATURE: 0.7 // Default temperature setting
+} as const;
+
+// Meeting configuration
+export const MEETING_CONFIG = {
+  CALENDAR_URL: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3rO2EGQWPlDm9BkvW3xAcBBf8MRuJ7MbaBAQFkn99voBUOjnEOXc0WVL2l9jdHkgJIioCGX_s5',
+  DEFAULT_DURATION: 30, // Default meeting duration in minutes
+  BUFFER_TIME: 15, // Buffer time between meetings in minutes
+  TIMEZONE: 'Asia/Kolkata' // Default timezone for meetings
+} as const;
 
 // Error handling types
 export enum ErrorCode {
@@ -177,6 +234,9 @@ export enum ErrorCode {
   MEETING_ERROR = "MEETING_ERROR",
   RATE_LIMIT_EXCEEDED = "RATE_LIMIT_EXCEEDED",
   UNAUTHORIZED = "UNAUTHORIZED",
+  MODEL_ERROR = "MODEL_ERROR",
+  DATABASE_ERROR = "DATABASE_ERROR",
+  EMAIL_ERROR = "EMAIL_ERROR",
   UNKNOWN_ERROR = "UNKNOWN_ERROR"
 }
 
@@ -199,12 +259,31 @@ export class ChatError extends Error {
   }
 }
 
+// Email configuration
+export const EMAIL_CONFIG = {
+  FROM_EMAIL: 'noreply@yourdomain.com',
+  FROM_NAME: 'Groot AI Assistant',
+  RESEND_RETRY_ATTEMPTS: 3,
+  SUMMARY_MAX_LENGTH: 500,
+  EMAIL_TEMPLATES: {
+    MEETING_CONFIRMATION: 'meeting-confirmation',
+    MEETING_REMINDER: 'meeting-reminder',
+    MEETING_SUMMARY: 'meeting-summary'
+  }
+} as const;
 
-// Update in src/types/index.ts
+// Analytics tracking
+export interface AnalyticsEvent {
+  eventType: 'message_sent' | 'meeting_scheduled' | 'email_sent' | 'error' | 'validation_complete';
+  timestamp: string;
+  sessionId: string;
+  userId?: string;
+  data: Record<string, unknown>;
+}
 
-// Alternate direct booking link format (enables better tracking)
-export const getBookingLink = (email?: string) => {
-  const baseUrl = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3rO2EGQWPlDm9BkvW3xAcBBf8MRuJ7MbaBAQFkn99voBUOjnEOXc0WVL2l9jdHkgJIioCGX_s5';
+// Get booking link helper function
+export const getBookingLink = (email?: string): string => {
+  const baseUrl = MEETING_CONFIG.CALENDAR_URL;
   const params = new URLSearchParams();
   params.append('gv', 'true');
   

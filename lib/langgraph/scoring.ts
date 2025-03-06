@@ -5,13 +5,12 @@ import {
   BaseScores, 
   IntentCriteria, 
   ChatState, 
-  ANALYSIS_WEIGHTS, 
   VALIDATION_THRESHOLDS 
-} from "@/lib/langgraph/types";
+} from "./types";
 
 /**
  * Calculate total validation score based on base scores and intent-specific criteria
- * Improved calculation with better debugging
+ * Enhanced with better debugging and more robust handling of missing scores
  */
 export const calculateTotalScore = (
   intent: Intent,
@@ -33,11 +32,18 @@ export const calculateTotalScore = (
   };
   
   // Base score calculation (40% of total)
+  const weights = {
+    problemUnderstanding: 0.3,  // Technical depth
+    solutionVision: 0.3,        // Project clarity
+    engagementQuality: 0.2,     // Engagement quality
+    projectCommitment: 0.2      // Commitment
+  };
+  
   const baseScoreTotal = (
-    safeBaseScores.problemUnderstanding * ANALYSIS_WEIGHTS.TECHNICAL_DEPTH +
-    safeBaseScores.solutionVision * ANALYSIS_WEIGHTS.PROJECT_CLARITY +
-    safeBaseScores.engagementQuality * ANALYSIS_WEIGHTS.ENGAGEMENT +
-    safeBaseScores.projectCommitment * ANALYSIS_WEIGHTS.COMMITMENT
+    safeBaseScores.problemUnderstanding * weights.problemUnderstanding +
+    safeBaseScores.solutionVision * weights.solutionVision +
+    safeBaseScores.engagementQuality * weights.engagementQuality +
+    safeBaseScores.projectCommitment * weights.projectCommitment
   ) * 0.4;
 
   // Intent-specific criteria (60% of total)
@@ -49,141 +55,116 @@ export const calculateTotalScore = (
   } else {
     switch (intent) {
       case "IDEA_VALIDATION":
-        if (
-          intentCriteria.hasBusinessModel !== undefined &&
-          intentCriteria.marketResearch !== undefined &&
-          intentCriteria.technicalFeasibility !== undefined &&
-          intentCriteria.resourcePlanning !== undefined &&
-          intentCriteria.implementationTimeline !== undefined
-        ) {
-          intentScoreTotal = (
-            intentCriteria.hasBusinessModel * 0.25 +
-            intentCriteria.marketResearch * 0.2 +
-            intentCriteria.technicalFeasibility * 0.25 +
-            intentCriteria.resourcePlanning * 0.15 +
-            intentCriteria.implementationTimeline * 0.15
-          ) * 0.6;
-        } else {
-          // If we're missing some criteria, calculate with what we have
+        {
+          const criteriaWeights = {
+            hasBusinessModel: 0.25,
+            marketResearch: 0.2,
+            technicalFeasibility: 0.25,
+            resourcePlanning: 0.15,
+            implementationTimeline: 0.15
+          };
+          
           let validCount = 0;
-          let sum = 0;
+          let weightedSum = 0;
           
-          if (intentCriteria.hasBusinessModel !== undefined) { sum += intentCriteria.hasBusinessModel * 0.25; validCount += 1; }
-          if (intentCriteria.marketResearch !== undefined) { sum += intentCriteria.marketResearch * 0.2; validCount += 1; }
-          if (intentCriteria.technicalFeasibility !== undefined) { sum += intentCriteria.technicalFeasibility * 0.25; validCount += 1; }
-          if (intentCriteria.resourcePlanning !== undefined) { sum += intentCriteria.resourcePlanning * 0.15; validCount += 1; }
-          if (intentCriteria.implementationTimeline !== undefined) { sum += intentCriteria.implementationTimeline * 0.15; validCount += 1; }
+          for (const [key, weight] of Object.entries(criteriaWeights)) {
+            const value = intentCriteria[key as keyof IntentCriteria];
+            if (typeof value === 'number') {
+              weightedSum += value * weight;
+              validCount += weight;
+            }
+          }
           
-          intentScoreTotal = validCount > 0 ? (sum / validCount) * 0.6 : 0.3;
+          intentScoreTotal = validCount > 0 ? (weightedSum / validCount) * 0.6 : 0.3;
         }
         break;
 
       case "PROJECT_ASSISTANCE":
-        if (
-          intentCriteria.scopeClarity !== undefined &&
-          intentCriteria.technicalRequirements !== undefined &&
-          intentCriteria.timeline !== undefined &&
-          intentCriteria.budget !== undefined &&
-          intentCriteria.success_criteria !== undefined
-        ) {
-          intentScoreTotal = (
-            intentCriteria.scopeClarity * 0.25 +
-            intentCriteria.technicalRequirements * 0.25 +
-            intentCriteria.timeline * 0.15 +
-            intentCriteria.budget * 0.15 +
-            intentCriteria.success_criteria * 0.2
-          ) * 0.6;
-        } else {
-          // Calculate with available criteria
+        {
+          const criteriaWeights = {
+            scopeClarity: 0.25,
+            technicalRequirements: 0.25,
+            timeline: 0.15,
+            budget: 0.15,
+            success_criteria: 0.2
+          };
+          
           let validCount = 0;
-          let sum = 0;
+          let weightedSum = 0;
           
-          if (intentCriteria.scopeClarity !== undefined) { sum += intentCriteria.scopeClarity * 0.25; validCount += 1; }
-          if (intentCriteria.technicalRequirements !== undefined) { sum += intentCriteria.technicalRequirements * 0.25; validCount += 1; }
-          if (intentCriteria.timeline !== undefined) { sum += intentCriteria.timeline * 0.15; validCount += 1; }
-          if (intentCriteria.budget !== undefined) { sum += intentCriteria.budget * 0.15; validCount += 1; }
-          if (intentCriteria.success_criteria !== undefined) { sum += intentCriteria.success_criteria * 0.2; validCount += 1; }
+          for (const [key, weight] of Object.entries(criteriaWeights)) {
+            const value = intentCriteria[key as keyof IntentCriteria];
+            if (typeof value === 'number') {
+              weightedSum += value * weight;
+              validCount += weight;
+            }
+          }
           
-          intentScoreTotal = validCount > 0 ? (sum / validCount) * 0.6 : 0.3;
+          intentScoreTotal = validCount > 0 ? (weightedSum / validCount) * 0.6 : 0.3;
         }
         break;
 
       case "TECHNICAL_CONSULTATION":
-        if (
-          intentCriteria.problemComplexity !== undefined &&
-          intentCriteria.aiRelevance !== undefined &&
-          intentCriteria.requirementClarity !== undefined &&
-          intentCriteria.implementationPath !== undefined &&
-          intentCriteria.expectedOutcomes !== undefined
-        ) {
-          intentScoreTotal = (
-            intentCriteria.problemComplexity * 0.2 +
-            intentCriteria.aiRelevance * 0.25 +
-            intentCriteria.requirementClarity * 0.2 +
-            intentCriteria.implementationPath * 0.15 +
-            intentCriteria.expectedOutcomes * 0.2
-          ) * 0.6;
-        } else {
-          // Calculate with available criteria
+        {
+          const criteriaWeights = {
+            problemComplexity: 0.2,
+            aiRelevance: 0.25,
+            requirementClarity: 0.2,
+            implementationPath: 0.15,
+            expectedOutcomes: 0.2
+          };
+          
+          let validCount = 0;
+          let weightedSum = 0;
+          
+          for (const [key, weight] of Object.entries(criteriaWeights)) {
+            const value = intentCriteria[key as keyof IntentCriteria];
+            if (typeof value === 'number') {
+              weightedSum += value * weight;
+              validCount += weight;
+            }
+          }
+          
+          intentScoreTotal = validCount > 0 ? (weightedSum / validCount) * 0.6 : 0.3;
+        }
+        break;
+
+      case "RECRUITMENT":
+        {
+          // For recruitment, convert boolean criteria to scores
+          const criteriaScores = {
+            isAIRole: intentCriteria.isAIRole ? 0.3 : 0.1,
+            meetsSalary: intentCriteria.meetsSalary ? 0.2 : 0,
+            isRemoteHybrid: intentCriteria.isRemoteHybrid ? 0.1 : 0,
+            hasCompanyInfo: intentCriteria.hasCompanyInfo ? 0.1 : 0,
+            hasJobDescription: intentCriteria.hasJobDescription ? 0.1 : 0,
+            hasCultureInfo: intentCriteria.hasCultureInfo ? 0.1 : 0,
+            hasGrowthInfo: intentCriteria.hasGrowthInfo ? 0.1 : 0
+          };
+          
+          // Calculate recruitment score
           let validCount = 0;
           let sum = 0;
           
-          if (intentCriteria.problemComplexity !== undefined) { sum += intentCriteria.problemComplexity * 0.2; validCount += 1; }
-          if (intentCriteria.aiRelevance !== undefined) { sum += intentCriteria.aiRelevance * 0.25; validCount += 1; }
-          if (intentCriteria.requirementClarity !== undefined) { sum += intentCriteria.requirementClarity * 0.2; validCount += 1; }
-          if (intentCriteria.implementationPath !== undefined) { sum += intentCriteria.implementationPath * 0.15; validCount += 1; }
-          if (intentCriteria.expectedOutcomes !== undefined) { sum += intentCriteria.expectedOutcomes * 0.2; validCount += 1; }
+          for (const [key, defaultValue] of Object.entries(criteriaScores)) {
+            const value = intentCriteria[key as keyof IntentCriteria];
+            if (typeof value === 'boolean') {
+              sum += value ? defaultValue : 0;
+              validCount += 1;
+            } else {
+              sum += defaultValue;
+              validCount += 1;
+            }
+          }
           
           intentScoreTotal = validCount > 0 ? (sum / validCount) * 0.6 : 0.3;
         }
         break;
 
-      case "RECRUITMENT":
-        // For recruitment, convert boolean criteria to numbers and calculate score
-        if (
-          intentCriteria.isAIRole !== undefined &&
-          intentCriteria.meetsSalary !== undefined &&
-          intentCriteria.isRemoteHybrid !== undefined &&
-          intentCriteria.hasCompanyInfo !== undefined &&
-          intentCriteria.hasJobDescription !== undefined &&
-          intentCriteria.hasCultureInfo !== undefined &&
-          intentCriteria.hasGrowthInfo !== undefined
-        ) {
-          const criteriaSum = [
-            intentCriteria.isAIRole ? 0.3 : 0.1, // Higher weight for AI roles
-            intentCriteria.meetsSalary ? 0.2 : 0,
-            intentCriteria.isRemoteHybrid ? 0.1 : 0,
-            intentCriteria.hasCompanyInfo ? 0.1 : 0,
-            intentCriteria.hasJobDescription ? 0.1 : 0,
-            intentCriteria.hasCultureInfo ? 0.1 : 0,
-            intentCriteria.hasGrowthInfo ? 0.1 : 0
-          ].reduce((sum, val) => sum + val, 0);
-          
-          intentScoreTotal = criteriaSum * 0.6;
-        } else {
-          // Provide a partial score based on available criteria
-          let criteriaSum = 0;
-          let availableCriteria = 0;
-          
-          if (intentCriteria.isAIRole !== undefined) { 
-            criteriaSum += intentCriteria.isAIRole ? 0.3 : 0.1;
-            availableCriteria += 1;
-          }
-          
-          if (intentCriteria.meetsSalary !== undefined) {
-            criteriaSum += intentCriteria.meetsSalary ? 0.2 : 0;
-            availableCriteria += 1;
-          }
-          
-          // Add other criteria checks...
-          
-          intentScoreTotal = availableCriteria > 0 ? (criteriaSum / availableCriteria) * 0.6 : 0.3;
-        }
-        break;
-
+      case "INFORMATION":
       default:
-        // For INFORMATION or any other intent, use a base calculation
-        intentScoreTotal = 0.3; // Medium score for general inquiries
+        // For information or any other intent, use a moderate score
+        intentScoreTotal = 0.3;
     }
   }
 
@@ -204,77 +185,61 @@ export const calculateTotalScore = (
 };
 
 /**
- * Check if validation criteria are met
+ * Evaluate technical requirements to determine technical depth
  */
-export const isValidationComplete = (state: ChatState): boolean => {
-  if (!state.scoreDetails) return false;
+export const evaluateTechnicalRequirements = (requirements: any[]): number => {
+  if (!requirements || requirements.length === 0) {
+    return 0.5; // Default moderate score
+  }
   
-  const { baseScores } = state.scoreDetails;
+  // Calculate average confidence score
+  const totalConfidence = requirements.reduce((sum, req) => sum + (req.confidence || 0), 0);
+  const avgConfidence = requirements.length > 0 ? totalConfidence / requirements.length : 0;
   
-  return (
-    state.messageCount >= VALIDATION_THRESHOLDS.MIN_MESSAGES &&
-    baseScores.problemUnderstanding >= VALIDATION_THRESHOLDS.MIN_TECHNICAL_DEPTH &&
-    baseScores.solutionVision >= VALIDATION_THRESHOLDS.MIN_PROJECT_CLARITY &&
-    baseScores.engagementQuality >= VALIDATION_THRESHOLDS.MIN_ENGAGEMENT &&
-    state.validationScore >= VALIDATION_THRESHOLDS.MIN_CONFIDENCE
-  );
+  // Consider the number of requirements identified
+  const reqCountFactor = Math.min(requirements.length / 5, 1); // Max out at 5 requirements
+  
+  // Combine confidence and count for final score
+  return avgConfidence * 0.7 + reqCountFactor * 0.3;
 };
 
 /**
- * Check if meeting should be offered based on conversation state
+ * Evaluate sentiment for engagement quality
  */
-export const shouldOfferMeeting = (state: ChatState): boolean => {
-  return (
-    state.validationScore >= 0.7 && 
-    (state.messageCount >= 10 || 
-    state.conversationStatus.approachingLimit)
-  );
+export const evaluateSentiment = (sentiment: any): number => {
+  if (!sentiment || !sentiment.details) {
+    return 0.5; // Default moderate score
+  }
+  
+  // Calculate engagement quality based on excitement and interest
+  const { excitement = 0.5, interest = 0.5, concern = 0.5 } = sentiment.details;
+  
+  // Higher excitement and interest are positive, but some concern is natural
+  // A balanced concern (around 0.3-0.6) is actually a positive signal
+  const balancedConcern = Math.abs(concern - 0.4) < 0.3 ? 0.8 : 0.5;
+  
+  return (excitement * 0.4) + (interest * 0.4) + (balancedConcern * 0.2);
 };
 
 /**
- * Format validation score as percentage
+ * Calculate meeting priority score
  */
-export const formatValidationScore = (score: number): string => {
-  return `${Math.round(score * 100)}%`;
-};
-
-/**
- * Get color based on validation score
- */
-export const getScoreColor = (score: number): string => {
-  if (score >= 0.7) return "#4CAF50"; // Green
-  if (score >= 0.5) return "#FFC107"; // Yellow/Amber
-  return "#F44336"; // Red
-};
-
-/**
- * Calculate missing validation requirements
- */
-export const getMissingRequirements = (state: ChatState): string[] => {
-  if (!state.scoreDetails) return ["Complete profile information"];
+export const calculateMeetingPriority = (state: ChatState): "Low" | "Medium" | "High" => {
+  if (!state.scoreDetails) return "Medium";
   
-  const missing: string[] = [];
-  const { baseScores } = state.scoreDetails;
+  // Consider validation score
+  if (state.validationScore >= 0.85) return "High";
+  if (state.validationScore < 0.7) return "Low";
   
-  if (state.messageCount < VALIDATION_THRESHOLDS.MIN_MESSAGES) {
-    missing.push("More conversation depth required");
+  // Consider project complexity
+  if (state.projectTimeline?.complexity === "High") return "High";
+  
+  // Consider sentiment
+  if (state.sentimentAnalysis?.overall === "Positive" && 
+      state.sentimentAnalysis.details.interest > 0.8) {
+    return "High";
   }
   
-  if (baseScores.problemUnderstanding < VALIDATION_THRESHOLDS.MIN_TECHNICAL_DEPTH) {
-    missing.push("More technical details needed");
-  }
-  
-  if (baseScores.solutionVision < VALIDATION_THRESHOLDS.MIN_PROJECT_CLARITY) {
-    missing.push("Project scope needs clarification");
-  }
-  
-  if (baseScores.engagementQuality < VALIDATION_THRESHOLDS.MIN_ENGAGEMENT) {
-    missing.push("Higher engagement quality needed");
-  }
-  
-  if (state.validationScore < VALIDATION_THRESHOLDS.MIN_CONFIDENCE) {
-    missing.push("Overall confidence score is too low");
-  }
-  
-  return missing;
+  // Default to medium
+  return "Medium";
 };
