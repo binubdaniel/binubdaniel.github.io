@@ -12,6 +12,7 @@ import {
   Lightbulb,
   Code2,
   Briefcase,
+  ArrowUpRightFromSquare,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -76,12 +77,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             {/* Profile */}
             <section className="p-4 border-b border-border">
               <Link href="/">
-                <h3 className="font-mono font-semibold text-lg text-foreground">
-                  Binu B Daniel
-                </h3>
-                <p className="text-sm text-primary">
-                  Technical Product Consultant
-                </p>
+                  <div className="flex gap-1">
+                    <h3 className="font-mono font-semibold text-lg text-primary">
+                      Binu B Daniel
+                    </h3>{" "}
+                    <ArrowUpRightFromSquare className="w-3 h-3 text-primary " />
+                  </div>
+
+                  <p className="text-sm text-primary">
+                    Technical Product Consultant
+                  </p>
               </Link>
 
               <p className="mt-4 text-sm text-muted-foreground">
