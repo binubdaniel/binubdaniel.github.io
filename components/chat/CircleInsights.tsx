@@ -536,7 +536,7 @@ const CircleInsights = ({
       </TooltipProvider>
 
       {isExpanded && (
-        <Card className="absolute bottom-14 right-0 w-80 max-h-[80vh] overflow-y-auto shadow-lg z-50 border-border">
+        <Card className="absolute bottom-14 right-0 sm:left-0 w-80 max-h-[80vh] overflow-y-auto shadow-lg z-50 border-border">
           <CardContent className="p-4 space-y-4">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
