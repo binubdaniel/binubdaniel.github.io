@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { getBookingLink } from "@/lib/langgraph/types";
 import Sidebar from "./sidebar";
 import { InfoBanner } from "./chat/InfoBanner";
-import { ValidationState, CONVERSATION_LIMITS } from "@/lib/langgraph/types";
+import { ValidationState } from "@/lib/langgraph/types";
 import { Card, CardContent } from "@/components/ui/card";
 import CircleInsights from "./chat/CircleInsights";
 
@@ -45,17 +45,17 @@ const ChatInterface: React.FC = () => {
   // Log session data for debugging
   useEffect(() => {
     if (currentSession) {
-      console.log("Current session metrics:", {
-        validationScore: currentSession.validationScore,
-        validationState: currentSession.validationState,
-        currentIntent: currentSession.currentIntent,
-        scoreDetails: currentSession.scoreDetails,
-        technicalRequirements: currentSession.technicalRequirements,
-        sentimentAnalysis: currentSession.sentimentAnalysis,
-        keyEntities: currentSession.keyEntities,
-        projectTimeline: currentSession.projectTimeline,
-        meetingPriority: currentSession.meetingPriority,
-      });
+      // console.log("Current session metrics:", {
+      //   validationScore: currentSession.validationScore,
+      //   validationState: currentSession.validationState,
+      //   currentIntent: currentSession.currentIntent,
+      //   scoreDetails: currentSession.scoreDetails,
+      //   technicalRequirements: currentSession.technicalRequirements,
+      //   sentimentAnalysis: currentSession.sentimentAnalysis,
+      //   keyEntities: currentSession.keyEntities,
+      //   projectTimeline: currentSession.projectTimeline,
+      //   meetingPriority: currentSession.meetingPriority,
+      // });
     }
   }, [currentSession]);
 
@@ -126,7 +126,7 @@ const ChatInterface: React.FC = () => {
         <Alert variant="warning" className="mb-4">
           <Info className="h-4 w-4" />
           <AlertDescription>
-            We're approaching the conversation limit. Consider scheduling a meeting to continue the discussion.
+            We&apos;re approaching the conversation limit. Consider scheduling a meeting to continue the discussion.
           </AlertDescription>
         </Alert>
       );

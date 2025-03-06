@@ -4,8 +4,9 @@ import {
   Intent, 
   BaseScores, 
   IntentCriteria, 
-  ChatState, 
-  VALIDATION_THRESHOLDS 
+  ChatState,
+  TechnicalRequirement,
+  SentimentAnalysis
 } from "./types";
 
 /**
@@ -172,14 +173,14 @@ export const calculateTotalScore = (
   const totalScore = Math.min(Math.max(baseScoreTotal + intentScoreTotal, 0), 1);
   
   // Log the calculation for debugging
-  console.log('Score calculation:', {
-    intent,
-    baseScores: safeBaseScores,
-    baseScoreTotal,
-    intentCriteria,
-    intentScoreTotal,
-    totalScore: totalScore
-  });
+  // console.log('Score calculation:', {
+  //   intent,
+  //   baseScores: safeBaseScores,
+  //   baseScoreTotal,
+  //   intentCriteria,
+  //   intentScoreTotal,
+  //   totalScore: totalScore
+  // });
   
   return totalScore;
 };
@@ -187,7 +188,7 @@ export const calculateTotalScore = (
 /**
  * Evaluate technical requirements to determine technical depth
  */
-export const evaluateTechnicalRequirements = (requirements: any[]): number => {
+export const evaluateTechnicalRequirements = (requirements: TechnicalRequirement[]): number => {
   if (!requirements || requirements.length === 0) {
     return 0.5; // Default moderate score
   }
@@ -206,7 +207,7 @@ export const evaluateTechnicalRequirements = (requirements: any[]): number => {
 /**
  * Evaluate sentiment for engagement quality
  */
-export const evaluateSentiment = (sentiment: any): number => {
+export const evaluateSentiment = (sentiment: SentimentAnalysis): number => {
   if (!sentiment || !sentiment.details) {
     return 0.5; // Default moderate score
   }

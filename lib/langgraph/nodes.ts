@@ -12,7 +12,7 @@ import {
 } from "@/lib/langgraph/types";
 import OpenAI from "openai";
 import { v4 as uuidv4 } from "uuid";
-import { calculateTotalScore, evaluateTechnicalRequirements, evaluateSentiment, calculateMeetingPriority } from "./scoring";
+import { calculateTotalScore, calculateMeetingPriority } from "./scoring";
 import { getBookingLink } from "@/lib/langgraph/types";
 import { extractKeyInsights, generateNextSteps } from "./summary";
 
@@ -484,6 +484,7 @@ const generateMeetingResponse = (
   
   // Add booking link
   response += getBookingLink(state.email);
+  console.log(timeInfo)
   
   // Additional context based on current state
   switch (state.currentIntent) {
