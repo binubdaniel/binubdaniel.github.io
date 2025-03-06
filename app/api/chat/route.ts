@@ -4,6 +4,8 @@ import { ChatGraph } from '@/lib/langgraph/graph';
 import { ChatState, ValidationState, MeetingState } from '@/lib/langgraph/types';
 import { ChatError, ErrorCode } from '@/lib/langgraph/types';
 
+export const maxDuration = 60
+
 const chatGraph = new ChatGraph();
 
 const DEFAULT_CONVERSATION_STATUS = {
