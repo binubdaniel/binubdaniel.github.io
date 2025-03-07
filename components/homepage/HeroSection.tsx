@@ -1,12 +1,20 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Globe, Linkedin, ArrowUpRight, Calendar } from "lucide-react";
+import {
+  Brain,
+  Globe,
+  Linkedin,
+  ArrowUpRight,
+  Calendar,
+  Bot,
+  Network,
+} from "lucide-react";
 import { motion } from "framer-motion";
-import Image from 'next/image';
-import { ThemeSwitcher } from '../theme-switcher';
-import Link from 'next/link';
+import Image from "next/image";
+import { ThemeSwitcher } from "../theme-switcher";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -38,8 +46,9 @@ const HeroSection = () => {
                 AI Product Architect & Technology Consultant
               </p>
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                Leading technological innovation and AI integration at Bridge Global, 
-                with a proven track record of building future-ready solutions.
+                Leading technological innovation and AI integration at Bridge
+                Global, with a proven track record of building future-ready
+                solutions.
               </p>
             </motion.div>
 
@@ -58,6 +67,38 @@ const HeroSection = () => {
                 <Globe className="mr-2 h-4 w-4" />
                 Tech Leader
               </Badge>
+            </motion.div>
+
+            {/* Groot AI Multi-Agent System Highlight */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="p-6 border border-primary/20 bg-background relative"
+            >
+              <Link href="/enquire" className="group">
+                <div className="absolute top-0 right-0 w-1/2 h-1 bg-primary" />
+                <div className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <Network className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                      <span>Groot AI</span>
+                      <Badge className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-sm">
+                        Multi-Agent System
+                      </Badge>
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Leveraging a sophisticated graph-based multi-agent AI
+                      system with LLM orchestration, Groot handles complex
+                      workflows through coordinated specialist agents for
+                      conversation analysis, meeting management, and technical
+                      insights.
+                    </p>
+                  </div>
+                </div>
+              </Link>
             </motion.div>
 
             {/* IBM-style CTA */}
@@ -79,7 +120,7 @@ const HeroSection = () => {
                 </span>
                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
-              
+
               <Link
                 href="/enquire"
                 className="group inline-flex items-center justify-center gap-3 text-lg bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 transition-colors duration-200 relative overflow-hidden"
