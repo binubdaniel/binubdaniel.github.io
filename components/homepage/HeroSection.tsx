@@ -8,7 +8,6 @@ import {
   Linkedin,
   ArrowUpRight,
   Calendar,
-  Bot,
   Network,
 } from "lucide-react";
 import { motion } from "framer-motion";
