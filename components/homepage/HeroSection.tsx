@@ -73,29 +73,32 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="p-6 border border-primary/20 bg-background relative"
+              className="p-6 border border-primary/20 bg-background relative group/card hover:border-primary/50 hover:shadow-md transition-all duration-300"
             >
-              <Link href="/enquire" className="group">
-                <div className="absolute top-0 right-0 w-1/2 h-1 bg-primary" />
+              <Link href="/enquire" className="block">
+                <div className="absolute top-0 right-0 w-1/2 h-1 bg-primary group-hover/card:w-full transition-all duration-300 ease-in-out" />
                 <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full">
-                    <Network className="h-6 w-6 text-primary" />
+                  <div className="bg-primary/10 p-3 rounded-full group-hover/card:bg-primary/20 transition-colors duration-300">
+                    <Network className="h-6 w-6 text-primary group-hover/card:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-lg font-semibold flex items-center gap-2">
-                      <span>Hello, I am Groot</span>
+                      <span>I&apos;m Groot</span>
                       <Badge className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-sm">
                         Binu&apos;s AI Assistant
                       </Badge>
                     </h3>
-                    <p className="text-sm text-muted-foreground">
-                      I&apos;m a sophisticated graph-based multi-agent AI system. I
-                      coordinate specialist AI agents to analyze conversations,
-                      manage meetings, and provide technical insights, all to
-                      streamline your interactions and help you connect with
-                      Binu effectively.
+                    <p className="text-sm text-muted-foreground group-hover/card:text-foreground/90 transition-colors duration-300">
+                      I&apos;m a sophisticated graph-based multi-agent AI
+                      system. I coordinate specialist AI agents to analyze
+                      conversations, manage meetings, and provide technical
+                      insights, all to streamline your interactions and help you
+                      connect with Binu effectively.
                     </p>
                   </div>
+                </div>
+                <div className="absolute bottom-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 text-primary">
+                  <ArrowUpRight className="h-5 w-5" />
                 </div>
               </Link>
             </motion.div>
