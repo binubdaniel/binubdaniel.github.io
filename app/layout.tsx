@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { metadata } from './metadata'
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react"
@@ -6,10 +6,7 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "AI Personal Assistant",
-  description: "Intelligent conversation handling, email validation, and meeting scheduling capabilities",
-};
+
 
 export default function RootLayout({
   children,
@@ -32,3 +29,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+export { metadata }
