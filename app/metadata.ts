@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Groot AI",
     images: [
       {
-        url: "https://firebasestorage.googleapis.com/v0/b/socife-firebase-0.appspot.com/o/Find%20Your%20Tribe.jpg?alt=media&token=bf9bbc71-8a37-4988-9422-34ee7ab9315f",
+        url: "https://firebasestorage.googleapis.com/v0/b/socife-firebase-0.appspot.com/o/Find%20Your%20Tribe.jpg?alt=media&token=7e2720ac-fb6e-4ae1-901f-9de0eaf5234d",
         width: 1200,
         height: 630,
         alt: "Groot AI Assistant"
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Groot AI | Binu Babu's Personal AI Assistant",
     description: "Engage with Groot AI, Binu Babu's multi-agent AI assistant for intelligent conversation analysis and technical consultations.",
-    images: ["https://firebasestorage.googleapis.com/v0/b/socife-firebase-0.appspot.com/o/Find%20Your%20Tribe.jpg?alt=media&token=bf9bbc71-8a37-4988-9422-34ee7ab9315f"]
+    images: ["https://firebasestorage.googleapis.com/v0/b/socife-firebase-0.appspot.com/o/Find%20Your%20Tribe.jpg?alt=media&token=7e2720ac-fb6e-4ae1-901f-9de0eaf5234d"]
   },
   robots: {
     index: true,
