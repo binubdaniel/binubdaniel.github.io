@@ -83,17 +83,17 @@ const HeroSection = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-lg font-semibold flex items-center gap-2">
-                      <span>Groot AI</span>
+                      <span>Hello, I am Groot</span>
                       <Badge className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-sm">
-                        Multi-Agent System
+                        Binu's AI Assistant
                       </Badge>
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Leveraging a sophisticated graph-based multi-agent AI
-                      system with LLM orchestration, Groot handles complex
-                      workflows through coordinated specialist agents for
-                      conversation analysis, meeting management, and technical
-                      insights.
+                      I'm a sophisticated graph-based multi-agent AI system. I
+                      coordinate specialist AI agents to analyze conversations,
+                      manage meetings, and provide technical insights, all to
+                      streamline your interactions and help you connect with
+                      Binu effectively.
                     </p>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-primary transform rotate-3" />
               <div className="absolute inset-0 bg-background">
                 <Image
-                  src="/picture.png"
+                  src="/profile.jpg"
                   alt="Binu Babu"
                   fill
                   className="object-cover mix-blend-multiply dark:mix-blend-normal"
