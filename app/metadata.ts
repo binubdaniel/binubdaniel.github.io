@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Groot AI | Binu's Personal AI Assistant",
+  title: "Binu B Daniel X Groot AI",
   description: "Engage with Groot AI, Binu Babu's multi-agent AI assistant for intelligent conversation handling, technical consultations, and meeting scheduling.",
   keywords: [
     "AI Assistant", 
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://binubabu.vercel.app",
-    title: "Groot AI | Binu Babu's Personal AI Assistant",
+    title: "Binu B Daniel X Groot AI",
     description: "Engage with Groot AI, Binu Babu's multi-agent AI assistant for intelligent conversation analysis and technical consultations.",
     siteName: "Groot AI",
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Groot AI | Binu Babu's Personal AI Assistant",
+    title: "Binu B Daniel X Groot AI",
     description: "Engage with Groot AI, Binu Babu's multi-agent AI assistant for intelligent conversation analysis and technical consultations.",
     images: ["https://firebasestorage.googleapis.com/v0/b/socife-firebase-0.appspot.com/o/Find%20Your%20Tribe.jpg?alt=media&token=7e2720ac-fb6e-4ae1-901f-9de0eaf5234d"]
   },
