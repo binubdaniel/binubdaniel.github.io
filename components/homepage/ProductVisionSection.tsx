@@ -244,7 +244,7 @@ const ProductVisionSection = () => {
 
           <Accordion.Root
             type="multiple"
-            defaultValue={["philosophy"]}
+            defaultValue={[""]}
             className="space-y-px"
           >
             <AccordionSection value="philosophy" title="Core Philosophy">

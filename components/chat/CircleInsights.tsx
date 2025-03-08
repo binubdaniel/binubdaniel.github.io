@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ValidationInfo {
   state: ValidationState;
@@ -31,8 +32,6 @@ interface ValidationInfo {
   pinAttempts: number;
   resendAttempts: number;
 }
-
-
 
 type Intent =
   | "IDEA_VALIDATION"
@@ -96,6 +95,7 @@ const CircleInsights = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [animationComplete, setAnimationComplete] = useState(false);
 
   // Log received props for debugging
   useEffect(() => {
@@ -123,6 +123,16 @@ const CircleInsights = ({
   const radius = 16;
   const circumference = 2 * Math.PI * radius;
   const progress = (normalizedScore / 100) * circumference;
+
+  // Restart the animation every 15 seconds if not expanded
+  useEffect(() => {
+    if (!isExpanded) {
+      const timer = setTimeout(() => {
+        setAnimationComplete(false);
+      }, 15000);
+      return () => clearTimeout(timer);
+    }
+  }, [animationComplete, isExpanded]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -477,17 +487,69 @@ const CircleInsights = ({
     );
   };
 
+  // Animation variants for the circle indicator
+  const pulseVariants = {
+    initial: { scale: 1 },
+    animate: {
+      scale: [1, 1.08, 1],
+      transition: { 
+        duration: 1.8, 
+        repeat: 2,
+        repeatType: "reverse" as const
+      }
+    }
+  };
+
+  // Animation for the progress circle
+  const progressCircleVariants = {
+    initial: { 
+      strokeDashoffset: circumference
+    },
+    animate: { 
+      strokeDashoffset: circumference - progress,
+      transition: { 
+        duration: 1.5,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  // Glow effect variants
+  const glowVariants = {
+    initial: { opacity: 0 },
+    animate: { 
+      opacity: [0, 0.5, 0],
+      transition: { 
+        duration: 2,
+        repeat: 1,
+        repeatType: "reverse" as const
+      }
+    }
+  };
+
   return (
     <div ref={dropdownRef} className="relative">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <button
-              className="flex items-center bg-secondary/20 hover:bg-secondary/30 rounded-lg p-2 transition-colors"
+            <motion.button
+              className="flex items-center bg-background hover:bg-secondary/50 rounded-lg p-2 transition-colors relative"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
               aria-label="Show conversation insights"
+              initial="initial"
+              animate={!isExpanded && !animationComplete ? "animate" : "initial"}
+              variants={pulseVariants}
+              onAnimationComplete={() => setAnimationComplete(true)}
             >
+              {/* Glow effect */}
+              <motion.div 
+                className="absolute inset-0 bg-primary/20 rounded-lg"
+                initial="initial"
+                animate={!isExpanded && !animationComplete ? "animate" : "initial"}
+                variants={glowVariants}
+              />
+              
               <div className="relative w-8 h-8">
                 <svg
                   className="w-full h-full transform -rotate-90"
@@ -500,22 +562,29 @@ const CircleInsights = ({
                     r={radius}
                     strokeWidth="2.5"
                     fill="transparent"
-                    className="stroke-muted"
+                    className="stroke-primary/25"
                   />
-                  <circle
+                  <motion.circle
                     cx="20"
                     cy="20"
                     r={radius}
                     strokeWidth="2.5"
                     fill="transparent"
                     strokeDasharray={circumference}
-                    strokeDashoffset={circumference - progress}
+                    initial="initial"
+                    animate="animate"
+                    variants={progressCircleVariants}
                     className={`${getProgressColor(
                       normalizedScore
-                    )} transition-all duration-300`}
+                    )}`}
                   />
                 </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                >
                   <span
                     className={`text-xs font-medium ${getScoreColor(
                       normalizedScore
@@ -523,9 +592,9 @@ const CircleInsights = ({
                   >
                     {Math.round(normalizedScore)}
                   </span>
-                </div>
+                </motion.div>
               </div>
-            </button>
+            </motion.button>
           </TooltipTrigger>
           <TooltipContent>
             <p className="text-xs">
@@ -535,257 +604,287 @@ const CircleInsights = ({
         </Tooltip>
       </TooltipProvider>
 
-      {isExpanded && (
-        <Card className="absolute bottom-14 right-0 left-0 w-80 max-h-[80vh] overflow-y-auto shadow-lg z-50 border-border">
-          <CardContent className="p-4 space-y-4">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {getIntentIcon(currentIntent)}
-                  <span className="text-sm font-medium capitalize">
-                    {currentIntent?.toLowerCase().replace(/_/g, " ") ||
-                      "General"}
-                  </span>
-                </div>
-                <div
-                  className={`text-xs ${getScoreColor(
-                    normalizedScore
-                  )} flex items-center gap-1`}
-                >
-                  <span>{getValidationStateLabel(validation.state)}</span>
-                  {validation.state === "VALIDATED" && (
-                    <ArrowUpRight className="w-3 h-3" />
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-muted-foreground">
-                    Progress
-                  </span>
-                  <span
-                    className={`text-xs font-medium ${getScoreColor(
-                      normalizedScore
-                    )}`}
-                  >
-                    {Math.round(normalizedScore)}%
-                  </span>
-                </div>
-                <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-                  <div
-                    className={`h-full transition-all duration-300 bg-primary ${
-                      normalizedScore >= 70 && "bg-green-500"
-                    }`}
-                    style={{ width: `${normalizedScore}%` }}
-                    role="progressbar"
-                    aria-valuenow={normalizedScore}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <Tabs
-              defaultValue="overview"
-              value={activeTab}
-              onValueChange={setActiveTab}
-              className="w-full"
-            >
-              <TabsList className="grid grid-cols-3 w-full h-8">
-                <TabsTrigger value="overview" className="text-xs">
-                  Overview
-                </TabsTrigger>
-                <TabsTrigger value="metrics" className="text-xs">
-                  Metrics
-                </TabsTrigger>
-                <TabsTrigger value="insights" className="text-xs">
-                  Insights
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="overview" className="mt-4 space-y-3">
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-xs font-medium text-foreground">
-                      Conversation
-                    </h3>
-                    <span className="text-xs text-muted-foreground">
-                      {messageCount} messages
-                    </span>
-                  </div>
-
-                  {/* Meeting priority status */}
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-muted-foreground flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      Meeting Priority
-                    </span>
-                    <span
-                      className={`text-xs font-medium ${getMeetingPriorityColor(
-                        meetingPriority
-                      )}`}
-                    >
-                      {meetingPriority}
-                    </span>
-                  </div>
-
-                  {/* Project timeline if available */}
-                  {projectTimeline && (
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        Timeline
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute bottom-14 right-0 left-0 w-80 max-h-[80vh] overflow-y-auto z-50"
+          >
+            <Card className="shadow-lg border-border">
+              <CardContent className="p-4 space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {getIntentIcon(currentIntent)}
+                      <span className="text-sm font-medium capitalize">
+                        {currentIntent?.toLowerCase().replace(/_/g, " ") ||
+                          "General"}
                       </span>
-                      <Badge variant="outline" className="text-xs">
-                        {projectTimeline.estimated} (
-                        {projectTimeline.complexity})
-                      </Badge>
                     </div>
-                  )}
+                    <div
+                      className={`text-xs ${getScoreColor(
+                        normalizedScore
+                      )} flex items-center gap-1`}
+                    >
+                      <span>{getValidationStateLabel(validation.state)}</span>
+                      {validation.state === "VALIDATED" && (
+                        <ArrowUpRight className="w-3 h-3" />
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-muted-foreground">
+                        Progress
+                      </span>
+                      <span
+                        className={`text-xs font-medium ${getScoreColor(
+                          normalizedScore
+                        )}`}
+                      >
+                        {Math.round(normalizedScore)}%
+                      </span>
+                    </div>
+                    <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
+                      <motion.div
+                        className={`h-full transition-all duration-300 bg-primary ${
+                          normalizedScore >= 70 && "bg-green-500"
+                        }`}
+                        style={{ width: 0 }}
+                        animate={{ width: `${normalizedScore}%` }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                        role="progressbar"
+                        aria-valuenow={normalizedScore}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                {insights && insights.length > 0 && (
-                  <div className="space-y-2">
-                    <h3 className="text-xs font-medium text-foreground">
-                      Key Points
-                    </h3>
-                    <ul className="space-y-1">
-                      {insights.slice(0, 3).map((insight, i) => (
-                        <li
-                          key={i}
-                          className="text-xs text-muted-foreground flex gap-2"
-                        >
-                          <span aria-hidden="true">•</span>
-                          <span>{insight}</span>
-                        </li>
-                      ))}
-                      {insights.length > 3 && (
-                        <li
-                          className="text-xs text-primary cursor-pointer"
-                          onClick={() => setActiveTab("insights")}
-                        >
-                          + {insights.length - 3} more insights
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                )}
+                <Tabs
+                  defaultValue="overview"
+                  value={activeTab}
+                  onValueChange={setActiveTab}
+                  className="w-full"
+                >
+                  <TabsList className="grid grid-cols-3 w-full h-8">
+                    <TabsTrigger value="overview" className="text-xs">
+                      Overview
+                    </TabsTrigger>
+                    <TabsTrigger value="metrics" className="text-xs">
+                      Metrics
+                    </TabsTrigger>
+                    <TabsTrigger value="insights" className="text-xs">
+                      Insights
+                    </TabsTrigger>
+                  </TabsList>
 
-                {nextSteps && nextSteps.length > 0 && (
-                  <div className="space-y-2">
-                    <h3 className="text-xs font-medium text-foreground">
-                      Next Steps
-                    </h3>
-                    <ul className="space-y-1">
-                      {nextSteps.slice(0, 2).map((step, i) => (
-                        <li
-                          key={i}
-                          className="text-xs text-muted-foreground flex gap-2"
+                  <TabsContent value="overview" className="mt-4 space-y-3">
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-xs font-medium text-foreground">
+                          Conversation
+                        </h3>
+                        <span className="text-xs text-muted-foreground">
+                          {messageCount} messages
+                        </span>
+                      </div>
+
+                      {/* Meeting priority status */}
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          Meeting Priority
+                        </span>
+                        <span
+                          className={`text-xs font-medium ${getMeetingPriorityColor(
+                            meetingPriority
+                          )}`}
                         >
-                          <span aria-hidden="true">{i + 1}.</span>
-                          <span>{step}</span>
-                        </li>
-                      ))}
-                      {nextSteps.length > 2 && (
-                        <li
-                          className="text-xs text-primary cursor-pointer"
-                          onClick={() => setActiveTab("insights")}
-                        >
-                          + {nextSteps.length - 2} more steps
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                )}
-              </TabsContent>
+                          {meetingPriority}
+                        </span>
+                      </div>
 
-              <TabsContent value="metrics" className="mt-4 space-y-3">
-                {getDetailedScores()}
-                {getIntentCriteria()}
-                {getTechnicalRequirementsSection()}
-                {getSentimentAnalysisSection()}
-              </TabsContent>
-
-              <TabsContent value="insights" className="mt-4 space-y-3">
-                {getKeyEntitiesSection()}
-
-                {insights && insights.length > 0 && (
-                  <div className="space-y-2">
-                    <h3 className="text-xs font-medium text-foreground">
-                      All Key Points
-                    </h3>
-                    <ul className="space-y-1">
-                      {insights.map((insight, i) => (
-                        <li
-                          key={i}
-                          className="text-xs text-muted-foreground flex gap-2"
-                        >
-                          <span aria-hidden="true">•</span>
-                          <span>{insight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {nextSteps && nextSteps.length > 0 && (
-                  <div className="space-y-2">
-                    <h3 className="text-xs font-medium text-foreground">
-                      All Next Steps
-                    </h3>
-                    <ul className="space-y-1">
-                      {nextSteps.map((step, i) => (
-                        <li
-                          key={i}
-                          className="text-xs text-muted-foreground flex gap-2"
-                        >
-                          <span aria-hidden="true">{i + 1}.</span>
-                          <span>{step}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {currentIntent === "RECRUITMENT" && recruitmentMatch && (
-                  <div className="space-y-2">
-                    <h3 className="text-xs font-medium text-foreground">
-                      Recruitment Match
-                    </h3>
-                    <p
-                      className={`text-xs ${
-                        recruitmentMatch.matches
-                          ? "text-green-600 dark:text-green-400"
-                          : "text-yellow-600 dark:text-yellow-400"
-                      }`}
-                    >
-                      {recruitmentMatch.reason}
-                    </p>
-                    {recruitmentMatch.missingInfo &&
-                      recruitmentMatch.missingInfo.length > 0 && (
-                        <div className="text-xs text-muted-foreground mt-1">
-                          <span className="font-medium">
-                            Missing information:
+                      {/* Project timeline if available */}
+                      {projectTimeline && (
+                        <div className="flex justify-between items-center">
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            Timeline
                           </span>
-                          <ul className="mt-1 space-y-1">
-                            {recruitmentMatch.missingInfo.map((info, i) => (
-                              <li key={i} className="flex gap-2">
-                                <span aria-hidden="true">•</span>
-                                <span>{info}</span>
-                              </li>
-                            ))}
-                          </ul>
+                          <Badge variant="outline" className="text-xs">
+                            {projectTimeline.estimated} (
+                            {projectTimeline.complexity})
+                          </Badge>
                         </div>
                       )}
-                  </div>
-                )}
-              </TabsContent>
-            </Tabs>
-          </CardContent>
-        </Card>
-      )}
+                    </div>
+
+                    {insights && insights.length > 0 && (
+                      <div className="space-y-2">
+                        <h3 className="text-xs font-medium text-foreground">
+                          Key Points
+                        </h3>
+                        <ul className="space-y-1">
+                          {insights.slice(0, 3).map((insight, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -5 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.1 + 0.2 }}
+                              className="text-xs text-muted-foreground flex gap-2"
+                            >
+                              <span aria-hidden="true">•</span>
+                              <span>{insight}</span>
+                            </motion.li>
+                          ))}
+                          {insights.length > 3 && (
+                            <li
+                              className="text-xs text-primary cursor-pointer"
+                              onClick={() => setActiveTab("insights")}
+                            >
+                              + {insights.length - 3} more insights
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    )}
+
+                    {nextSteps && nextSteps.length > 0 && (
+                      <div className="space-y-2">
+                        <h3 className="text-xs font-medium text-foreground">
+                          Next Steps
+                        </h3>
+                        <ul className="space-y-1">
+                          {nextSteps.slice(0, 2).map((step, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -5 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.1 + 0.4 }}
+                              className="text-xs text-muted-foreground flex gap-2"
+                            >
+                              <span aria-hidden="true">{i + 1}.</span>
+                              <span>{step}</span>
+                            </motion.li>
+                          ))}
+                          {nextSteps.length > 2 && (
+                            <li
+                              className="text-xs text-primary cursor-pointer"
+                              onClick={() => setActiveTab("insights")}
+                            >
+                              + {nextSteps.length - 2} more steps
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    )}
+                  </TabsContent>
+
+                  <TabsContent value="metrics" className="mt-4 space-y-3">
+                    {getDetailedScores()}
+                    {getIntentCriteria()}
+                    {getTechnicalRequirementsSection()}
+                    {getSentimentAnalysisSection()}
+                  </TabsContent>
+
+                  <TabsContent value="insights" className="mt-4 space-y-3">
+                    {getKeyEntitiesSection()}
+
+                    {insights && insights.length > 0 && (
+                      <div className="space-y-2">
+                        <h3 className="text-xs font-medium text-foreground">
+                          All Key Points
+                        </h3>
+                        <ul className="space-y-1">
+                          {insights.map((insight, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -5 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.05 }}
+                              className="text-xs text-muted-foreground flex gap-2"
+                            >
+                              <span aria-hidden="true">•</span>
+                              <span>{insight}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {nextSteps && nextSteps.length > 0 && (
+                      <div className="space-y-2">
+                        <h3 className="text-xs font-medium text-foreground">
+                          All Next Steps
+                        </h3>
+                        <ul className="space-y-1">
+                          {nextSteps.map((step, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -5 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.05 + 0.2 }}
+                              className="text-xs text-muted-foreground flex gap-2"
+                            >
+                              <span aria-hidden="true">{i + 1}.</span>
+                              <span>{step}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {currentIntent === "RECRUITMENT" && recruitmentMatch && (
+                      <div className="space-y-2">
+                        <h3 className="text-xs font-medium text-foreground">
+                          Recruitment Match
+                        </h3>
+                        <p
+                          className={`text-xs ${
+                            recruitmentMatch.matches
+                              ? "text-green-600 dark:text-green-400"
+                              : "text-yellow-600 dark:text-yellow-400"
+                          }`}
+                        >
+                          {recruitmentMatch.reason}
+                        </p>
+                        {recruitmentMatch.missingInfo &&
+                          recruitmentMatch.missingInfo.length > 0 && (
+                            <div className="text-xs text-muted-foreground mt-1">
+                              <span className="font-medium">
+                                Missing information:
+                              </span>
+                              <ul className="mt-1 space-y-1">
+                                {recruitmentMatch.missingInfo.map((info, i) => (
+                                  <motion.li 
+                                    key={i} 
+                                    className="flex gap-2"
+                                    initial={{ opacity: 0, x: -5 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.05 + 0.3 }}
+                                  >
+                                    <span aria-hidden="true">•</span>
+                                    <span>{info}</span>
+                                  </motion.li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                      </div>
+                    )}
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

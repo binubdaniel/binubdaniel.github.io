@@ -73,32 +73,32 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="p-6 border border-primary/20 bg-background relative group/card hover:border-primary/50 hover:shadow-md transition-all duration-300"
+              className="p-5 sm:p-6 border border-primary/40 sm:border-primary/20 bg-background relative group/card hover:border-primary/50 sm:hover:border-primary/50 hover:shadow-md transition-all duration-300 shadow-sm sm:shadow-none"
             >
               <Link href="/enquire" className="block">
-                <div className="absolute top-0 right-0 w-1/2 h-1 bg-primary group-hover/card:w-full transition-all duration-300 ease-in-out" />
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-full group-hover/card:bg-primary/20 transition-colors duration-300">
-                    <Network className="h-6 w-6 text-primary group-hover/card:scale-110 transition-transform duration-300" />
+                <div className="absolute top-0 right-0 w-full sm:w-1/2 h-1 bg-primary group-hover/card:w-full transition-all duration-300 ease-in-out" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-primary/20 sm:bg-primary/10 p-2.5 sm:p-3 rounded-full group-hover/card:bg-primary/20 transition-colors duration-300 flex-shrink-0">
+                    <Network className="h-5 w-5 sm:h-6 sm:w-6 text-primary scale-110 sm:scale-100 group-hover/card:scale-110 transition-transform duration-300" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <div className="space-y-1.5 sm:space-y-2 flex-1">
+                    <h3 className="text-base sm:text-lg font-semibold flex flex-wrap items-center gap-2">
                       <span>I&apos;m Groot</span>
-                      <Badge className="px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-sm">
+                      <Badge className="px-1.5 py-0.5 bg-primary/20 text-primary text-xs rounded-sm">
                         Binu&apos;s AI Assistant
                       </Badge>
                     </h3>
-                    <p className="text-sm text-muted-foreground group-hover/card:text-foreground/90 transition-colors duration-300">
-                      I&apos;m a sophisticated graph-based multi-agent AI
-                      system. I coordinate specialist AI agents to analyze
-                      conversations, manage meetings, and provide technical
-                      insights, all to streamline your interactions and help you
-                      connect with Binu effectively.
+                    <p className="text-xs sm:text-sm text-foreground/90 sm:text-muted-foreground group-hover/card:text-foreground/90 transition-colors duration-300 line-height-[1.6]">
+                      I&apos;m a sophisticated graph-based multi-agent AI system. I
+                      coordinate specialist AI agents to analyze conversations,
+                      manage meetings, and provide technical insights, all to
+                      streamline your interactions and help you connect with
+                      Binu effectively.
                     </p>
                   </div>
                 </div>
-                <div className="absolute bottom-3 right-3 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 text-primary">
-                  <ArrowUpRight className="h-5 w-5" />
+                <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 opacity-100 sm:opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 text-primary">
+                  <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
               </Link>
             </motion.div>
