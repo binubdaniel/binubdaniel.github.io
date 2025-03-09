@@ -1,5 +1,3 @@
-// src/components/ui/MessageInput.tsx
-
 import { Send } from "lucide-react";
 import { useEffect, useRef } from "react";
 
@@ -23,23 +21,17 @@ export const MessageInput: React.FC<MessageInputProps> = ({
   disabled = false,
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
 
-  // Focus textarea when loading completes and input is empty
   useEffect(() => {
     if (!isLoading && !input && textareaRef.current) {
       textareaRef.current.focus();
     }
   }, [isLoading, input]);
 
-  // Adjust height whenever input changes
-  useEffect(() => {
-    adjustHeight();
-  }, [input]);
-
   const handleChange = (value: string) => {
     if (value.length <= MAX_LENGTH) {
       onChange(value);
+      adjustHeight();
     }
   };
 
@@ -47,50 +39,29 @@ export const MessageInput: React.FC<MessageInputProps> = ({
     const textarea = textareaRef.current;
     if (!textarea) return;
 
-    // Reset height to calculate proper scrollHeight
     textarea.style.height = 'auto';
-    
-    // Calculate new height based on content
     const scrollHeight = textarea.scrollHeight;
-    const lineHeight = MIN_HEIGHT;
-    const lines = Math.ceil(scrollHeight / lineHeight);
+    const lines = Math.ceil(scrollHeight / MIN_HEIGHT);
     const newRows = Math.min(lines, MAX_ROWS);
     
-    // Set new height
-    textarea.style.height = `${newRows * lineHeight}px`;
+    textarea.style.height = `${newRows * MIN_HEIGHT}px`;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       if (input.trim() && !isLoading && !disabled) {
-        formRef.current?.requestSubmit();
-      }
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (input.trim() && !isLoading && !disabled) {
-      await onSubmit(e);
-      // Reset height after submission
-      if (textareaRef.current) {
-        textareaRef.current.style.height = `${MIN_HEIGHT}px`;
+        onSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
       }
     }
   };
 
   const remainingChars = MAX_LENGTH - input.length;
   const isNearLimit = remainingChars <= 50;
-  const isDisabled = isLoading || disabled;
+  const isDisabled = isLoading || disabled 
 
   return (
-    <form 
-      ref={formRef}
-      onSubmit={handleSubmit} 
-      className="flex flex-col gap-1" 
-      aria-label="Message input form"
-    >
+    <form onSubmit={onSubmit} className="flex flex-col gap-1" aria-label="Message input form">
       <div className="flex gap-2">
         <textarea
           ref={textareaRef}
@@ -111,7 +82,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
         />
         <button
           type="submit"
-          disabled={isDisabled || !input.trim()}
+          disabled={isDisabled}
           className="px-4 py-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground
             disabled:opacity-50 disabled:cursor-not-allowed
             flex items-center gap-2 transition-colors"
