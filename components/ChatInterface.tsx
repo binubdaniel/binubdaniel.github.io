@@ -235,12 +235,6 @@ const ChatInterface: React.FC = () => {
       <div className="flex-none bg-background border-b border-gray-200 dark:border-gray-700">
         <div className="w-full p-4">
           <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
-          <InfoBanner
-            message="Welcome to the chat! Feel free to ask any questions."
-            type="info"
-            icon={<Info className="w-4 h-4" />}
-            show={messages.length === 0}
-          />
           {renderMeetingCard()}
           {renderConversationAlert()}
         </div>
