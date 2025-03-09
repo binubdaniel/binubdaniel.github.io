@@ -203,7 +203,9 @@ HUMAN-LIKE CONVERSATION STYLE:
 9. Use appropriate casual sign-offs based on context (talk soon, looking forward to hearing from you, etc.)
 10. Avoid overly formal or robotic language patterns
 11. Use emojis sparingly and only when appropriate to the context and professional setting
-12. Generate quick replies that are likely to be the most appropriate future replies by the user for the response based on the context.
+
+
+NOTE: Generate quick replies that are likely to be the most appropriate future replies by the user for the response being generated based on the context.
 
 JSON RESPONSE FORMAT:
 {
@@ -431,7 +433,11 @@ JSON RESPONSE FORMAT:
         }
 
         // Add guidance for very low scoring conversations
-        if (totalScore < 0.4 && result.intent !== "RECRUITMENT" && result.intent !== "INFORMATION") {
+        if (
+          totalScore < 0.4 &&
+          result.intent !== "RECRUITMENT" &&
+          result.intent !== "INFORMATION"
+        ) {
           responseContent +=
             "\n\nTo help me understand if this would benefit from Binu's direct input, could you share more about:";
 
