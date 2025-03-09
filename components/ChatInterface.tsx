@@ -65,22 +65,11 @@ const ChatInterface: React.FC = () => {
     await sendMessage(input);
   };
 
-  // Updated handleQuickReplySelect to set input value instead of sending message directly
-  // Keeping the Promise<void> return type to match the MessageList component's expectations
   const handleQuickReplySelect = async (reply: string): Promise<void> => {
     try {
-      setInput(reply);
-      // Focus the input field after setting the value
-      const inputElement = document.querySelector('input[name="message"]') as HTMLInputElement;
-      if (inputElement) {
-        inputElement.focus();
-      }
-      // Return a resolved promise to satisfy the Promise<void> return type
-      return Promise.resolve();
+      await sendMessage(reply);
     } catch (error) {
       console.error("Error handling quick reply:", error);
-      // Re-throw to maintain Promise<void> error handling
-      throw error;
     }
   };
 
