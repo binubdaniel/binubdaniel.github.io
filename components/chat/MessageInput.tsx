@@ -11,7 +11,7 @@ interface MessageInputProps {
 
 const MAX_LENGTH = 480;
 const MAX_ROWS = 4;
-const MIN_HEIGHT = 24; // Line height in pixels
+const MIN_HEIGHT = 36; // Line height in pixels
 
 export const MessageInput: React.FC<MessageInputProps> = ({
   input,
