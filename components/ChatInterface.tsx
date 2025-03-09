@@ -11,7 +11,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { getBookingLink } from "@/lib/langgraph/types";
 import Sidebar from "./sidebar";
-import { InfoBanner } from "./chat/InfoBanner";
 import { ValidationState } from "@/lib/langgraph/types";
 import { Card, CardContent } from "@/components/ui/card";
 import CircleInsights from "./chat/CircleInsights";

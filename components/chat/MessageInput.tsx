@@ -31,11 +31,24 @@ export const MessageInput: React.FC<MessageInputProps> = ({
   const handleChange = (value: string) => {
     if (value.length <= MAX_LENGTH) {
       onChange(value);
+      adjustHeight();
     }
   };
 
+  const adjustHeight = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    textarea.style.height = 'auto';
+    const scrollHeight = textarea.scrollHeight;
+    const lines = Math.ceil(scrollHeight / MIN_HEIGHT);
+    const newRows = Math.min(lines, MAX_ROWS);
+    
+    textarea.style.height = `${newRows * MIN_HEIGHT}px`;
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       if (input.trim() && !isLoading && !disabled) {
         onSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
@@ -45,14 +58,10 @@ export const MessageInput: React.FC<MessageInputProps> = ({
 
   const remainingChars = MAX_LENGTH - input.length;
   const isNearLimit = remainingChars <= 50;
-  const isDisabled = isLoading || disabled;
+  const isDisabled = isLoading || disabled 
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex flex-col gap-1"
-      aria-label="Message input form"
-    >
+    <form onSubmit={onSubmit} className="flex flex-col gap-1" aria-label="Message input form">
       <div className="flex gap-2">
         <textarea
           ref={textareaRef}
@@ -83,14 +92,12 @@ export const MessageInput: React.FC<MessageInputProps> = ({
         </button>
       </div>
       {isNearLimit && (
-        <div id="char-limit" className="text-right text-sm" aria-live="polite">
-          <span
-            className={
-              remainingChars <= 20
-                ? "text-destructive"
-                : "text-muted-foreground"
-            }
-          >
+        <div 
+          id="char-limit"
+          className="text-right text-sm"
+          aria-live="polite"
+        >
+          <span className={remainingChars <= 20 ? "text-destructive" : "text-muted-foreground"}>
             {remainingChars} characters remaining
           </span>
         </div>
