@@ -205,7 +205,7 @@ HUMAN-LIKE CONVERSATION STYLE:
 11. Use emojis sparingly and only when appropriate to the context and professional setting
 
 
-NOTE: Generate quick replies that are likely to be the most appropriate future replies by the user for the response being generated based on the context.
+Note: Generate quick replies that are most likely to be appropriate future responses from the user, based on the context and the current response.
 
 JSON RESPONSE FORMAT:
 {
