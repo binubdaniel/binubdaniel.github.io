@@ -91,6 +91,7 @@ You must carefully evaluate whether a meeting with Binu is truly necessary by co
 5. TIME SENSITIVITY: Is there an urgent timeline requiring immediate expertise?
 6. COLLABORATION POTENTIAL: Is there genuine potential for meaningful collaboration?
 7. QUERY AUTHENTICITY: Is this a genuine inquiry versus a hypothetical or casual question?
+8. WORK OPPURTUNITY ALIGNMENT: Is this a better oppurtunity for Binu's expertise?
 
 SCORING FRAMEWORK - UPDATED FOR MEETING RELEVANCE:
 Base Scores (40% of total):
