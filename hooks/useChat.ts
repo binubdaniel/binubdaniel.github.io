@@ -41,7 +41,7 @@ export const useChat = () => {
         session_id: session.sessionId,
         quickReplies: [
           {
-            text: "I have a project/startup idea",
+            text: "Project/startup idea",
             value: "I have a project/startup idea"
           },
           {

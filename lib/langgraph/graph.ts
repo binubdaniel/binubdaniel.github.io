@@ -1,7 +1,5 @@
-// src/lib/langgraph/graph.ts
-
 import { ChatState, Graph, Node, Edge } from "./types";
-import { createContextAnalyzer, createValidationManager, createMeetingManager } from "./nodes";
+import { createContextAnalyzer, createValidationManager } from "./nodes";
 import { ChatError, ErrorCode } from "@/lib/langgraph/types";
 
 /**
@@ -15,7 +13,6 @@ export class ChatGraph {
     const nodes = new Map<string, Node<ChatState>>();
     nodes.set("contextAnalyzer", createContextAnalyzer());
     nodes.set("validationManager", createValidationManager());
-    nodes.set("meetingManager", createMeetingManager());
     nodes.set("end", async (state) => state);
 
     // Define edges between nodes
@@ -26,13 +23,8 @@ export class ChatGraph {
       ["validationManager", () => true]
     ]));
     
-    // From validationManager to meetingManager
+    // From validationManager to end
     edges.set("validationManager", new Map([
-      ["meetingManager", () => true]
-    ]));
-    
-    // From meetingManager to end
-    edges.set("meetingManager", new Map([
       ["end", () => true]
     ]));
 
