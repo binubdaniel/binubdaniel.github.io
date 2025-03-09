@@ -467,7 +467,6 @@ JSON RESPONSE FORMAT:
 
       // Enhance response with follow-up questions if score is below threshold
       let responseContent = result.response;
-      let followUpQuestions = result.followUpQuestions || [];
 
       // AGGRESSIVELY sanitize response to remove calendar link when below threshold
       if (totalScore < VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE) {
@@ -582,16 +581,19 @@ JSON RESPONSE FORMAT:
           Array.isArray(result.quickReplySuggestions) &&
           result.quickReplySuggestions.length > 0
         ) {
-          // Filter valid quick replies and limit to 3
+          // Filter valid quick replies and limit to 7
           const formattedQuickReplies = result.quickReplySuggestions
             .filter(
-              (suggestion: { buttonText: any; responseText: any; }) => suggestion.buttonText && suggestion.responseText
+              (suggestion: { buttonText: string; responseText: string }) =>
+                suggestion.buttonText && suggestion.responseText
             ) // Ensure both fields exist
-            .slice(0, 3) // Limit to 3 max
-            .map((suggestion: { buttonText: any; responseText: any; }) => ({
-              text: suggestion.buttonText,
-              value: suggestion.responseText,
-            }));
+            .slice(0, 7) // Limit to 7 max
+            .map(
+              (suggestion: { buttonText: string; responseText: string }) => ({
+                text: suggestion.buttonText,
+                value: suggestion.responseText,
+              })
+            );
 
           // Only add quick replies if we have valid ones
           if (formattedQuickReplies.length > 0) {

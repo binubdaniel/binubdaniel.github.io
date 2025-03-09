@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { QuickReply } from '@/lib/langgraph/types'; 
-import { Calendar, Loader2, Check, Zap, ArrowRight, MessageSquare } from 'lucide-react';
+import { Calendar, Loader2, Check, Zap, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
