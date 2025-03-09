@@ -424,7 +424,7 @@ JSON RESPONSE FORMAT:
         }
 
         // Add guidance for very low scoring conversations
-        if (totalScore < 0.4) {
+        if (totalScore < 0.4 && result.intent !== "RECRUITMENT" && result.intent !== "INFORMATION") {
           responseContent +=
             "\n\nTo help me understand if this would benefit from Binu's direct input, could you share more about:";
 
@@ -438,8 +438,6 @@ JSON RESPONSE FORMAT:
           } else if (result.intent === "TECHNICAL_CONSULTATION") {
             responseContent +=
               "\n1. The technical aspects you need help with\n2. Whether you need architecture guidance or implementation support\n3. How urgent your technical needs are";
-          } else if (result.intent === "RECRUITMENT") {
-            responseContent = "";
           }
         }
       }
