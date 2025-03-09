@@ -207,8 +207,8 @@ export const CONVERSATION_LIMITS = {
 
 // Model configuration
 export const MODEL_CONFIG = {
-  DEFAULT_MODEL: "gpt-4o", // Default model for primary analysis
-  FALLBACK_MODEL: "gpt-4o-mini", // Fallback model if primary is unavailable
+  DEFAULT_MODEL: "gpt-4o-mini", // Default model for primary analysis
+  FALLBACK_MODEL: "gpt-3.5-turbo", // Fallback model if primary is unavailable
   SUMMARY_MODEL: "gpt-4o-mini", // Model for generating summaries
   MAX_TOKENS: 1000, // Default max tokens for responses
   TEMPERATURE: 0.7 // Default temperature setting
