@@ -13,10 +13,10 @@ import {
 } from "@/lib/langgraph/types";
 import OpenAI from "openai";
 import { v4 as uuidv4 } from "uuid";
-import { 
-  calculateTotalScore, 
+import {
+  calculateTotalScore,
   calculateMeetingPriority,
-  evaluateQueryAuthenticity 
+  evaluateQueryAuthenticity,
 } from "@/lib/langgraph/scoring";
 import { extractKeyInsights, generateNextSteps } from "@/lib/langgraph/summary";
 
@@ -132,13 +132,17 @@ For RECRUITMENT:
 
 STRICT VALIDATION REQUIREMENTS:
 - The system uses a validation scoring mechanism based on meeting necessity
-- Meeting qualification REQUIRES a minimum score of ${VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE}
+- Meeting qualification REQUIRES a minimum score of ${
+                VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE
+              }
 - You must NEVER suggest meetings when the validation score is below this threshold
 - Instead, focus on gathering more information with insightful questions
 - Calendar link should be COMPLETELY HIDDEN until validation threshold is met
 
 MEETING OFFERING GUIDELINES - VERY IMPORTANT:
-- NEVER provide the calendar link if validation score is below ${VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE}
+- NEVER provide the calendar link if validation score is below ${
+                VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE
+              }
 - ALWAYS replace any calendar links with a message that more information is needed 
 - Focus on asking deeper questions about specific needs, technical requirements, etc.
 - If validation score is below threshold, focus on gathering more details instead
@@ -146,7 +150,9 @@ MEETING OFFERING GUIDELINES - VERY IMPORTANT:
 - Ask about technical details, implementation complexity, timelines, urgency
 - Focus on next steps the user can take to further develop their idea
 - Provide relevant insights and guidance based on the conversation so far
-- ONLY when validation score is at least ${VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE}, suggest a meeting
+- ONLY when validation score is at least ${
+                VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE
+              }, suggest a meeting
 
 EVALUATING QUERY AUTHENTICITY:
 Genuine queries that warrant meetings typically show:
@@ -167,11 +173,17 @@ RESPONSE TEMPLATES FOR VARIOUS STAGES:
 2. GATHERING DETAILS (Score 0.4-0.6):
    "Thanks for sharing those details! To better assess how Binu might help, could you elaborate on [specific technical or business aspect]?"
 
-3. DEEPENING UNDERSTANDING (Score 0.6-${VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE - 0.01}):
+3. DEEPENING UNDERSTANDING (Score 0.6-${
+                VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE - 0.01
+              }):
    "Your project is taking shape nicely. I have a few more questions to determine if a meeting with Binu would be valuable: [specific questions about complexity, timeline, or technical requirements]"
 
-4. QUALIFICATION MET (Score >= ${VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE}):
-   "Based on what you've shared, this definitely requires Binu's direct expertise. The technical complexity and timeline you've described would benefit from a direct conversation. You can schedule a meeting using this link: ${MEETING_CONFIG.CALENDAR_URL}"
+4. QUALIFICATION MET (Score >= ${
+                VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE
+              }):
+   "Based on what you've shared, this definitely requires Binu's direct expertise. The technical complexity and timeline you've described would benefit from a direct conversation. You can schedule a meeting using this link: ${
+     MEETING_CONFIG.CALENDAR_URL
+   }"
 
 HUMAN-LIKE CONVERSATION STYLE:
 1. Use casual, warm, and conversational language that feels genuinely human
@@ -344,7 +356,7 @@ JSON RESPONSE FORMAT:
           problemRelevance: 0.5,
           projectPotential: 0.5,
           consultationUrgency: 0.5,
-          clientEngagement: 0.5
+          clientEngagement: 0.5,
         };
       }
 
@@ -356,7 +368,8 @@ JSON RESPONSE FORMAT:
       );
 
       // Calculate query authenticity score
-      const queryAuthenticity = result.queryAuthenticity || evaluateQueryAuthenticity(state);
+      const queryAuthenticity =
+        result.queryAuthenticity || evaluateQueryAuthenticity(state);
 
       // Update conversation status
       const messageCount = state.messages.length + 1; // Add 1 for upcoming assistant message
@@ -414,14 +427,19 @@ JSON RESPONSE FORMAT:
         if (totalScore < 0.4) {
           responseContent +=
             "\n\nTo help me understand if this would benefit from Binu's direct input, could you share more about:";
-          
+
           // Customize questions based on intent
           if (result.intent === "IDEA_VALIDATION") {
-            responseContent += "\n1. The specific problem your idea addresses\n2. How developed your concept is currently\n3. What type of feedback you're looking for";
+            responseContent +=
+              "\n1. The specific problem your idea addresses\n2. How developed your concept is currently\n3. What type of feedback you're looking for";
           } else if (result.intent === "PROJECT_ASSISTANCE") {
-            responseContent += "\n1. The specific challenges you're facing\n2. Your current timeline and priorities\n3. The technical complexity of what you're building";
+            responseContent +=
+              "\n1. The specific challenges you're facing\n2. Your current timeline and priorities\n3. The technical complexity of what you're building";
           } else if (result.intent === "TECHNICAL_CONSULTATION") {
-            responseContent += "\n1. The technical aspects you need help with\n2. Whether you need architecture guidance or implementation support\n3. How urgent your technical needs are";
+            responseContent +=
+              "\n1. The technical aspects you need help with\n2. Whether you need architecture guidance or implementation support\n3. How urgent your technical needs are";
+          } else if (result.intent === "RECRUITMENT") {
+            responseContent = "";
           }
         }
       }
@@ -429,7 +447,8 @@ JSON RESPONSE FORMAT:
       // Add conversation limit warning if approaching limit but not suggesting meeting
       if (conversationStatus.approachingLimit && !shouldPromptMeeting) {
         if (
-          messageCount % CONVERSATION_LIMITS.WARNING_DEBOUNCE_MESSAGES === 0
+          messageCount % CONVERSATION_LIMITS.WARNING_DEBOUNCE_MESSAGES ===
+          0
         ) {
           responseContent += `\n\n*Note: We're approaching the conversation limit. To have a more in-depth discussion, I need to better understand if this requires Binu's direct expertise. Could you provide more specific details about your project?*`;
         }
@@ -483,14 +502,18 @@ JSON RESPONSE FORMAT:
         assistantMessage.quickReplies = [
           {
             text: "Schedule a meeting",
-            value: "I'd like to schedule a meeting with Binu to discuss this in more detail",
+            value:
+              "I'd like to schedule a meeting with Binu to discuss this in more detail",
           },
           {
             text: "Continue via chat",
             value: "I'd like to continue our discussion here for now",
           },
         ];
-      } else if (result.quickReplySuggestions && Array.isArray(result.quickReplySuggestions)) {
+      } else if (
+        result.quickReplySuggestions &&
+        Array.isArray(result.quickReplySuggestions)
+      ) {
         // For non-meeting conversations, use quick replies from LLM if they exist
         const formattedQuickReplies = result.quickReplySuggestions
           .filter(
@@ -498,12 +521,10 @@ JSON RESPONSE FORMAT:
               suggestion.buttonText && suggestion.responseText
           )
           .slice(0, 5) // Limit to 5 max
-          .map(
-            (suggestion: { buttonText: string; responseText: string }) => ({
-              text: suggestion.buttonText,
-              value: suggestion.responseText,
-            })
-          );
+          .map((suggestion: { buttonText: string; responseText: string }) => ({
+            text: suggestion.buttonText,
+            value: suggestion.responseText,
+          }));
 
         if (formattedQuickReplies.length > 0) {
           assistantMessage.quickReplies = formattedQuickReplies;
@@ -533,7 +554,8 @@ JSON RESPONSE FORMAT:
       }
 
       // Calculate meeting priority considering complexity, urgency and technical requirements
-      const meetingPriority = result.meetingPriority || 
+      const meetingPriority =
+        result.meetingPriority ||
         calculateMeetingPriority({
           ...state,
           validationScore: totalScore,
@@ -542,7 +564,7 @@ JSON RESPONSE FORMAT:
             intentCriteria: result.intentCriteria,
           },
           projectTimeline: result.projectTimeline,
-          sentimentAnalysis: result.sentimentAnalysis
+          sentimentAnalysis: result.sentimentAnalysis,
         });
 
       // Return updated state with all enhanced analysis
