@@ -205,7 +205,7 @@ HUMAN-LIKE CONVERSATION STYLE:
 11. Use emojis sparingly and only when appropriate to the context and professional setting
 
 
-Note: Generate quick replies that are most likely to be appropriate future responses from the user, based on the context and the current response.
+Note: Generate quick replies that are most likely to be appropriate future responses from the user, based on the context and the current response. Only include quick replies if they are likely to be appropriate. It's optional.
 
 JSON RESPONSE FORMAT:
 {
@@ -293,12 +293,14 @@ JSON RESPONSE FORMAT:
   
   "keyInsights": [
     "Key observation 1",
-    "Key observation 2"
+    "Key observation 2",
+    "Key observation 3"
   ],
   
   "nextSteps": [
     "Recommended action 1",
-    "Recommended action 2"
+    "Recommended action 2",
+    "Recommended action 3"
   ],
   
   "conversationStatus": {
@@ -313,12 +315,12 @@ JSON RESPONSE FORMAT:
   "quickReplySuggestions": [
     {
       "buttonText": "Short text for button",
-      "responseText": "Complete response the user would say"
+      "responseText": "Comprehensive reply the user would give to this response"
     },
     {
       "buttonText": "Another option",
-      "responseText": "Another complete user response"
-    }
+      "responseText": "Another comprehensive user reply"
+    },
   ]
 }`,
             },
@@ -403,11 +405,7 @@ JSON RESPONSE FORMAT:
 
       // AGGRESSIVELY sanitize response to remove calendar link when below threshold
       if (totalScore < VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE) {
-        // Remove any calendar links or meeting suggestions
-        responseContent = responseContent.replace(
-          new RegExp(MEETING_CONFIG.CALENDAR_URL, "g"),
-          "[Calendar link not available until more project details are provided]"
-        );
+        
 
         // Remove phrases suggesting direct meetings with Binu
         const meetingPhrases = [
@@ -475,14 +473,7 @@ JSON RESPONSE FORMAT:
       ) {
         meetingState = "READY_FOR_BOOKING";
       } else {
-        // Ensure meeting state remains NOT_STARTED if score doesn't meet threshold
-        if (meetingState === "NOT_STARTED") {
-          // Double-check no link is present
-          responseContent = responseContent.replace(
-            new RegExp(MEETING_CONFIG.CALENDAR_URL, "g"),
-            "[Calendar link not available until we establish meeting necessity]"
-          );
-        }
+        
       }
 
       // Check if response indicates booking confirmation
