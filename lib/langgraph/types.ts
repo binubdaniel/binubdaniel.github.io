@@ -55,6 +55,7 @@ export type MeetingState =
 export interface TechnicalRequirement {
   name: string;
   confidence: number;
+  needsDiscussion?: boolean; // Indicates if this requires interactive discussion
 }
 
 export interface SentimentAnalysis {
@@ -75,6 +76,7 @@ export interface KeyEntity {
 export interface ProjectTimeline {
   estimated: string;
   complexity: "Low" | "Medium" | "High";
+  urgency: "Low" | "Medium" | "High"; // Added urgency indicator
 }
 
 export type MeetingPriority = "Low" | "Medium" | "High";
@@ -119,6 +121,7 @@ export interface ChatState {
   keyEntities?: KeyEntity[];
   projectTimeline?: ProjectTimeline;
   meetingPriority?: MeetingPriority;
+  queryAuthenticity?: number; // New: 0-1 score indicating if query is genuine
   
   // Email summary data
   lastEmailSent?: string;
@@ -134,42 +137,43 @@ export interface EmailSummaryData {
   nextSteps: string[];
 }
 
-// Analysis Types
+// Updated Analysis Types for Meeting-Focused Scoring
 export interface ScoreDetails {
   baseScores: BaseScores;
   intentCriteria: IntentCriteria;
 }
 
+// Updated to focus on meeting necessity rather than knowledge assessment
 export interface BaseScores {
-  problemUnderstanding: number;
-  solutionVision: number;
-  projectCommitment: number;
-  engagementQuality: number;
+  problemRelevance: number;      // How relevant is the problem to Binu's expertise
+  projectPotential: number;      // How promising/feasible is the project
+  consultationUrgency: number;   // How urgent is the need for consultation
+  clientEngagement: number;      // How engaged is the client in the conversation
 }
 
 export interface IntentCriteria {
-  // For IDEA_VALIDATION
-  hasBusinessModel?: number;
-  marketResearch?: number;
-  technicalFeasibility?: number;
-  resourcePlanning?: number;
-  implementationTimeline?: number;
+  // For IDEA_VALIDATION - meeting need criteria
+  meetingRelevance?: number;      // How necessary is a meeting for this idea validation
+  ideaMaturity?: number;          // How developed is the idea (not too early/late for meeting)
+  feedbackComplexity?: number;    // How complex feedback needed (simple vs. nuanced discussion)
+  resourceDiscussion?: number;    // Need to discuss resources/implementation
+  followupPotential?: number;     // Potential for ongoing collaboration
 
-  // For PROJECT_ASSISTANCE
-  scopeClarity?: number;
-  technicalRequirements?: number;
-  timeline?: number;
-  budget?: number;
-  success_criteria?: number;
+  // For PROJECT_ASSISTANCE - meeting need criteria
+  assistanceComplexity?: number;  // How complex is the assistance needed (meeting vs. chat)
+  scopeAlignment?: number;        // How well the scope aligns with Binu's expertise
+  implementationBlocking?: number; // How blocked the client is (urgent meeting need)
+  decisionMakingStage?: number;   // Stage in decision process (exploring vs. committed)
+  communicationNeeds?: number;    // Need for direct communication vs. async chat
 
-  // For TECHNICAL_CONSULTATION
-  problemComplexity?: number;
-  aiRelevance?: number;
-  requirementClarity?: number;
-  implementationPath?: number;
-  expectedOutcomes?: number;
+  // For TECHNICAL_CONSULTATION - meeting need criteria
+  technicalDepth?: number;        // How deep/specialized is the technical assistance needed
+  solutionClarity?: number;       // How clear the solution path is (unclear = meeting needed)
+  interactiveExploration?: number;  // Need for back-and-forth technical discussion
+  implementationGuidance?: number;  // Need for guided implementation steps
+  architectureDiscussion?: number;  // Need to discuss system architecture
 
-  // For RECRUITMENT
+  // For RECRUITMENT - meeting need criteria
   isAIRole?: boolean;
   meetsSalary?: boolean;
   isRemoteHybrid?: boolean;
@@ -190,13 +194,13 @@ export interface Graph<T> {
   end: string;
 }
 
-// Constants - Updated with flexible thresholds
+// Constants - Updated with meeting-focused thresholds
 export const VALIDATION_THRESHOLDS = {
-  MIN_CONFIDENCE: 0.7,
-  MIN_TECHNICAL_DEPTH: 0.6,
-  MIN_PROJECT_CLARITY: 0.65,
-  MIN_ENGAGEMENT: 0.6,
-  MEETING_QUALIFICATION_SCORE: 0.7 // Score at which meeting can be suggested
+  MIN_CONFIDENCE: 0.6,
+  MIN_MEETING_RELEVANCE: 0.7,
+  MIN_CONSULTATION_URGENCY: 0.65,
+  MIN_CLIENT_ENGAGEMENT: 0.6,
+  MEETING_QUALIFICATION_SCORE: 0.75 // Higher threshold for meeting suggestion
 } as const;
 
 export const CONVERSATION_LIMITS = {
