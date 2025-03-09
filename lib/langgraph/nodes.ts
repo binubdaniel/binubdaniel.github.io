@@ -166,7 +166,7 @@ Genuine queries that warrant meetings typically show:
 
 Assess each conversation for these authenticity markers and score accordingly.
 
-RESPONSE TEMPLATES FOR VARIOUS STAGES:
+RESPONSE TEMPLATES FOR VARIOUS STAGES (Rephrase for added clarity and variety):
 1. INITIAL INQUIRY (Score < 0.4):
    "That sounds interesting! I'd like to understand more about your specific needs. Could you tell me more about [specific aspect] of your project?"
 
