@@ -35,7 +35,7 @@ export const useChat = () => {
       // Create welcome message with session ID
       const welcomeMessage: Message = {
         id: uuidv4(),
-        content: `Hi! I'm Groot, Binu's AI assistant 👋\nI evaluate ideas and projects to help connect promising opportunities with Binu. Check your conversation score at the bottom left - once it hits 70%, we can schedule a meeting.\nHow can I help you today?`,
+        content: `Hi! I'm Groot, Binu's AI assistant 👋\nI evaluate ideas and projects to help connect promising opportunities with Binu. Check your conversation analysis at the bottom left.\nHow can I help you today?`,
         role: "assistant",
         created_at: new Date().toISOString(),
         session_id: session.sessionId,

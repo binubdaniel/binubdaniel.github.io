@@ -405,8 +405,6 @@ JSON RESPONSE FORMAT:
 
       // AGGRESSIVELY sanitize response to remove calendar link when below threshold
       if (totalScore < VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE) {
-        
-
         // Remove phrases suggesting direct meetings with Binu
         const meetingPhrases = [
           "schedule a meeting",
@@ -473,7 +471,6 @@ JSON RESPONSE FORMAT:
       ) {
         meetingState = "READY_FOR_BOOKING";
       } else {
-        
       }
 
       // Check if response indicates booking confirmation
@@ -496,23 +493,6 @@ JSON RESPONSE FORMAT:
       // DYNAMIC QUICK REPLIES IMPLEMENTATION
       // Only add quick replies when qualified for a meeting OR when LLM suggests them
       if (
-        shouldPromptMeeting &&
-        meetingState === "NOT_STARTED" &&
-        totalScore >= VALIDATION_THRESHOLDS.MEETING_QUALIFICATION_SCORE
-      ) {
-        // For meeting qualification, offer meeting booking options
-        assistantMessage.quickReplies = [
-          {
-            text: "Schedule a meeting",
-            value:
-              "I'd like to schedule a meeting with Binu to discuss this in more detail",
-          },
-          {
-            text: "Continue via chat",
-            value: "I'd like to continue our discussion here for now",
-          },
-        ];
-      } else if (
         result.quickReplySuggestions &&
         Array.isArray(result.quickReplySuggestions)
       ) {
