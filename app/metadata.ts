@@ -21,13 +21,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://binubabu.vercel.app",
+    url: "https://binubabu.in",
     title: "Binu B Daniel X Groot AI",
     description: "Engage with Groot AI, Binu Babu's multi-agent AI assistant for intelligent conversation analysis and technical consultations.",
     siteName: "Groot AI",
     images: [
       {
-        url: "https://firebasestorage.googleapis.com/v0/b/socife-firebase-0.appspot.com/o/Find%20Your%20Tribe.jpg?alt=media&token=7e2720ac-fb6e-4ae1-901f-9de0eaf5234d",
+        url: "/binubabu.webp",
         width: 1200,
         height: 630,
         alt: "Groot AI Assistant"
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Binu B Daniel X Groot AI",
     description: "Engage with Groot AI, Binu Babu's multi-agent AI assistant for intelligent conversation analysis and technical consultations.",
-    images: ["https://firebasestorage.googleapis.com/v0/b/socife-firebase-0.appspot.com/o/Find%20Your%20Tribe.jpg?alt=media&token=7e2720ac-fb6e-4ae1-901f-9de0eaf5234d"]
+    images: ["/binubabu.webp"]
   },
   robots: {
     index: true,

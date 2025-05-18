@@ -109,7 +109,7 @@ export const Footer = () => {
   
   return (
     <footer className="bg-card text-foreground border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
           {/* Company Info */}
           <div className="space-y-2">
@@ -121,16 +121,7 @@ export const Footer = () => {
             </p>
           </div>
           
-          {/* Additional footer links could go here */}
-          <div className="space-y-2">
-            <a 
-              href="/enquire" 
-              className="text-primary hover:text-primary/80 flex items-center gap-2 transition-colors"
-            >
-              <Bot className="h-4 w-4" />
-              <span>Chat with Groot AI</span>
-            </a>
-          </div>
+         
         </div>
       </div>
     </footer>
