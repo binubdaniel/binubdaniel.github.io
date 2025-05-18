@@ -64,7 +64,7 @@ const HeroSection = () => {
                 Binu Babu
               </h1>
               <p className="font-mono text-xl md:text-2xl text-primary">
-                AI Product Architect & Author
+                AI Product Architect & Technology Consultant
               </p>
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 Pioneering the future of AI product development with innovative frameworks and practical methodologies that transform how organizations build intelligent systems.
