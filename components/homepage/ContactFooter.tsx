@@ -84,7 +84,7 @@ export const ContactSection = () => {
             variants={itemAnimation}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <IBMButton href="mailto:bbinuservices@gmail.com" variant="primary">
+            <IBMButton href="mailto:binubabu@socife.com" variant="primary">
               Get in Touch
             </IBMButton>
             <IBMButton href="https://linkedin.com/in/binubdaniel" variant="secondary">

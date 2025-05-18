@@ -405,7 +405,7 @@ const EvolveComingSoon = () => {
                 href="mailto:founder@socife.com"
                 className="text-primary hover:text-primary/80 transition-colors duration-200"
               >
-                founder@socife.com
+                binubabu@socife.com
               </a>
             </p>
           </motion.footer>
