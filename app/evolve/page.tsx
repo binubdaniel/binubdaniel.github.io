@@ -12,13 +12,11 @@ import {
   Users,
   Star,
   Zap,
-  ArrowUpRightFromSquare
+  ArrowUpRightFromSquare,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import Link from "next/link";
-
-
 
 const containerAnimation = {
   hidden: { opacity: 0 },
@@ -65,9 +63,6 @@ const EvolveComingSoon = () => {
     return () => clearInterval(interval);
   }, []);
 
-
-
-
   // Define the EVOLVE framework phases
   const evolvePhases = [
     {
@@ -113,28 +108,28 @@ const EvolveComingSoon = () => {
     {
       icon: <Zap className="h-5 w-5 text-primary" />,
       title: "Addresses AI's Unique Challenges",
-      description: "Unlike traditional frameworks, EVOLVE tackles the probabilistic nature of AI systems, data dependencies, and ethical considerations."
+      description:
+        "Unlike traditional frameworks, EVOLVE tackles the probabilistic nature of AI systems, data dependencies, and ethical considerations.",
     },
     {
       icon: <CheckCircle className="h-5 w-5 text-primary" />,
       title: "Reduce AI Project Failures",
-      description: "Learn practical approaches to avoid the common pitfalls that lead to 70-85% of AI initiatives failing to meet expectations."
+      description:
+        "Learn practical approaches to avoid the common pitfalls that lead to 70-85% of AI initiatives failing to meet expectations.",
     },
     {
       icon: <Users className="h-5 w-5 text-primary" />,
       title: "Cross-Functional Collaboration",
-      description: "Bridge the gap between technical teams, product managers, and business stakeholders with shared language and processes."
+      description:
+        "Bridge the gap between technical teams, product managers, and business stakeholders with shared language and processes.",
     },
     {
       icon: <Star className="h-5 w-5 text-primary" />,
       title: "Real-World Application",
-      description: "Frameworks, tools, and templates you can immediately apply to your AI initiatives for better outcomes."
-    }
+      description:
+        "Frameworks, tools, and templates you can immediately apply to your AI initiatives for better outcomes.",
+    },
   ];
-
-
-
-
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
@@ -174,44 +169,42 @@ const EvolveComingSoon = () => {
           </motion.header>
 
           <motion.div
-              variants={itemAnimation}
-              className="lg:col-span-7 flex flex-col justify-center items-center text-center gap-8"
-            >
-              <div className=" bg-card p-8">
-                <h3 className="font-mono text-3xl font-medium text-foreground mb-8 flex items-center justify-center gap-3">
-                  <span>Book Launch Countdown</span>
-                </h3>
+            variants={itemAnimation}
+            className="lg:col-span-7 flex flex-col justify-center items-center text-center gap-8"
+          >
+            <div className=" bg-card p-8">
+              <h3 className="font-mono text-3xl font-medium text-foreground mb-8 flex items-center justify-center gap-3">
+                <span>Book Launch Countdown</span>
+              </h3>
 
-                <div className="grid grid-cols-4 gap-8 text-center mb-8">
-                  <div className="bg-secondary/10 p-6 flex flex-col items-center">
-                    <div className="text-4xl font-mono font-bold text-primary mb-2">
-                      {days}
-                    </div>
-                    <div className="text-muted-foreground text-sm">Days</div>
+              <div className="grid grid-cols-4 gap-8 text-center mb-8">
+                <div className="bg-secondary/10 p-6 flex flex-col items-center">
+                  <div className="text-4xl font-mono font-bold text-primary mb-2">
+                    {days}
                   </div>
-                  <div className="bg-secondary/10 p-6 flex flex-col items-center">
-                    <div className="text-4xl font-mono font-bold text-primary mb-2">
-                      {hours}
-                    </div>
-                    <div className="text-muted-foreground text-sm">Hours</div>
-                  </div>
-                  <div className="bg-secondary/10 p-6 flex flex-col items-center">
-                    <div className="text-4xl font-mono font-bold text-primary mb-2">
-                      {minutes}
-                    </div>
-                    <div className="text-muted-foreground text-sm">Minutes</div>
-                  </div>
-                  <div className="bg-secondary/10 p-6 flex flex-col items-center">
-                    <div className="text-4xl font-mono font-bold text-primary mb-2">
-                      {seconds}
-                    </div>
-                    <div className="text-muted-foreground text-sm">Seconds</div>
-                  </div>
+                  <div className="text-muted-foreground text-sm">Days</div>
                 </div>
-
-             
+                <div className="bg-secondary/10 p-6 flex flex-col items-center">
+                  <div className="text-4xl font-mono font-bold text-primary mb-2">
+                    {hours}
+                  </div>
+                  <div className="text-muted-foreground text-sm">Hours</div>
+                </div>
+                <div className="bg-secondary/10 p-6 flex flex-col items-center">
+                  <div className="text-4xl font-mono font-bold text-primary mb-2">
+                    {minutes}
+                  </div>
+                  <div className="text-muted-foreground text-sm">Minutes</div>
+                </div>
+                <div className="bg-secondary/10 p-6 flex flex-col items-center">
+                  <div className="text-4xl font-mono font-bold text-primary mb-2">
+                    {seconds}
+                  </div>
+                  <div className="text-muted-foreground text-sm">Seconds</div>
+                </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
           {/* Main Content */}
           <div className=" gap-12 mb-20">
@@ -238,9 +231,7 @@ const EvolveComingSoon = () => {
                 product component, and integrates ethical considerations
                 throughout the development process.
               </p>
-              
 
-              
               {/* Who is this book for */}
               <div className="space-y-4">
                 <h3 className="font-mono text-lg font-medium text-foreground flex items-center gap-2">
@@ -250,34 +241,46 @@ const EvolveComingSoon = () => {
                 <ul className="grid grid-cols-2 gap-2">
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <span className="text-sm text-muted-foreground">Product Managers</span>
+                    <span className="text-sm text-muted-foreground">
+                      Product Managers
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <span className="text-sm text-muted-foreground">Data Scientists</span>
+                    <span className="text-sm text-muted-foreground">
+                      Data Scientists
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <span className="text-sm text-muted-foreground">ML Engineers</span>
+                    <span className="text-sm text-muted-foreground">
+                      ML Engineers
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <span className="text-sm text-muted-foreground">Technical Leaders</span>
+                    <span className="text-sm text-muted-foreground">
+                      Technical Leaders
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <span className="text-sm text-muted-foreground">AI Strategists</span>
+                    <span className="text-sm text-muted-foreground">
+                      AI Strategists
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <span className="text-sm text-muted-foreground">Innovation Teams</span>
+                    <span className="text-sm text-muted-foreground">
+                      Innovation Teams
+                    </span>
                   </li>
                 </ul>
               </div>
 
               {/* Author Information */}
               <div className="border-l-4 border-l-primary p-6 bg-card">
-              <Link href="/">
+                <Link href="/">
                   <div className="flex gap-1">
                     <h3 className="font-mono font-semibold text-lg text-primary">
                       Binu B Daniel
@@ -285,13 +288,11 @@ const EvolveComingSoon = () => {
                     <ArrowUpRightFromSquare className="w-3 h-3 text-primary " />
                   </div>
                   <p className="text-muted-foreground">
-                  AI Product Architect & Technology Consultant with extensive
-                  experience in developing innovative AI solutions across
-                  industries.
-                </p>
-                 
-              </Link>
-               
+                    AI Product Architect & Technology Consultant with extensive
+                    experience in developing innovative AI solutions across
+                    industries.
+                  </p>
+                </Link>
               </div>
 
               <div className="flex items-center pt-4">
@@ -303,7 +304,6 @@ const EvolveComingSoon = () => {
             </motion.div>
 
             {/* Countdown Timer Card */}
-            
           </div>
 
           {/* Key Benefits Section */}
@@ -314,13 +314,17 @@ const EvolveComingSoon = () => {
                 Key Benefits
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Practical insights and actionable frameworks to transform your AI product development approach.
+                Practical insights and actionable frameworks to transform your
+                AI product development approach.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {keyBenefits.map((benefit, index) => (
-                <div key={index} className="border-l-4 border-l-primary p-6 bg-card">
+                <div
+                  key={index}
+                  className="border-l-4 border-l-primary p-6 bg-card"
+                >
                   <div className="flex items-start gap-4">
                     <div className="bg-primary/10 p-3 rounded-full">
                       {benefit.icon}
@@ -338,8 +342,6 @@ const EvolveComingSoon = () => {
               ))}
             </div>
           </motion.section>
-
-         
 
           {/* Framework Overview Section */}
           <motion.section variants={itemAnimation} className="mb-20">
@@ -375,6 +377,95 @@ const EvolveComingSoon = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </motion.section>
+
+          {/* Early Access Community Section */}
+          <motion.section variants={itemAnimation} className="mb-20">
+            <div className="text-center mb-12">
+              <p className="font-mono text-primary mb-2">
+                Early Access Program
+              </p>
+              <h2 className="font-mono text-3xl md:text-4xl font-medium text-foreground mb-4">
+                Join the EVOLVE Community
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Be among the first to access and apply the EVOLVE framework to
+                your AI initiatives.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Left side - Benefits */}
+              <div className="border-l-4 border-l-primary p-6 bg-card space-y-4">
+                <h3 className="font-mono text-xl font-medium text-foreground mb-4">
+                  Early Access Benefits
+                </h3>
+
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+                    <p className="text-muted-foreground">
+                      Preview chapters and frameworks as they&apos;re developed
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+                    <p className="text-muted-foreground">
+                      Provide direct feedback that shapes the final content
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+                    <p className="text-muted-foreground">
+                      Access exclusive templates and worksheets
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+                    <p className="text-muted-foreground">
+                      Join a community of forward-thinking AI practitioners
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+                    <p className="text-muted-foreground">
+                      Be acknowledged in the final publication
+                    </p>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Right side - Newsletter Signup */}
+              <div className="border-l-4 border-l-primary p-6 bg-card flex flex-col justify-between">
+                <div className="space-y-4">
+                  <h3 className="font-mono text-xl font-medium text-foreground mb-2">
+                    Join the Waiting List
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Sign up to receive exclusive updates, early access
+                    opportunities, and be the first to know when EVOLVE
+                    launches.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-6">
+                  <div className="flex flex-col space-y-2">
+                    <input
+                      type="email"
+                      placeholder="Your email address"
+                      className="px-4 py-3 bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
+                      <span className="font-mono">Join Waiting List</span>
+                      <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                    </button>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    We respect your privacy. Unsubscribe at any time.
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.section>
 

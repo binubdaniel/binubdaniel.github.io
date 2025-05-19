@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "Binu Babu",
     images: [
       {
-        url: "/evolver.webp", // You'll need to create this image
+        url: "/evolve.webp", 
         width: 1200,
         height: 630,
         alt: "EVOLVE Framework Book Cover"
