@@ -17,9 +17,7 @@ import {
 import { motion } from "framer-motion";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import Link from "next/link";
-import { metadata } from "../metadata";
 
-export { metadata }
 
 
 const containerAnimation = {
