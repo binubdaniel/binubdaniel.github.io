@@ -50,7 +50,7 @@ const HeroSection = () => {
         <ThemeSwitcher />
       </div>
 
-      <div className="container max-w-7xl py-10 mx-auto px-6 relative h-full flex items-center">
+      <div className="container max-w-6xl py-24 mx-auto px-6 relative h-full flex items-center">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 min-h-screen items-center pt-20 md:pt-0">
           {/* Left Column */}
           <div className="md:col-span-7 space-y-10">
@@ -145,13 +145,13 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center gap-6"
+              className="flex items-center gap-12"
             >
               <a
                 href="https://linkedin.com/in/binubdaniel"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-200"
+                className="inline-flex justify-center items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-200"
               >
                 <Linkedin className="w-5 h-5" />
                 <span>Connect</span>
@@ -164,7 +164,7 @@ const HeroSection = () => {
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-2 transition-colors duration-200"
               >
                 <Calendar className="w-5 h-5" />
-                <span>Schedule Meeting</span>
+                <span>Schedule Appointment</span>
               </a>
             </motion.div>
           </div>

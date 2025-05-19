@@ -140,7 +140,7 @@ const ProjectsSection = () => {
         <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
+      <div className="relative max-w-6xl mx-auto px-6 py-24">
         <motion.div
           initial="hidden"
           whileInView="show"

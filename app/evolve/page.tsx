@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import Link from "next/link";
 import WaitingListForm from "./joinwaitlist";
+import ContentsSection from "./content-section";
 
 const containerAnimation = {
   hidden: { opacity: 0 },
@@ -435,10 +436,12 @@ const EvolveComingSoon = () => {
               </div>
 
               {/* Right side - Newsletter Signup */}
-              <WaitingListForm itemAnimation={{}}  />
+              <WaitingListForm itemAnimation={itemAnimation}  />
 
             </div>
           </motion.section>
+          
+          <ContentsSection itemAnimation={itemAnimation} />
 
           {/* Quote Section */}
           <motion.section
