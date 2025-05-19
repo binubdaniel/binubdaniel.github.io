@@ -17,6 +17,7 @@ import {
 import { motion } from "framer-motion";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import Link from "next/link";
+import WaitingListForm from "./joinwaitlist";
 
 const containerAnimation = {
   hidden: { opacity: 0 },
@@ -296,10 +297,8 @@ const EvolveComingSoon = () => {
               </div>
 
               <div className="flex items-center pt-4">
-                <button className="disabled cursor-not-allowed group inline-flex items-center gap-3 px-6 py-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
-                  <span className="font-mono">Coming Soon</span>
-                  <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                <WaitingListForm itemAnimation={itemAnimation} />
+               
               </div>
             </motion.div>
 
@@ -437,35 +436,8 @@ const EvolveComingSoon = () => {
               </div>
 
               {/* Right side - Newsletter Signup */}
-              <div className="border-l-4 border-l-primary p-6 bg-card flex flex-col justify-between">
-                <div className="space-y-4">
-                  <h3 className="font-mono text-xl font-medium text-foreground mb-2">
-                    Join the Waiting List
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Sign up to receive exclusive updates, early access
-                    opportunities, and be the first to know when EVOLVE
-                    launches.
-                  </p>
-                </div>
+              <WaitingListForm itemAnimation={{}}  />
 
-                <div className="space-y-4 mt-6">
-                  <div className="flex flex-col space-y-2">
-                    <input
-                      type="email"
-                      placeholder="Your email address"
-                      className="px-4 py-3 bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                    <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
-                      <span className="font-mono">Join Waiting List</span>
-                      <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-                    </button>
-                  </div>
-                  <p className="text-xs text-muted-foreground">
-                    We respect your privacy. Unsubscribe at any time.
-                  </p>
-                </div>
-              </div>
             </div>
           </motion.section>
 
