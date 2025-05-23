@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "Binu Babu",
     images: [
       {
-        url: "/evolve.webp", 
+        url: "/evolve-community.webp", 
         width: 1200,
         height: 630,
         alt: "EVOLVE Framework Book Cover"
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "EVOLVE: An Adaptive Framework for AI Product Development",
     description: "A revolutionary approach to AI product development addressing the unique challenges of AI systems. Coming June 2025.",
-    images: ["/evolve.webp"]
+    images: ["/evolve-community.webp"]
   },
   robots: {
     index: true,

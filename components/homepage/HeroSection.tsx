@@ -50,7 +50,7 @@ const HeroSection = () => {
         <ThemeSwitcher />
       </div>
 
-      <div className="container max-w-6xl py-24 mx-auto px-6 relative h-full flex items-center">
+      <div className="container max-w-6xl mx-auto px-6 relative h-full flex items-center">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 min-h-screen items-center pt-20 md:pt-0">
           {/* Left Column */}
           <div className="md:col-span-7 space-y-10">
