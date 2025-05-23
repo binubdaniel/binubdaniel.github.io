@@ -18,6 +18,8 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 import Link from "next/link";
 import WaitingListForm from "./joinwaitlist";
 import ContentsSection from "./content-section";
+import SurveyTriggerCard from "./survey-triggercard";
+import QuickSurveyDialog from "./quick-survey";
 
 const containerAnimation = {
   hidden: { opacity: 0 },
@@ -37,10 +39,11 @@ const EvolveComingSoon = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
 
-  // Set launch date to June 14, 2025
+  // Set launch date to July 14, 2025
   useEffect(() => {
-    const target = new Date("2025-06-14T00:00:00");
+    const target = new Date("2025-07-14T00:00:00");
 
     const interval = setInterval(() => {
       const now = new Date();
@@ -295,15 +298,23 @@ const EvolveComingSoon = () => {
                   </p>
                 </Link>
               </div>
-
-              <div className="flex items-center pt-4">
-                <WaitingListForm itemAnimation={itemAnimation} />
-               
-              </div>
             </motion.div>
 
             {/* Countdown Timer Card */}
           </div>
+
+          <motion.section className=" py-16">
+            <motion.div
+              variants={containerAnimation}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            >
+              <SurveyTriggerCard
+                onOpenSurvey={() => setIsSurveyOpen(true)}
+                itemAnimation={itemAnimation}
+              />
+              <WaitingListForm itemAnimation={itemAnimation} />
+            </motion.div>
+          </motion.section>
 
           {/* Key Benefits Section */}
           <motion.section variants={itemAnimation} className="mb-20">
@@ -436,11 +447,10 @@ const EvolveComingSoon = () => {
               </div>
 
               {/* Right side - Newsletter Signup */}
-              <WaitingListForm itemAnimation={itemAnimation}  />
-
+              <WaitingListForm itemAnimation={itemAnimation} />
             </div>
           </motion.section>
-          
+
           <ContentsSection itemAnimation={itemAnimation} />
 
           {/* Quote Section */}
@@ -478,6 +488,10 @@ const EvolveComingSoon = () => {
           </motion.footer>
         </motion.div>
       </div>
+      <QuickSurveyDialog
+        isOpen={isSurveyOpen}
+        onClose={() => setIsSurveyOpen(false)}
+      />
     </div>
   );
 };

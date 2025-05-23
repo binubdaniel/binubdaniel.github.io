@@ -75,8 +75,8 @@ export default function ContentsSection({ itemAnimation }: { itemAnimation: Vari
           </p>
         </div>
   
-        <div className="grid grid-cols-1 gap-4">
-          {chapters.map((chapter, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {chapters.map((chapter, index) => (
             <div 
               key={index} 
               className="border-l-4 border-l-primary p-6 bg-card hover:bg-secondary/20 transition-colors duration-200"
