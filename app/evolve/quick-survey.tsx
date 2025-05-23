@@ -147,7 +147,7 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-card border border-border rounded-2xl p-6 max-w-md w-full shadow-2xl"
+            className="bg-card border border-border rounded-md p-6 max-w-md w-full shadow-2xl"
           >
             {!isComplete ? (
               <>
@@ -156,7 +156,7 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                   <div className="flex items-center gap-2">
                     <Clock className="h-5 w-5 text-primary" />
                     <span className="font-mono text-sm text-muted-foreground">
-                      30 seconds · Step {currentStep + 1} of {steps.length}
+                      45 seconds · Step {currentStep + 1} of {steps.length}
                     </span>
                   </div>
                   <button
