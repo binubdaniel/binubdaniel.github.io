@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, TrendingDown, BarChart3, ArrowRight, Sparkles } from 'lucide-react';
+import { Clock, TrendingDown, BarChart3, ArrowRight } from 'lucide-react';
 import { Variants } from 'framer-motion';
 import { motion } from 'framer-motion';
 
@@ -36,8 +36,7 @@ const SurveyTriggerCard: React.FC<SurveyTriggerCardProps> = ({ onOpenSurvey, ite
               </h3>
               <div className="flex items-center gap-2 text-sm text-primary">
                 <Clock className="h-4 w-4" />
-                <span>30 seconds</span>
-                <Sparkles className="h-3 w-3" />
+                <span>45 seconds</span>
               </div>
             </div>
           </div>
