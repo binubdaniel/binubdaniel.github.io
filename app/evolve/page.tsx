@@ -579,7 +579,7 @@ const EvolveComingSoon = () => {
 
           {/* Call to Action */}
           <motion.section variants={itemAnimation} className="mb-20 text-center">
-            <div className="elegant-card border-l-4 border-l-accent p-8 md:p-12">
+            <div className="relative bg-gradient-to-br from-card/80 via-card to-card/80 backdrop-blur-sm border border-accent/20 rounded-2xl p-8 md:p-12">
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-light text-foreground">
                   Transform Your AI Development Approach
