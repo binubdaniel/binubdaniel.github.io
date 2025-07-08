@@ -202,7 +202,7 @@ const HeroSection = () => {
                   
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Rocket className="h-4 w-4 text-accent" />
-                    <span>August 2025</span>
+                    <span>September 2025</span>
                   </div>
                 </div>
               </div>
@@ -271,7 +271,7 @@ const HeroSection = () => {
                   <CalendarCheck className="h-5 w-5 text-accent" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-foreground mb-2">Book Launch: August 2025</h4>
+                  <h4 className="text-sm font-medium text-foreground mb-2">Book Launch: September 2025</h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     Be among the first to apply the EVOLVE framework to your AI initiatives.
                   </p>

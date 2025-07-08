@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://binubabu.in/evolve",
     title: "EVOLVE: An Adaptive Framework for AI Product Development",
-    description: "A revolutionary approach to AI product development addressing the unique challenges of AI systems. Coming August 2025.",
+    description: "A revolutionary approach to AI product development addressing the unique challenges of AI systems. Coming September 2025.",
     siteName: "Binu Babu",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "EVOLVE: An Adaptive Framework for AI Product Development",
-    description: "A revolutionary approach to AI product development addressing the unique challenges of AI systems. Coming August 2025.",
+    description: "A revolutionary approach to AI product development addressing the unique challenges of AI systems. Coming September 2025.",
     images: ["/evolve-community.webp"]
   },
   robots: {

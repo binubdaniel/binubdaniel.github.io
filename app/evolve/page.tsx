@@ -41,9 +41,9 @@ const EvolveComingSoon = () => {
   const [seconds, setSeconds] = useState(0);
   const [isSurveyOpen, setIsSurveyOpen] = useState(false);
 
-  // Set launch date to August 14, 2025
+  // Set launch date to September 14, 2025
   useEffect(() => {
-    const target = new Date("2025-08-14T00:00:00");
+    const target = new Date("2025-09-14T00:00:00");
 
     const interval = setInterval(() => {
       const now = new Date();
@@ -244,7 +244,7 @@ const EvolveComingSoon = () => {
                     className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20"
                   >
                     <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                    <span className="text-sm font-light text-accent uppercase tracking-wider">Coming August 2025</span>
+                    <span className="text-sm font-light text-accent uppercase tracking-wider">Coming September 2025</span>
                   </motion.div>
                   
                   <h3 className="text-3xl md:text-4xl font-light text-foreground">
