@@ -137,11 +137,28 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
 const ExperienceSection = () => {
   const experiences = [
     {
+      role: "AI Product Manager",
+      company: "Techjays - Coimbatore, Tamil Nadu",
+      period: "July 2025 - Present",
+      description:
+        "Driving AI product strategy and development initiatives. Leading cross-functional teams to deliver innovative AI solutions while establishing product frameworks for emerging technologies.",
+      achievements: [
+        "Recently joined to lead AI product development initiatives",
+        "Establishing product strategy for next-generation AI solutions",
+        "Building frameworks for AI product development and team collaboration",
+      ],
+      learnings: [
+        "Early stage - focused on understanding market dynamics and team capabilities",
+        "Developing expertise in AI product management methodologies",
+        "Learning to balance innovation with practical implementation timelines",
+      ],
+    },
+    {
       role: "Technical Lead",
       company: "Bridge Global - Kochi, Kerala",
-      period: "September 2024 - Present",
+      period: "September 2024 - July 2025",
       description:
-        "Leading AI integration initiatives and engineering teams in delivering cutting-edge solutions. Focused on implementing advanced technologies while mentoring and growing technical talent.",
+        "Led AI integration initiatives and engineering teams in delivering cutting-edge solutions. Focused on implementing advanced technologies while mentoring and growing technical talent.",
       achievements: [
         "Mentored engineering teams in developing scalable solutions while maintaining exceptional quality standards",
         "Implemented advanced AI technologies including RAG and LLMs to revolutionize product development",
