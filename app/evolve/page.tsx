@@ -200,7 +200,7 @@ const EvolveComingSoon = () => {
                   transition={{ duration: 0.6, delay: 1 }}
                   className="text-xl md:text-2xl text-accent font-light max-w-4xl mx-auto leading-relaxed"
                 >
-                  A Revolutionary Framework Designed for the{" "}
+                  An Evolutionary Framework Designed for the{" "}
                   <span className="text-foreground font-medium">Probabilistic Nature</span>{" "}
                   of AI Product Development
                 </motion.p>
