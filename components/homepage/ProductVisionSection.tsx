@@ -5,17 +5,27 @@ import * as Accordion from '@radix-ui/react-accordion';
 import { Users2, LineChart, Puzzle, Lightbulb, Zap, Brain, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 
-const containerAnimation = {
+const containerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: {
+      staggerChildren: 0.08,
+      duration: 0.6
+    }
   }
 };
 
-const itemAnimation = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.4, 0.25, 1]
+    }
+  }
 };
 
 interface PhilosophyCardProps {
@@ -26,18 +36,21 @@ interface PhilosophyCardProps {
 
 const PhilosophyCard: React.FC<PhilosophyCardProps> = ({ title, description, icon: Icon }) => (
   <motion.div 
-    variants={itemAnimation}
-    className="group relative border-l-4 border-l-primary bg-card hover:bg-secondary/20 transition-colors duration-200"
+    variants={itemVariants}
+    className="group elegant-card p-6 hover:shadow-lg transition-all duration-300 border-l-4 border-l-accent"
+    whileHover={{ y: -2 }}
   >
-    <div className="p-6">
-      <div className="flex items-start gap-4">
-        <div className="flex-shrink-0">
-          <Icon className="h-6 w-6 text-primary" />
-        </div>
-        <div>
-          <h3 className="font-mono text-lg font-medium text-foreground mb-2">{title}</h3>
-          <p className="text-muted-foreground leading-relaxed">{description}</p>
-        </div>
+    <div className="flex items-start gap-4">
+      <motion.div 
+        className="flex-shrink-0 p-3 bg-accent/10 rounded-full group-hover:bg-accent/20 transition-colors duration-300"
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.2 }}
+      >
+        <Icon className="h-5 w-5 text-accent" />
+      </motion.div>
+      <div className="space-y-3">
+        <h3 className="text-lg font-light text-foreground group-hover:text-accent transition-colors duration-300">{title}</h3>
+        <p className="text-muted-foreground leading-relaxed font-light text-sm">{description}</p>
       </div>
     </div>
   </motion.div>
@@ -49,26 +62,26 @@ interface MetricsPanelProps {
 
 const MetricsPanel: React.FC<MetricsPanelProps> = ({ items }) => (
   <motion.div 
-    variants={containerAnimation}
+    variants={containerVariants}
     initial="hidden"
-    whileInView="show"
+    whileInView="visible"
     viewport={{ once: true }}
-    className="grid gap-px bg-border"
+    className="grid md:grid-cols-2 gap-4"
   >
     {items.map((item, index) => (
       <motion.div 
         key={index}
-        variants={itemAnimation}
-        className="group bg-card hover:bg-secondary/20 transition-colors duration-200"
+        variants={itemVariants}
+        className="group bg-secondary/10 hover:bg-secondary/20 rounded-lg p-4 transition-all duration-200 hover:scale-105"
       >
-        <div className="p-6 flex items-start gap-4">
-          <div className="w-1.5 h-1.5 mt-2 bg-primary" />
+        <div className="flex items-start gap-3">
+          <div className="w-2 h-2 mt-2 bg-accent rounded-full group-hover:scale-125 transition-transform duration-200 flex-shrink-0" />
           <div>
-            <h4 className="font-mono text-foreground group-hover:text-primary transition-colors duration-200">
+            <h4 className="font-light text-foreground group-hover:text-accent transition-colors duration-200">
               {item.text}
             </h4>
             {item.subtext && (
-              <p className="mt-1 text-sm text-muted-foreground">{item.subtext}</p>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{item.subtext}</p>
             )}
           </div>
         </div>
@@ -86,16 +99,16 @@ interface AccordionSectionProps {
 const AccordionSection: React.FC<AccordionSectionProps> = ({ value, title, children }) => (
   <Accordion.Item 
     value={value} 
-    className="border border-border bg-card"
+    className="elegant-card overflow-hidden"
   >
-    <Accordion.Trigger className="flex items-center justify-between w-full p-6 cursor-pointer group">
-      <h3 className="font-mono text-xl text-foreground group-hover:text-primary transition-colors duration-200">
+    <Accordion.Trigger className="flex items-center justify-between w-full p-8 cursor-pointer group transition-all duration-300 hover:bg-secondary/20">
+      <h3 className="text-xl font-light text-foreground group-hover:text-accent transition-colors duration-300">
         {title}
       </h3>
-      <ChevronDown className="h-5 w-5 text-primary transition-transform duration-200 ease-out group-data-[state=open]:rotate-180" />
+      <ChevronDown className="h-5 w-5 text-accent transition-transform duration-300 group-data-[state=open]:rotate-180" />
     </Accordion.Trigger>
     <Accordion.Content className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-      <div className="p-6 pt-0">
+      <div className="p-8 pt-0 border-t border-border/50">
         {children}
       </div>
     </Accordion.Content>
@@ -214,65 +227,72 @@ const ProductVisionSection = () => {
   ];
 
   return (
-    <section className="relative bg-background text-foreground">
-      {/* IBM Grid Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+    <section className="relative bg-gradient-to-br from-background via-muted/5 to-background py-24">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:50px_50px]" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-6 py-24">
+      <div className="relative max-w-7xl mx-auto px-6">
         <motion.div 
           initial="hidden"
-          whileInView="show"
+          whileInView="visible"
           viewport={{ once: true }}
-          variants={containerAnimation}
-          className="space-y-12"
+          variants={containerVariants}
+          className="space-y-16"
         >
+          {/* Section Header */}
           <motion.div 
-            variants={itemAnimation}
-            className="max-w-2xl"
+            variants={itemVariants}
+            className="text-center"
           >
-            <p className="font-mono text-primary mb-2">Product Vision</p>
-            <h2 className="font-mono text-4xl font-medium mb-6">
-              Philosophy & Approach
-            </h2>
-            <p className="text-muted-foreground text-xl leading-relaxed">
-              Building successful products requires a perfect blend of innovation,
-              user-centricity, and technical excellence.
-            </p>
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="text-accent font-light tracking-wider uppercase text-sm">Product Vision</span>
+                <div className="h-px w-full bg-accent mt-2" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-light text-foreground">
+                Philosophy & Approach
+              </h2>
+              <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
+                Building successful products requires a perfect blend of innovation, user-centricity, and technical excellence.
+              </p>
+            </div>
           </motion.div>
 
-          <Accordion.Root
-            type="multiple"
-            defaultValue={[""]}
-            className="space-y-px"
-          >
-            <AccordionSection value="philosophy" title="Core Philosophy">
-              <motion.div 
-                variants={containerAnimation}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border"
-              >
-                {philosophyItems.map((item, index) => (
-                  <PhilosophyCard key={index} {...item} />
-                ))}
-              </motion.div>
-            </AccordionSection>
+          <motion.div variants={itemVariants}>
+            <Accordion.Root
+              type="multiple"
+              defaultValue={[""]}
+              className="space-y-6"
+            >
+              <AccordionSection value="philosophy" title="Core Philosophy">
+                <motion.div 
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
+                  {philosophyItems.map((item, index) => (
+                    <PhilosophyCard key={index} {...item} />
+                  ))}
+                </motion.div>
+              </AccordionSection>
 
-            <AccordionSection value="metrics" title="Success Metrics">
-              <MetricsPanel items={metrics} />
-            </AccordionSection>
+              <AccordionSection value="metrics" title="Success Metrics">
+                <MetricsPanel items={metrics} />
+              </AccordionSection>
 
-            <AccordionSection value="strategy" title="Growth Strategy">
-              <MetricsPanel items={strategy} />
-            </AccordionSection>
+              <AccordionSection value="strategy" title="Growth Strategy">
+                <MetricsPanel items={strategy} />
+              </AccordionSection>
 
-            <AccordionSection value="security" title="Security & Compliance">
-              <MetricsPanel items={security} />
-            </AccordionSection>
-          </Accordion.Root>
+              <AccordionSection value="security" title="Security & Compliance">
+                <MetricsPanel items={security} />
+              </AccordionSection>
+            </Accordion.Root>
+          </motion.div>
         </motion.div>
       </div>
     </section>

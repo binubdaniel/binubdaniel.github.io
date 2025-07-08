@@ -16,7 +16,7 @@ const SurveyTriggerCard: React.FC<SurveyTriggerCardProps> = ({ onOpenSurvey, ite
       variants={itemAnimation}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative border-l-4 border-l-primary p-6 bg-card cursor-pointer group hover:bg-secondary/20 transition-colors duration-200"
+      className="relative elegant-card border-l-4 border-l-accent p-6 cursor-pointer group hover:shadow-xl transition-all duration-300"
       onClick={onOpenSurvey}
     >
       <div className="space-y-4">
@@ -26,15 +26,15 @@ const SurveyTriggerCard: React.FC<SurveyTriggerCardProps> = ({ onOpenSurvey, ite
             <motion.div
               animate={{ rotate: isHovered ? 360 : 0 }}
               transition={{ duration: 0.6 }}
-              className="p-2 bg-primary/10 rounded-lg"
+              className="p-2 bg-accent/10 rounded-lg"
             >
-              <TrendingDown className="h-5 w-5 text-primary" />
+              <TrendingDown className="h-5 w-5 text-accent" />
             </motion.div>
             <div>
-              <h3 className="font-mono text-lg font-medium text-foreground">
+              <h3 className="text-lg font-light text-foreground">
                 Quick AI Survey
               </h3>
-              <div className="flex items-center gap-2 text-sm text-primary">
+              <div className="flex items-center gap-2 text-sm text-accent">
                 <Clock className="h-4 w-4" />
                 <span>45 seconds</span>
               </div>
@@ -45,13 +45,13 @@ const SurveyTriggerCard: React.FC<SurveyTriggerCardProps> = ({ onOpenSurvey, ite
             animate={{ x: isHovered ? 5 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            <ArrowRight className="h-5 w-5 text-primary" />
+            <ArrowRight className="h-5 w-5 text-accent" />
           </motion.div>
         </div>
 
         {/* Content */}
         <div className="space-y-3">
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed font-light">
             Help us understand why 80% of AI projects fail. Your insights will shape better development practices.
           </p>
           
@@ -61,7 +61,7 @@ const SurveyTriggerCard: React.FC<SurveyTriggerCardProps> = ({ onOpenSurvey, ite
               <span>3 quick questions</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-2 h-2 bg-primary rounded-full"></div>
+              <div className="w-2 h-2 bg-accent rounded-full"></div>
               <span>Anonymous</span>
             </div>
             <div className="flex items-center gap-1">
@@ -72,10 +72,10 @@ const SurveyTriggerCard: React.FC<SurveyTriggerCardProps> = ({ onOpenSurvey, ite
         </div>
 
         {/* Statistics */}
-        <div className="bg-secondary/50 p-3 rounded-lg">
+        <div className="bg-accent/5 border border-accent/20 p-3 rounded-lg">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-muted-foreground">AI Project Failure Rate</span>
-            <span className="font-mono text-destructive font-semibold">70-85%</span>
+            <span className="text-muted-foreground font-light">AI Project Failure Rate</span>
+            <span className="text-destructive font-light">70-85%</span>
           </div>
           <div className="w-full bg-secondary rounded-full h-1.5 mt-2">
             <div className="bg-destructive h-1.5 rounded-full" style={{ width: '80%' }}></div>
@@ -88,7 +88,7 @@ const SurveyTriggerCard: React.FC<SurveyTriggerCardProps> = ({ onOpenSurvey, ite
             scale: isHovered ? 1.02 : 1
           }}
           transition={{ duration: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-foreground text-sm font-medium group-hover:border-primary/50 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-foreground text-sm font-light group-hover:border-accent/50 group-hover:bg-accent/5 transition-all duration-300"
         >
           <span>Help improve AI development</span>
           <motion.div

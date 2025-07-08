@@ -147,15 +147,15 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-card border border-border rounded-md p-6 max-w-md w-full shadow-2xl"
+            className="elegant-card border border-border rounded-xl p-6 max-w-md w-full shadow-2xl backdrop-blur-sm"
           >
             {!isComplete ? (
               <>
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-primary" />
-                    <span className="font-mono text-sm text-muted-foreground">
+                    <Clock className="h-5 w-5 text-accent" />
+                    <span className="text-sm text-muted-foreground font-light">
                       45 seconds · Step {currentStep + 1} of {steps.length}
                     </span>
                   </div>
@@ -170,7 +170,7 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                 {/* Progress Bar */}
                 <div className="w-full bg-secondary rounded-full h-2 mb-6">
                   <motion.div
-                    className="bg-primary h-2 rounded-full"
+                    className="bg-accent h-2 rounded-full"
                     initial={{ width: 0 }}
                     animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
                     transition={{ duration: 0.3 }}
@@ -185,7 +185,7 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                   exit={{ opacity: 0, x: -20 }}
                   className="mb-6"
                 >
-                  <h3 className="text-lg font-semibold mb-4 text-foreground">
+                  <h3 className="text-lg font-light mb-4 text-foreground">
                     {steps[currentStep].question}
                   </h3>
 
@@ -195,7 +195,7 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                       placeholder={steps[currentStep].placeholder}
                       value={answers.email}
                       onChange={(e) => handleAnswer(e.target.value)}
-                      className="w-full p-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-primary"
+                      className="w-full p-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent font-light"
                     />
                   ) : (
                     <div className="space-y-2 px-2 max-h-[420px] overflow-y-auto ">
@@ -205,11 +205,11 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={() => handleAnswer(option.value)}
-                          className={`w-full p-2 text-sm text-left rounded-lg border transition-all duration-200 ${
+                          className={`w-full p-3 text-sm text-left rounded-lg border transition-all duration-200 font-light ${
                             (steps[currentStep].type === 'experience' && answers.experience === option.value) ||
                             (steps[currentStep].type === 'reasons' && answers.reasons.includes(option.value))
-                              ? 'border-primary bg-primary/10 text-primary'
-                              : 'border-border hover:border-primary/50 text-muted-foreground hover:text-foreground'
+                              ? 'border-accent bg-accent/10 text-accent'
+                              : 'border-border hover:border-accent/50 text-muted-foreground hover:text-foreground hover:bg-accent/5'
                           }`}
                         >
                           {option.label}
@@ -224,7 +224,7 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                   <button
                     onClick={prevStep}
                     disabled={currentStep === 0}
-                    className="px-4 py-2 text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="px-4 py-2 text-muted-foreground hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-light"
                   >
                     Back
                   </button>
@@ -234,7 +234,7 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                     whileTap={{ scale: 0.95 }}
                     onClick={nextStep}
                     disabled={!canProceed() || isSubmitting}
-                    className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+                    className="px-6 py-2 bg-accent text-accent-foreground rounded-full hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-all duration-300 font-light hover:shadow-lg"
                   >
                     {isSubmitting ? (
                       <div className="animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent" />
@@ -259,15 +259,15 @@ const QuickSurveyDialog: React.FC<QuickSurveyDialogProps> = ({ isOpen, onClose }
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                 >
-                  <CheckCircle className="h-16 w-16 text-primary mx-auto mb-4" />
+                  <CheckCircle className="h-16 w-16 text-accent mx-auto mb-4" />
                 </motion.div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                <h3 className="text-xl font-light mb-2 text-foreground">
                   Thank you!
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground font-light">
                   Your insights will help improve AI product development.
                 </p>
-                <div className="mt-4 text-sm text-muted-foreground">
+                <div className="mt-4 text-sm text-muted-foreground font-light">
                   Closing automatically...
                 </div>
               </motion.div>

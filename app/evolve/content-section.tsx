@@ -66,37 +66,73 @@ export default function ContentsSection({ itemAnimation }: { itemAnimation: Vari
     return (
       <motion.section variants={itemAnimation} className="mb-20">
         <div className="text-center mb-12">
-          <p className="font-mono text-primary mb-2">Book Preview</p>
-          <h2 className="font-mono text-3xl md:text-4xl font-medium text-foreground mb-4">
-            Contents Overview
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Explore the comprehensive journey from understanding AI&apos;s unique challenges to implementing a new adaptive framework.
-          </p>
+          <div className="space-y-6">
+            <div className="inline-block">
+              <span className="text-accent font-light tracking-wider uppercase text-sm">Book Preview</span>
+              <div className="h-px w-full bg-accent mt-2" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-light text-foreground">
+              Contents Overview
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
+              Explore the comprehensive journey from understanding AI&apos;s unique challenges to implementing a new adaptive framework.
+            </p>
+          </div>
         </div>
   
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+                duration: 0.6
+              }
+            }
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
         {chapters.map((chapter, index) => (
-            <div 
+            <motion.div 
               key={index} 
-              className="border-l-4 border-l-primary p-6 bg-card hover:bg-secondary/20 transition-colors duration-200"
+              className="group elegant-card border-l-4 border-l-accent p-6 hover:shadow-xl transition-all duration-300 cursor-pointer"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.6,
+                    ease: [0.25, 0.4, 0.25, 1]
+                  }
+                }
+              }}
+              whileHover={{ y: -5 }}
             >
               <div className="flex flex-col md:flex-row md:items-start gap-4">
-                <div className="bg-primary/10 p-3 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 md:self-center">
-                  <span className="font-mono font-bold text-primary">{chapter.number}</span>
-                </div>
-                <div>
-                  <h3 className="font-mono text-lg font-medium text-foreground mb-2">
+                <motion.div 
+                  className="bg-accent/10 p-3 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0 md:self-center group-hover:bg-accent/20 transition-colors duration-300"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="font-light text-accent text-lg">{chapter.number}</span>
+                </motion.div>
+                <div className="space-y-3">
+                  <h3 className="text-lg font-light text-foreground group-hover:text-accent transition-colors duration-300 leading-snug">
                     {chapter.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed font-light text-sm group-hover:text-foreground/80 transition-colors duration-300">
                     {chapter.description}
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.section>
     );
   };

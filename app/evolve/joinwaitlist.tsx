@@ -48,12 +48,12 @@ export default function WaitingListForm({ itemAnimation }: { itemAnimation: Vari
   };
 
   return (
-    <motion.div variants={itemAnimation} className="border-l-4 border-l-primary p-6 bg-card flex flex-col justify-between">
+    <motion.div variants={itemAnimation} className="elegant-card border-l-4 border-l-accent p-6 flex flex-col justify-between">
       <div className="space-y-4">
-        <h3 className="font-mono text-xl font-medium text-foreground mb-2">
+        <h3 className="text-xl font-light text-foreground mb-2">
           Join the Waiting List
         </h3>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground font-light">
           Sign up to receive exclusive updates, early access opportunities, and be the first to know when EVOLVE launches.
         </p>
       </div>
@@ -67,15 +67,15 @@ export default function WaitingListForm({ itemAnimation }: { itemAnimation: Vari
               placeholder="Your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="px-4 py-3 bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              className="px-4 py-3 bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-accent rounded-lg font-light"
               required
             />
             <button 
               type="submit"
               disabled={isSubmitting}
-              className={`group inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`group inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded-full font-light transition-all duration-300 hover:shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              <span className="font-mono">
+              <span className="font-light">
                 {isSubmitting ? 'Processing...' : 'Join Waiting List'}
               </span>
               <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />

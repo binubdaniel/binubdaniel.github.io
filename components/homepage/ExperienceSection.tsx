@@ -2,15 +2,29 @@
 
 import React from "react";
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDown, Briefcase, Star, Lightbulb } from "lucide-react";
+import { ChevronDown, Briefcase, Star, Lightbulb, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      duration: 0.6
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4 }
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.4, 0.25, 1]
+    }
   }
 };
 
@@ -34,73 +48,88 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
   value,
 }) => (
   <motion.div
-    variants={fadeIn}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
+    variants={itemVariants}
+    className="group"
   >
-    <Accordion.Item value={value} className="group">
-      <div className="relative border-l-4 border-l-primary bg-card transition-colors duration-200 group-data-[state=open]:bg-secondary/20">
-        <Accordion.Trigger className="w-full">
-          <div className="flex items-start p-6 w-full text-left">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-4 mb-4">
-                <Briefcase className="h-5 w-5 text-primary" />
-                <span className="font-mono text-sm text-primary">{period}</span>
+    <Accordion.Item value={value} className="elegant-card border-l-4 border-l-accent overflow-hidden">
+      <Accordion.Trigger className="w-full transition-all duration-300 hover:bg-secondary/20 group-data-[state=open]:bg-secondary/30">
+        <div className="flex items-center justify-between p-8 w-full text-left">
+          <div className="flex-1 min-w-0 space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="p-2 bg-accent/10 rounded-full">
+                <Briefcase className="h-5 w-5 text-accent" />
               </div>
-              <h3 className="font-mono text-xl text-foreground mb-2">{role}</h3>
-              <p className="text-muted-foreground">{company}</p>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Calendar className="h-4 w-4" />
+                <span className="font-light">{period}</span>
+              </div>
             </div>
-            <ChevronDown className="h-5 w-5 text-primary transition-transform duration-200 group-data-[state=open]:rotate-180 ml-4" />
+            <div className="space-y-2">
+              <h3 className="text-2xl font-light text-foreground">{role}</h3>
+              <p className="text-muted-foreground font-light">{company}</p>
+            </div>
           </div>
-        </Accordion.Trigger>
+          <ChevronDown className="h-5 w-5 text-accent transition-transform duration-300 group-data-[state=open]:rotate-180 ml-6" />
+        </div>
+      </Accordion.Trigger>
 
-        <Accordion.Content className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-          <div className="px-6 pb-6 space-y-8">
-            <div className="pt-4 border-t border-border">
-              <p className="text-muted-foreground leading-relaxed">
-                {description}
-              </p>
-            </div>
+      <Accordion.Content className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+        <div className="px-8 pb-8 space-y-8">
+          <div className="pt-6 border-t border-border/50">
+            <p className="text-muted-foreground leading-relaxed font-light">
+              {description}
+            </p>
+          </div>
 
+          <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <Star className="h-4 w-4 text-primary" />
-                <h4 className="font-mono text-foreground">Key Achievements</h4>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-accent/10 rounded-full">
+                  <Star className="h-4 w-4 text-accent" />
+                </div>
+                <h4 className="text-foreground font-light">Key Achievements</h4>
               </div>
-              <div className="grid gap-2">
+              <div className="space-y-3">
                 {achievements.map((achievement, index) => (
-                  <div
+                  <motion.div
                     key={index}
-                    className="flex items-start gap-3 p-4 bg-secondary/10"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg hover:bg-secondary/20 transition-colors duration-200"
                   >
-                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <p className="text-muted-foreground text-sm">{achievement}</p>
-                  </div>
+                    <div className="w-2 h-2 mt-2 bg-accent rounded-full flex-shrink-0" />
+                    <p className="text-muted-foreground text-sm font-light leading-relaxed">{achievement}</p>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <Lightbulb className="h-4 w-4 text-primary" />
-                <h4 className="font-mono text-foreground">Key Learnings</h4>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-accent/10 rounded-full">
+                  <Lightbulb className="h-4 w-4 text-accent" />
+                </div>
+                <h4 className="text-foreground font-light">Key Learnings</h4>
               </div>
-              <div className="grid gap-2">
+              <div className="space-y-3">
                 {learnings.map((learning, index) => (
-                  <div
+                  <motion.div
                     key={index}
-                    className="flex items-start gap-3 p-4 bg-secondary/10"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg hover:bg-secondary/20 transition-colors duration-200"
                   >
-                    <div className="w-1.5 h-1.5 mt-2 bg-primary" />
-                    <p className="text-muted-foreground text-sm">{learning}</p>
-                  </div>
+                    <div className="w-2 h-2 mt-2 bg-accent rounded-full flex-shrink-0" />
+                    <p className="text-muted-foreground text-sm font-light leading-relaxed">{learning}</p>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </div>
-        </Accordion.Content>
-      </div>
+        </div>
+      </Accordion.Content>
     </Accordion.Item>
   </motion.div>
 );
@@ -159,39 +188,50 @@ const ExperienceSection = () => {
       ],
     },
   ];
+
   return (
-    <section className="relative bg-background text-foreground">
-      {/* IBM Grid Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+    <section className="relative bg-gradient-to-br from-muted/5 via-background to-background py-24">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
+        <div className="h-full w-full bg-[radial-gradient(circle_at_1px_1px,currentColor_1px,transparent_0)] bg-[size:48px_48px]" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-6 py-24">
+      <div className="relative max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={fadeIn}
-          className="mb-16"
+          variants={containerVariants}
         >
-          <p className="font-mono text-primary mb-2">Experience</p>
-          <h2 className="font-mono text-4xl font-medium mb-6">
-            Professional Journey
-          </h2>
-          <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
-            Building impactful solutions and leading innovative teams across different roles and challenges.
-          </p>
-        </motion.div>
+          {/* Section Header */}
+          <motion.div variants={itemVariants} className="mb-16 text-center">
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="text-accent font-light tracking-wider uppercase text-sm">Experience</span>
+                <div className="h-px w-full bg-accent mt-2" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-light text-foreground">
+                Professional Journey
+              </h2>
+              <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
+                Building impactful solutions and leading innovative teams across different roles and challenges.
+              </p>
+            </div>
+          </motion.div>
 
-        <Accordion.Root type="single" collapsible className="space-y-px bg-border">
-          {experiences.map((experience, index) => (
-            <ExperiencePanel
-              key={index}
-              {...experience}
-              value={`item-${index}`}
-            />
-          ))}
-        </Accordion.Root>
+          {/* Experience Timeline */}
+          <motion.div variants={itemVariants}>
+            <Accordion.Root type="single" collapsible className="space-y-6">
+              {experiences.map((experience, index) => (
+                <ExperiencePanel
+                  key={index}
+                  {...experience}
+                  value={`item-${index}`}
+                />
+              ))}
+            </Accordion.Root>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

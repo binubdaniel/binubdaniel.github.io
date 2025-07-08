@@ -1,4 +1,5 @@
-// lib/supabase.ts
+// lib/supabase.ts - Legacy client for backward compatibility
+// For new code, use @/lib/supabase/client or @/lib/supabase/server
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;

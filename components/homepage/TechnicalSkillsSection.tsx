@@ -4,17 +4,39 @@ import React from 'react';
 import { Cloud, Monitor, Database, BrainCircuit } from "lucide-react";
 import { motion } from "framer-motion";
 
-const containerAnimation = {
+const containerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: {
+      staggerChildren: 0.08,
+      duration: 0.6
+    }
   }
 };
 
-const itemAnimation = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.4, 0.25, 1]
+    }
+  }
+};
+
+const skillVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut"
+    }
+  }
 };
 
 interface SkillCardProps {
@@ -25,26 +47,41 @@ interface SkillCardProps {
 
 const SkillCard: React.FC<SkillCardProps> = ({ title, skills, icon: Icon }) => (
   <motion.div 
-    variants={itemAnimation}
-    className="relative border-l-4 border-l-primary bg-card hover:bg-secondary/20 transition-colors duration-200"
+    variants={itemVariants}
+    className="group elegant-card border-l-4 border-l-accent p-8 hover:shadow-lg transition-all duration-300"
   >
-    <div className="p-6 md:p-8">
-      <div className="flex items-center gap-4 mb-8">
-        <Icon className="h-6 w-6 text-primary" />
-        <h3 className="font-mono text-xl text-foreground">{title}</h3>
+    <div className="space-y-8">
+      <div className="flex items-center gap-4">
+        <motion.div 
+          className="p-3 bg-accent/10 rounded-full group-hover:bg-accent/20 transition-colors duration-300"
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Icon className="h-6 w-6 text-accent" />
+        </motion.div>
+        <h3 className="text-xl font-light text-foreground">{title}</h3>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+      <motion.div 
+        className="grid grid-cols-2 md:grid-cols-3 gap-3"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         {skills.map((skill, index) => (
-          <div
+          <motion.div
             key={index}
-            className="flex items-center gap-2 p-2 bg-secondary/10 hover:bg-secondary/20 transition-colors duration-200"
+            variants={skillVariants}
+            className="group/skill"
           >
-            <div className="w-1.5 h-1.5 bg-primary" />
-            <span className="text-sm text-foreground/80">{skill}</span>
-          </div>
+            <div className="flex items-center gap-2 p-3 bg-secondary/10 rounded-lg hover:bg-secondary/20 hover:scale-105 transition-all duration-200 cursor-default">
+              <div className="w-1.5 h-1.5 bg-accent rounded-full group-hover/skill:scale-125 transition-transform duration-200" />
+              <span className="text-sm text-foreground/80 font-light group-hover/skill:text-foreground transition-colors duration-200">{skill}</span>
+            </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   </motion.div>
 );
@@ -88,7 +125,7 @@ const TechnicalSkillsSection = () => {
       ]
     },
     {
-      title: "Frontend Development",
+      title: "Frontend Engineering",
       icon: Monitor,
       skills: [
         "React",
@@ -126,39 +163,47 @@ const TechnicalSkillsSection = () => {
   ];
 
   return (
-    <section className="relative bg-background text-foreground">
-      {/* IBM Grid Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="h-full w-full bg-[linear-gradient(90deg,currentColor_1px,transparent_1px),linear-gradient(180deg,currentColor_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+    <section className="relative bg-background py-24">
+      {/* Minimalist background */}
+      <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.025]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-6 py-24">
+      <div className="relative max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
-          whileInView="show"
+          whileInView="visible"
           viewport={{ once: true }}
-          variants={containerAnimation}
+          variants={containerVariants}
         >
           {/* Section Header */}
-          <motion.div variants={itemAnimation} className="mb-16">
-            <p className="font-mono text-primary mb-2">Skills</p>
-            <h2 className="font-mono text-4xl font-medium mb-6">
-              Technical Expertise
-            </h2>
-            <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
-              Comprehensive skillset across modern technologies and frameworks.
-            </p>
+          <motion.div variants={itemVariants} className="mb-16 text-center">
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="text-accent font-light tracking-wider uppercase text-sm">Skills</span>
+                <div className="h-px w-full bg-accent mt-2" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-light text-foreground">
+                Technical Expertise
+              </h2>
+              <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
+                Comprehensive skillset across modern technologies and frameworks, refined through years of hands-on experience.
+              </p>
+            </div>
           </motion.div>
 
           {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+          <motion.div 
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             {skillCategories.map((category, index) => (
               <SkillCard
                 key={index}
                 {...category}
               />
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

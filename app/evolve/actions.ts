@@ -1,6 +1,7 @@
 'use server'
 
 import { z } from 'zod';
+import { createClient } from '@/lib/supabase/server';
 
 // Define schemas for validation
 const EmailSchema = z.object({
@@ -25,11 +26,29 @@ export async function subscribeToWaitingList(formData: FormData) {
   try {
     const result = EmailSchema.parse({ email });
     
-    const response = await sendWaitlistNotification(result.email);
+    // Save to database
+    const supabase = await createClient();
+    const { error } = await supabase
+      .from('waiting_list')
+      .insert({
+        email: result.email.toLowerCase().trim(),
+        source: 'evolve_page',
+        metadata: {}
+      });
+
+    if (error) {
+      if (error.code === '23505') { // Unique constraint violation
+        return { success: false, message: 'This email is already registered for updates.' };
+      }
+      console.error('Database error:', error);
+      return { success: false, message: 'Failed to save your email. Please try again.' };
+    }
     
-    if (!response.ok) {
-      console.error('Failed to send Google Chat notification');
-      return { success: false, message: 'Failed to send notification' };
+    // Send notification (don't fail if this fails)
+    try {
+      await sendWaitlistNotification(result.email);
+    } catch (notificationError) {
+      console.error('Failed to send notification, but email was saved:', notificationError);
     }
 
     return { 
@@ -70,15 +89,30 @@ export async function submitQuickSurvey(formData: FormData) {
     
     console.log('Validation passed:', result);
     
-    // Send notification
-    const response = await sendQuickSurveyNotification(result);
+    // Save to database
+    const supabase = await createClient();
+    const { error } = await supabase
+      .from('survey_responses')
+      .insert({
+        email: result.email?.toLowerCase().trim() || null,
+        experience_level: result.experience,
+        failure_reasons: result.reasons || [],
+        metadata: {
+          submitted_at: new Date().toISOString(),
+          user_agent: formData.get('userAgent') as string || null
+        }
+      });
+
+    if (error) {
+      console.error('Database error:', error);
+      return { success: false, message: 'Failed to save your response. Please try again.' };
+    }
     
-    console.log('Notification response status:', response.status);
-    
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Failed to send quick survey notification:', errorText);
-      return { success: false, message: 'Failed to send notification' };
+    // Send notification (don't fail if this fails)
+    try {
+      await sendQuickSurveyNotification(result);
+    } catch (notificationError) {
+      console.error('Failed to send notification, but survey was saved:', notificationError);
     }
 
     console.log('Survey submitted successfully');
