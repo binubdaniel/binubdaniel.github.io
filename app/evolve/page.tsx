@@ -142,37 +142,37 @@ const EvolveComingSoon = () => {
     {
       number: "1", 
       title: "How Thinking Like an Explorer Changes Everything About Finding AI Opportunities",
-      description: "The transformation story of a team that broke free from conventional thinking to discover revolutionary possibilities."
+      description: "How applying the Explorer mindset from the EVOLVE framework helps teams break free from conventional thinking."
     },
     {
       number: "2",
       title: "How Thinking Like a Scientist Saves You From Expensive Mistakes", 
-      description: "Following teams who learned to build bulletproof confidence through rigorous validation before investing millions."
+      description: "How the Scientist mindset in the EVOLVE framework builds bulletproof confidence through rigorous validation."
     },
     {
       number: "3",
       title: "How Thinking Like an Architect Creates AI Systems That Actually Scale",
-      description: "The journey from prototype to production reality through architectural thinking that prevents costly failures."
+      description: "How the Architect mindset in the EVOLVE framework creates the journey from prototype to production reality."
     },
     {
       number: "4", 
       title: "How Thinking Like a Navigator Gets Your AI Safely to Shore",
-      description: "Transformation stories of teams who learned to navigate the treacherous waters between development and production."
+      description: "How the Navigator mindset in the EVOLVE framework guides teams through development to production."
     },
     {
       number: "5",
       title: "How Thinking Like a Detective Reveals What Your AI Is Really Accomplishing",
-      description: "Discovery stories of teams who learned to uncover the truth about AI value beyond surface metrics."
+      description: "How the Detective mindset in the EVOLVE framework reveals the truth about AI value beyond surface metrics."
     },
     {
       number: "6",
       title: "How Thinking Like a Gardener Grows AI Value That Compounds Over Time", 
-      description: "The wisdom of teams who learned to cultivate sustainable AI success through patient, systematic growth."
+      description: "How the Gardener mindset in the EVOLVE framework cultivates sustainable AI success through systematic growth."
     },
     {
       number: "7",
       title: "Your Journey to AI Product Mastery",
-      description: "Developing fluency across all mindsets and learning to flow between them as your AI initiatives evolve."
+      description: "Mastering all six mindsets of the EVOLVE framework and learning to flow between them as your AI initiatives evolve."
     }
   ];
 
@@ -222,7 +222,7 @@ const EvolveComingSoon = () => {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-muted-foreground font-light">
-                  How to Build Successful AI Products Using the <span className="text-accent font-medium">EVOLVE</span> Approach
+                  Introducing the <span className="text-accent font-medium">EVOLVE</span> Framework for AI Product Success
                 </p>
               </div>
               
@@ -244,7 +244,7 @@ const EvolveComingSoon = () => {
                 >
                   Through working with dozens of AI teams across industries, I discovered that{" "}
                   <span className="text-accent font-medium">mindset precedes method</span>.{" "}
-                  This book reveals the six mindset-method pairs that transform AI product development.
+                  This book introduces the EVOLVE framework: Explore, Validate, Optimize, Launch, Value, and Enhance. Six mindset-method pairs that transform AI product development.
                 </motion.p>
                 
                 <motion.div
@@ -281,6 +281,7 @@ const EvolveComingSoon = () => {
                   <p className="text-muted-foreground text-lg max-w-3xl mx-auto font-light leading-relaxed">
                     The same team using the same framework would succeed with one AI project and fail with another. 
                     The difference wasn&apos;t the method, it was the <span className="text-accent font-medium">mental model</span> they brought to each phase.
+                    This insight led to the development of the EVOLVE framework.
                   </p>
                 </div>
                 
@@ -377,7 +378,7 @@ const EvolveComingSoon = () => {
                   Transform Your AI Success Rate
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
-                  Learn the mindset-method combinations that distinguish successful AI teams from those that struggle.
+                  Learn framework’s mindset-method combinations that distinguish successful AI teams from those that struggle.
                 </p>
               </div>
             </div>
@@ -412,15 +413,18 @@ const EvolveComingSoon = () => {
             <div className="text-center mb-12">
               <div className="space-y-6">
                 <div className="inline-block">
-                  <span className="text-accent font-light tracking-wider uppercase text-sm">The EVOLVE Approach</span>
+                  <span className="text-accent font-light tracking-wider uppercase text-sm">The EVOLVE Framework</span>
                   <div className="h-px w-full bg-accent mt-2" />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-light text-foreground">
-                  Six Mindset-Method Pairs That Transform Results
+                  The EVOLVE Framework: Six Mindset-Method Pairs
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
+                  <strong>E</strong>xplore • <strong>V</strong>alidate • <strong>O</strong>ptimize • <strong>L</strong>aunch • <strong>V</strong>alue • <strong>E</strong>nhance
+                </p>
+                <p className="text-muted-foreground text-base max-w-2xl mx-auto font-light mt-4">
                   Each phase of AI development comes alive when driven by its corresponding mindset. 
-                  Here&apos;s how the right thinking transforms outcomes.
+                  Here&apos;s how the EVOLVE framework transforms outcomes.
                 </p>
               </div>
             </div>
@@ -442,10 +446,10 @@ const EvolveComingSoon = () => {
                     <div>
                       <div className="mb-2">
                         <h3 className="text-lg font-medium text-accent">
-                          {phase.mindset}
+                          {phase.phase} • {phase.mindset}
                         </h3>
                         <p className="text-sm text-muted-foreground font-light">
-                          {phase.phase} Phase
+                          Phase {index + 1}
                         </p>
                       </div>
                       <p className="text-muted-foreground leading-relaxed font-light text-sm">
@@ -470,7 +474,7 @@ const EvolveComingSoon = () => {
                   Your Transformation Journey
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
-                  Follow the interconnected stories that reveal how mindset changes everything about AI product success.
+                  Follow the interconnected stories that reveal how the EVOLVE framework changes everything about AI product success.
                 </p>
               </div>
             </div>
@@ -565,8 +569,8 @@ const EvolveComingSoon = () => {
                   </div>
                   <p className="text-muted-foreground font-light leading-relaxed">
                     Technology consultant with extensive experience developing innovative AI solutions across industries. 
-                    Through working with dozens of AI teams, I discovered the mindset-method patterns that distinguish 
-                    successful projects from those that struggle.
+                    Through working with dozens of AI teams, the EVOLVE framework was developed as a systematic approach 
+                    based on the mindset-method patterns that distinguish successful projects from those that struggle.
                   </p>
                   <Link href="/" className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors duration-200">
                     <span className="text-sm">Learn more</span>
@@ -585,7 +589,7 @@ const EvolveComingSoon = () => {
                   Transform Your AI Development Approach
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
-                  Join thousands of practitioners preparing to revolutionize how they think about and build AI products.
+                  Join thousands of practitioners preparing to learn the EVOLVE framework for revolutionary AI product development.
                 </p>
                 <motion.button
                   className="px-8 py-3 bg-accent text-accent-foreground rounded-lg font-light hover:bg-accent/90 transition-colors duration-200"
@@ -609,7 +613,7 @@ const EvolveComingSoon = () => {
                 but from thinking about familiar problems in fundamentally new ways.&quot;
               </p>
               <p className="text-accent font-light">
-                - The AI Product Mindset
+                - From The AI Product Mindset
               </p>
             </div>
           </motion.section>
