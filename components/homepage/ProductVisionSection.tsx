@@ -2,7 +2,7 @@
 
 import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
-import { Users2, LineChart, Puzzle, Lightbulb, Zap, Brain, ChevronDown } from "lucide-react";
+import { Users2, LineChart, Puzzle, Lightbulb, Zap, Cpu, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -37,19 +37,19 @@ interface PhilosophyCardProps {
 const PhilosophyCard: React.FC<PhilosophyCardProps> = ({ title, description, icon: Icon }) => (
   <motion.div 
     variants={itemVariants}
-    className="group elegant-card p-6 hover:shadow-lg transition-all duration-300 border-l-4 border-l-accent"
+    className="group border border-border p-8 hover:border-foreground transition-all duration-300"
     whileHover={{ y: -2 }}
   >
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-6">
       <motion.div 
-        className="flex-shrink-0 p-3 bg-accent/10 rounded-full group-hover:bg-accent/20 transition-colors duration-300"
+        className="flex-shrink-0 p-3 bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-300"
         whileHover={{ scale: 1.1 }}
         transition={{ duration: 0.2 }}
       >
-        <Icon className="h-5 w-5 text-accent" />
+        <Icon className="h-5 w-5" />
       </motion.div>
-      <div className="space-y-3">
-        <h3 className="text-lg font-light text-foreground group-hover:text-accent transition-colors duration-300">{title}</h3>
+      <div className="space-y-4">
+        <h3 className="text-lg font-light text-foreground group-hover:text-foreground transition-colors duration-300">{title}</h3>
         <p className="text-muted-foreground leading-relaxed font-light text-sm">{description}</p>
       </div>
     </div>
@@ -66,22 +66,22 @@ const MetricsPanel: React.FC<MetricsPanelProps> = ({ items }) => (
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true }}
-    className="grid md:grid-cols-2 gap-4"
+    className="grid md:grid-cols-2 gap-6"
   >
     {items.map((item, index) => (
       <motion.div 
         key={index}
         variants={itemVariants}
-        className="group bg-secondary/10 hover:bg-secondary/20 rounded-lg p-4 transition-all duration-200 hover:scale-105"
+        className="group border border-border p-6 hover:border-foreground transition-all duration-200"
       >
-        <div className="flex items-start gap-3">
-          <div className="w-2 h-2 mt-2 bg-accent rounded-full group-hover:scale-125 transition-transform duration-200 flex-shrink-0" />
+        <div className="flex items-start gap-4">
+          <div className="w-2 h-2 mt-2 bg-foreground group-hover:scale-125 transition-transform duration-200 flex-shrink-0" />
           <div>
-            <h4 className="font-light text-foreground group-hover:text-accent transition-colors duration-200">
+            <h4 className="font-light text-foreground group-hover:text-foreground transition-colors duration-200">
               {item.text}
             </h4>
             {item.subtext && (
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{item.subtext}</p>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.subtext}</p>
             )}
           </div>
         </div>
@@ -99,16 +99,16 @@ interface AccordionSectionProps {
 const AccordionSection: React.FC<AccordionSectionProps> = ({ value, title, children }) => (
   <Accordion.Item 
     value={value} 
-    className="elegant-card overflow-hidden"
+    className="border border-border overflow-hidden"
   >
-    <Accordion.Trigger className="flex items-center justify-between w-full p-8 cursor-pointer group transition-all duration-300 hover:bg-secondary/20">
-      <h3 className="text-xl font-light text-foreground group-hover:text-accent transition-colors duration-300">
+    <Accordion.Trigger className="flex items-center justify-between w-full p-8 cursor-pointer group transition-all duration-300 hover:bg-muted">
+      <h3 className="text-xl font-light text-foreground group-hover:text-foreground transition-colors duration-300">
         {title}
       </h3>
-      <ChevronDown className="h-5 w-5 text-accent transition-transform duration-300 group-data-[state=open]:rotate-180" />
+      <ChevronDown className="h-5 w-5 text-foreground transition-transform duration-300 group-data-[state=open]:rotate-180" />
     </Accordion.Trigger>
     <Accordion.Content className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-      <div className="p-8 pt-0 border-t border-border/50">
+      <div className="p-8 pt-0 border-t border-border">
         {children}
       </div>
     </Accordion.Content>
@@ -118,34 +118,34 @@ const AccordionSection: React.FC<AccordionSectionProps> = ({ value, title, child
 const ProductVisionSection = () => {
   const philosophyItems = [
     {
-      title: "User-Centric Design",
-      description: "Every product decision starts with deep user understanding. We build for real people, solving real problems through extensive research and continuous feedback.",
+      title: "Market-Driven Strategy",
+      description: "Every product decision starts with deep market understanding. We build for real market needs, solving real problems through extensive research and continuous market feedback.",
       icon: Users2
     },
     {
-      title: "Data-Driven Excellence",
-      description: "Leverage analytics, user feedback, and market insights to make informed decisions. Every feature and improvement is backed by concrete data and measurable impact.",
+      title: "Data-Driven Growth",
+      description: "Leverage analytics, user feedback, and market insights to make informed product decisions. Every feature and improvement is backed by concrete data and measurable business impact.",
       icon: LineChart
     },
     {
-      title: "Iterative Development",
-      description: "Embrace rapid iteration and continuous improvement. We start lean, gather feedback, and evolve products based on real-world usage patterns and user insights.",
+      title: "Iterative Product Development",
+      description: "Embrace rapid iteration and continuous improvement. We start lean, gather market feedback, and evolve products based on real-world usage patterns and market insights.",
       icon: Puzzle
     },
     {
       title: "Innovation Leadership",
-      description: "Stay ahead of technological trends while ensuring solutions are practical and scalable. Balance cutting-edge innovation with reliability and maintainability.",
+      description: "Stay ahead of market trends while ensuring solutions are practical and scalable. Balance cutting-edge innovation with market readiness and business viability.",
       icon: Lightbulb
     },
     {
-      title: "Performance First",
-      description: "Optimize for speed, efficiency, and reliability at every level. Create seamless experiences that delight users while maintaining robust system performance.",
+      title: "Performance-First Products",
+      description: "Optimize for user experience, market performance, and business outcomes at every level. Create seamless experiences that delight users while driving sustainable growth.",
       icon: Zap
     },
     {
-      title: "AI Integration",
-      description: "Leverage artificial intelligence and machine learning to enhance product capabilities and create smarter, more personalized user experiences.",
-      icon: Brain
+      title: "AI-Enhanced Products",
+      description: "Leverage artificial intelligence and machine learning to enhance product capabilities and create smarter, more personalized user experiences that drive competitive advantage.",
+      icon: Cpu
     }
   ];
   
@@ -227,35 +227,35 @@ const ProductVisionSection = () => {
   ];
 
   return (
-    <section className="relative bg-gradient-to-br from-background via-muted/5 to-background py-24">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:50px_50px]" />
+    <section className="relative bg-background py-32">
+      {/* Minimal background */}
+      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="space-y-16"
+          className="space-y-20"
         >
           {/* Section Header */}
           <motion.div 
             variants={itemVariants}
             className="text-center"
           >
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="inline-block">
-                <span className="text-accent font-light tracking-wider uppercase text-sm">Product Vision</span>
-                <div className="h-px w-full bg-accent mt-2" />
+                <span className="text-foreground font-light tracking-wider uppercase text-sm">Product Vision</span>
+                <div className="h-px w-full bg-foreground mt-2" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-light text-foreground">
+              <h2 className="text-5xl md:text-6xl font-thin text-foreground">
                 Philosophy & Approach
               </h2>
               <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                Building successful products requires a perfect blend of innovation, user-centricity, and technical excellence.
+                Building successful products requires a perfect blend of innovation, market-centricity, and strategic excellence.
               </p>
             </div>
           </motion.div>
@@ -264,7 +264,7 @@ const ProductVisionSection = () => {
             <Accordion.Root
               type="multiple"
               defaultValue={[""]}
-              className="space-y-6"
+              className="space-y-8"
             >
               <AccordionSection value="philosophy" title="Core Philosophy">
                 <motion.div 
@@ -272,7 +272,7 @@ const ProductVisionSection = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                  className="grid grid-cols-1 md:grid-cols-2 gap-8"
                 >
                   {philosophyItems.map((item, index) => (
                     <PhilosophyCard key={index} {...item} />

@@ -3,29 +3,25 @@
 import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import {
-  Brain,
   Linkedin,
-  Calendar,
-  BookOpen,
   ArrowRight,
-  Code,
   Zap,
   Rocket,
   CalendarCheck,
-  Sparkles
+  Target,
+  TrendingUp
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ThemeSwitcher } from "../theme-switcher";
-import Link from "next/link";
 
 const HeroSection = () => {
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const bookPhrases = [
-    "Transform how you build AI products",
-    "70-85% of AI projects fail. Yours doesn't have to.",
-    "A new mindset for a new technology",
-    "From concept to continuous value"
+    "Build defensible AI products",
+    "From concept to market success", 
+    "Strategic AI product development",
+    "Limited availability this quarter"
   ];
   
   useEffect(() => {
@@ -35,9 +31,6 @@ const HeroSection = () => {
     
     return () => clearInterval(interval);
   }, [bookPhrases.length]);
-
-  // Google Calendar appointment URL
-  const calendarUrl = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3rO2EGQWPlDm9BkvW3xAcBBf8MRuJ7MbaBAQFkn99voBUOjnEOXc0WVL2l9jdHkgJIioCGX_s5";
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -62,59 +55,28 @@ const HeroSection = () => {
     }
   };
 
-  const floatingVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-background via-background to-muted/20 overflow-hidden">
-      {/* Elegant background pattern */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-        <div className="h-full w-full bg-[radial-gradient(circle_at_1px_1px,currentColor_1px,transparent_0)] bg-[size:32px_32px]" />
+    <section className="relative min-h-screen bg-background text-foreground overflow-hidden">
+      {/* Minimal background */}
+      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
-
-      {/* Floating elements */}
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute top-20 right-20 opacity-10 dark:opacity-20"
-      >
-        <Sparkles className="h-8 w-8 text-accent" />
-      </motion.div>
-
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-32 left-20 opacity-10 dark:opacity-20"
-      >
-        <Brain className="h-6 w-6 text-accent" />
-      </motion.div>
 
       {/* Theme switcher */}
       <div className="absolute top-8 right-8 z-10">
         <ThemeSwitcher />
       </div>
 
-      <div className="container max-w-7xl mx-auto px-6 relative min-h-screen flex items-center">
+      <div className="max-w-6xl mx-auto px-6 relative min-h-screen flex items-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-12 gap-16 w-full py-20"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full py-20"
         >
           {/* Left Column */}
-          <div className="lg:col-span-7 space-y-12">
+          <div className="space-y-12">
             <motion.div variants={itemVariants} className="space-y-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -122,15 +84,16 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="space-y-6"
               >
-                <h1 className="text-5xl md:text-7xl font-light tracking-tight text-foreground">
+                <h1 className="text-6xl md:text-8xl font-thin tracking-tight text-foreground">
                   Binu Babu
                 </h1>
-                <div className="h-px w-24 bg-accent" />
-                <p className="text-xl md:text-2xl text-accent font-light">
+                <div className="h-px w-32 bg-foreground" />
+                <p className="text-xl md:text-2xl text-muted-foreground font-light">
                   AI Product Architect & Technology Consultant
                 </p>
                 <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed font-light">
-                  Pioneering the future of AI product development with innovative frameworks and practical methodologies that transform how organizations build intelligent systems.
+                  Building AI products that create competitive moats and drive real business value. 
+                  <span className="text-foreground font-medium">70% of AI products fail. Yours doesn&apos;t have to.</span>
                 </p>
               </motion.div>
             </motion.div>
@@ -140,117 +103,94 @@ const HeroSection = () => {
               variants={itemVariants}
               className="flex flex-wrap gap-4"
             >
-              <Badge className="px-4 py-2 bg-accent/10 text-accent border border-accent/20 rounded-full font-light hover:bg-accent/20 transition-all duration-300">
-                <Brain className="mr-2 h-4 w-4" />
-                AI Strategy
+              <Badge className="px-4 py-2 bg-foreground text-background border border-foreground rounded-none font-light hover:bg-foreground/80 transition-all duration-300">
+                <Target className="mr-2 h-4 w-4" />
+                Product Strategy
               </Badge>
-              <Badge className="px-4 py-2 bg-secondary/50 text-secondary-foreground border border-secondary/20 rounded-full font-light hover:bg-secondary/70 transition-all duration-300">
-                <Code className="mr-2 h-4 w-4" />
-                Technical Leadership
+              <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
+                <TrendingUp className="mr-2 h-4 w-4" />
+                Growth & Scale
               </Badge>
-              <Badge className="px-4 py-2 bg-secondary/50 text-secondary-foreground border border-secondary/20 rounded-full font-light hover:bg-secondary/70 transition-all duration-300">
-                <BookOpen className="mr-2 h-4 w-4" />
-                Framework Author
+              <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
+                <Rocket className="mr-2 h-4 w-4" />
+                Go-to-Market
               </Badge>
-              <Badge className="px-4 py-2 bg-secondary/50 text-secondary-foreground border border-secondary/20 rounded-full font-light hover:bg-secondary/70 transition-all duration-300">
+              <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <Zap className="mr-2 h-4 w-4" />
-                Innovation Catalyst
+                Market Research
               </Badge>
             </motion.div>
 
-            {/* Book Promotion */}
+            {/* Contact Section */}
             <motion.div
               variants={itemVariants}
-              className="relative"
+              className="space-y-6"
             >
-              <div className="elegant-card p-8 border-l-4 border-l-accent">
-                <div className="flex items-start gap-6 mb-6">
-                  <div className="p-3 bg-accent/10 rounded-full">
-                    <BookOpen className="h-6 w-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-light text-foreground mb-2">EVOLVE Framework</h3>
-                    <motion.p
-                      key={currentPhrase}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.5 }}
-                      className="text-accent font-medium text-lg"
-                    >
-                      {bookPhrases[currentPhrase]}
-                    </motion.p>
-                  </div>
-                </div>
-                
-                <div className="mb-8">
-                  <p className="text-muted-foreground leading-relaxed">
-                    A revolutionary approach to AI product development that addresses the unique challenges
-                    of building systems with probabilistic outputs and complex data dependencies. Designed for product
-                    managers, data scientists, and technical leaders working on AI initiatives.
-                  </p>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <Link 
-                    href="/evolve" 
-                    className="inline-flex items-center gap-3 bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-full font-light transition-all duration-300 hover:shadow-lg"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Rocket className="h-4 w-4 text-accent" />
-                    <span>September 2025</span>
-                  </div>
-                </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-light text-foreground">AI Product Consulting</h3>
+                <motion.p
+                  key={currentPhrase}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-foreground font-medium text-lg"
+                >
+                  {bookPhrases[currentPhrase]}
+                </motion.p>
               </div>
-            </motion.div>
-
-            {/* Action Links */}
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center gap-8"
-            >
-              <a
-                href="https://linkedin.com/in/binubdaniel"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-accent hover:text-accent/80 transition-all duration-300 font-light"
-              >
-                <Linkedin className="w-5 h-5" />
-                <span>Connect</span>
-              </a>
-
-              <a
-                href={calendarUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-full font-light transition-all duration-300 hover:shadow-lg"
-              >
-                <Calendar className="w-5 h-5" />
-                <span>Schedule Appointment</span>
-              </a>
+              
+              <p className="text-muted-foreground leading-relaxed">
+                Proven track record of delivering AI products that create defensible moats, 
+                drive sustainable growth, and establish market leadership through strategic 
+                product development and data-driven decision making.
+              </p>
+              
+              <div className="flex items-center gap-8">
+                <a
+                  href="mailto:binubabu@socife.com?subject=AI Product Strategy Inquiry&body=Hi Binu,%0D%0A%0D%0AI'm interested in discussing AI product strategy for our organization.%0D%0A%0D%0APlease let me know about availability and next steps.%0D%0A%0D%0AThank you!"
+                  className="inline-flex items-center gap-3 bg-foreground text-background hover:bg-foreground/80 px-8 py-4 font-light transition-all duration-300"
+                >
+                  <span>Get in Touch</span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                
+                <a
+                  href="/product-playbook"
+                  className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-all duration-300 font-light"
+                >
+                  <span>Product Playbook</span>
+                </a>
+                
+                <a
+                  href="https://linkedin.com/in/binubdaniel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-all duration-300 font-light"
+                >
+                  <Linkedin className="w-5 h-5" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
             </motion.div>
           </div>
 
           {/* Right Column */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-5 flex flex-col items-center lg:items-end space-y-8"
+            className="flex flex-col items-center lg:items-end space-y-8"
           >
             {/* Profile Image */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="relative w-80 h-80 md:w-96 md:h-96"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl transform rotate-3 blur-sm" />
-              <div className="absolute inset-0 bg-card rounded-2xl shadow-2xl overflow-hidden">
+              <div className="absolute inset-0 bg-muted/10 transform rotate-1 blur-sm" />
+              <div className="absolute inset-0 border border-border overflow-hidden">
                 <Image
-                  src="/profile.jpg"
+                  src="/binub.jpg"
                   alt="Binu Babu"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -259,21 +199,21 @@ const HeroSection = () => {
               </div>
             </motion.div>
             
-            {/* Book Preview Card */}
+            {/* Availability Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="hidden lg:block elegant-card p-6 max-w-sm border-l-4 border-l-accent"
+              className="hidden lg:block border border-border p-6 max-w-sm"
             >
               <div className="flex items-start gap-4">
-                <div className="p-2 bg-accent/10 rounded-full">
-                  <CalendarCheck className="h-5 w-5 text-accent" />
+                <div className="p-2 bg-muted">
+                  <CalendarCheck className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-foreground mb-2">Book Launch: September 2025</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Be among the first to apply the EVOLVE framework to your AI initiatives.
+                  <h4 className="text-sm font-light text-foreground mb-2">Available for Consulting</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed font-light">
+                    Ready to help transform your AI product development approach.
                   </p>
                 </div>
               </div>

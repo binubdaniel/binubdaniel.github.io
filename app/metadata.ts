@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s | Binu Babu"
   },
   description: "Pioneering the future of AI product development with innovative frameworks and practical methodologies that transform how organizations build intelligent systems.",
-  keywords: ["AI Product Architect", "Technology Consultant", "AI Strategy", "EVOLVE Framework", "AI Development"],
+  keywords: ["AI Product Architect", "Technology Consultant", "AI Strategy", "AI Development", "Product Management"],
   authors: [{ name: "Binu Babu" }],
   creator: "Binu Babu",
   openGraph: {

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Cloud, Monitor, Database, BrainCircuit } from "lucide-react";
+import { Cloud, Monitor, Database, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -90,7 +90,7 @@ const TechnicalSkillsSection = () => {
   const skillCategories = [
     {
       title: "AI & Machine Learning",
-      icon: BrainCircuit,
+      icon: Cpu,
       skills: [
         "OpenAI",
         "LangChain",

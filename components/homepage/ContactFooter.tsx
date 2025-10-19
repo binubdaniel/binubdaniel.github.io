@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ArrowUpRight, ArrowRight, Bot, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Mail, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -45,12 +45,12 @@ const ElegantButton: React.FC<ElegantButtonProps> = ({
     target={href.startsWith("http") ? "_blank" : undefined}
     rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
     className={`
-      group inline-flex items-center gap-3 px-6 py-4 rounded-full font-light transition-all duration-300 hover:shadow-lg
+      group inline-flex items-center gap-3 px-8 py-4 font-light transition-all duration-300
       ${variant === "primary" 
-        ? "bg-accent text-accent-foreground hover:bg-accent/90" 
+        ? "bg-foreground text-background hover:bg-foreground/80" 
         : variant === "secondary"
-        ? "bg-secondary/50 text-secondary-foreground hover:bg-secondary/70 border border-secondary/20"
-        : "bg-accent/10 text-accent hover:bg-accent/20 border border-accent/20"}
+        ? "bg-transparent text-foreground hover:bg-foreground hover:text-background border border-foreground"
+        : "bg-muted text-foreground hover:bg-foreground hover:text-background"}
     `}
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
@@ -67,13 +67,13 @@ const ElegantButton: React.FC<ElegantButtonProps> = ({
 
 export const ContactSection = () => {
   return (
-    <section className="relative bg-gradient-to-br from-background via-background to-muted/10 py-24">
-      {/* Elegant background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <div className="h-full w-full bg-[radial-gradient(circle_at_2px_2px,currentColor_1px,transparent_0)] bg-[size:32px_32px]" />
+    <section className="relative bg-background py-32">
+      {/* Minimal background */}
+      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -83,16 +83,16 @@ export const ContactSection = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="mb-16">
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="inline-block">
-                <span className="text-accent font-light tracking-wider uppercase text-sm">Contact</span>
-                <div className="h-px w-full bg-accent mt-2" />
+                <span className="text-foreground font-light tracking-wider uppercase text-sm">Contact</span>
+                <div className="h-px w-full bg-foreground mt-2" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-light text-foreground">
-                Let&apos;s Build Something Amazing
+              <h2 className="text-5xl md:text-6xl font-thin text-foreground">
+                Ready to Transform Your AI Initiatives?
               </h2>
               <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                Available for consulting and technical leadership opportunities. Let&apos;s discuss how we can transform your ideas into reality.
+                Join companies who&apos;ve successfully transformed their AI strategies. Limited availability this quarter - secure your consultation now.
               </p>
             </div>
           </motion.div>
@@ -103,11 +103,11 @@ export const ContactSection = () => {
             className="flex flex-col md:flex-row justify-center items-center gap-6"
           >
             <ElegantButton 
-              href="mailto:binubabu@socife.com" 
+              href="mailto:binubabu@socife.com?subject=AI Consulting Inquiry&body=Hi Binu,%0D%0A%0D%0AI'm interested in your AI consulting services.%0D%0A%0D%0APlease let me know about availability and next steps.%0D%0A%0D%0AThank you!" 
               variant="primary"
               icon={<Mail className="h-5 w-5" />}
             >
-              Get in Touch
+              Secure Your Consultation
             </ElegantButton>
             <ElegantButton 
               href="https://linkedin.com/in/binubdaniel" 
@@ -115,13 +115,6 @@ export const ContactSection = () => {
               icon={<MessageCircle className="h-5 w-5" />}
             >
               LinkedIn
-            </ElegantButton>
-            <ElegantButton 
-              href="/enquire" 
-              variant="tertiary"
-              icon={<Bot className="h-5 w-5" />}
-            >
-              Chat with Groot Assistant
             </ElegantButton>
           </motion.div>
         </motion.div>
@@ -134,8 +127,8 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gradient-to-r from-card via-muted/5 to-card border-t border-border/50">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <footer className="bg-background border-t border-border">
+      <div className="max-w-6xl mx-auto px-6 py-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -148,14 +141,14 @@ export const Footer = () => {
             <h3 className="text-2xl font-light text-foreground">
               Binu Babu
             </h3>
-            <div className="h-px w-16 bg-accent mx-auto" />
+            <div className="h-px w-16 bg-foreground mx-auto" />
             <p className="text-muted-foreground font-light">
               AI Product Architect & Technology Consultant
             </p>
           </div>
 
           {/* Copyright */}
-          <div className="pt-8 border-t border-border/30">
+          <div className="pt-8 border-t border-border">
             <p className="text-sm text-muted-foreground font-light">
               © {currentYear} Binu Babu. Crafting the future of AI products with precision and purpose.
             </p>

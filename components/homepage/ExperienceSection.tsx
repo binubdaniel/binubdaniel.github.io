@@ -51,13 +51,13 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
     variants={itemVariants}
     className="group"
   >
-    <Accordion.Item value={value} className="elegant-card border-l-4 border-l-accent overflow-hidden">
-      <Accordion.Trigger className="w-full transition-all duration-300 hover:bg-secondary/20 group-data-[state=open]:bg-secondary/30">
+    <Accordion.Item value={value} className="border border-border overflow-hidden">
+      <Accordion.Trigger className="w-full transition-all duration-300 hover:bg-muted group-data-[state=open]:bg-muted">
         <div className="flex items-center justify-between p-8 w-full text-left">
           <div className="flex-1 min-w-0 space-y-4">
             <div className="flex items-center gap-4">
-              <div className="p-2 bg-accent/10 rounded-full">
-                <Briefcase className="h-5 w-5 text-accent" />
+              <div className="p-2 bg-muted">
+                <Briefcase className="h-5 w-5 text-foreground" />
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Calendar className="h-4 w-4" />
@@ -69,13 +69,13 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
               <p className="text-muted-foreground font-light">{company}</p>
             </div>
           </div>
-          <ChevronDown className="h-5 w-5 text-accent transition-transform duration-300 group-data-[state=open]:rotate-180 ml-6" />
+          <ChevronDown className="h-5 w-5 text-foreground transition-transform duration-300 group-data-[state=open]:rotate-180 ml-6" />
         </div>
       </Accordion.Trigger>
 
       <Accordion.Content className="overflow-hidden transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
         <div className="px-8 pb-8 space-y-8">
-          <div className="pt-6 border-t border-border/50">
+          <div className="pt-6 border-t border-border">
             <p className="text-muted-foreground leading-relaxed font-light">
               {description}
             </p>
@@ -84,8 +84,8 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-accent/10 rounded-full">
-                  <Star className="h-4 w-4 text-accent" />
+                <div className="p-2 bg-muted">
+                  <Star className="h-4 w-4 text-foreground" />
                 </div>
                 <h4 className="text-foreground font-light">Key Achievements</h4>
               </div>
@@ -96,9 +96,9 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg hover:bg-secondary/20 transition-colors duration-200"
+                    className="flex items-start gap-3 p-4 border border-border hover:border-foreground transition-all duration-200"
                   >
-                    <div className="w-2 h-2 mt-2 bg-accent rounded-full flex-shrink-0" />
+                    <div className="w-2 h-2 mt-2 bg-foreground flex-shrink-0" />
                     <p className="text-muted-foreground text-sm font-light leading-relaxed">{achievement}</p>
                   </motion.div>
                 ))}
@@ -107,8 +107,8 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
 
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-accent/10 rounded-full">
-                  <Lightbulb className="h-4 w-4 text-accent" />
+                <div className="p-2 bg-muted">
+                  <Lightbulb className="h-4 w-4 text-foreground" />
                 </div>
                 <h4 className="text-foreground font-light">Key Learnings</h4>
               </div>
@@ -119,9 +119,9 @@ const ExperiencePanel: React.FC<ExperiencePanelProps> = ({
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg hover:bg-secondary/20 transition-colors duration-200"
+                    className="flex items-start gap-3 p-4 border border-border hover:border-foreground transition-all duration-200"
                   >
-                    <div className="w-2 h-2 mt-2 bg-accent rounded-full flex-shrink-0" />
+                    <div className="w-2 h-2 mt-2 bg-foreground flex-shrink-0" />
                     <p className="text-muted-foreground text-sm font-light leading-relaxed">{learning}</p>
                   </motion.div>
                 ))}
@@ -207,13 +207,13 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <section className="relative bg-gradient-to-br from-muted/5 via-background to-background py-24">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
-        <div className="h-full w-full bg-[radial-gradient(circle_at_1px_1px,currentColor_1px,transparent_0)] bg-[size:48px_48px]" />
+    <section className="relative bg-background py-32">
+      {/* Minimal background */}
+      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -222,12 +222,12 @@ const ExperienceSection = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="mb-16 text-center">
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="inline-block">
-                <span className="text-accent font-light tracking-wider uppercase text-sm">Experience</span>
-                <div className="h-px w-full bg-accent mt-2" />
+                <span className="text-foreground font-light tracking-wider uppercase text-sm">Experience</span>
+                <div className="h-px w-full bg-foreground mt-2" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-light text-foreground">
+              <h2 className="text-5xl md:text-6xl font-thin text-foreground">
                 Professional Journey
               </h2>
               <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
@@ -238,7 +238,7 @@ const ExperienceSection = () => {
 
           {/* Experience Timeline */}
           <motion.div variants={itemVariants}>
-            <Accordion.Root type="single" collapsible className="space-y-6">
+            <Accordion.Root type="single" collapsible className="space-y-8">
               {experiences.map((experience, index) => (
                 <ExperiencePanel
                   key={index}

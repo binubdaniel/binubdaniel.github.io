@@ -4,64 +4,64 @@
 
 @layer base {
   :root {
-    /* Elegant Professional Design System - Light Theme */
-    --background: 0 0% 98%;
-    --foreground: 240 11% 4%;
+    /* Clean Black & White Design System - Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 240 11% 4%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 11% 4%;
-    --primary: 240 100% 12%; /* Deep Navy */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 6% 92%;
-    --secondary-foreground: 240 6% 11%;
-    --muted: 240 4% 94%;
-    --muted-foreground: 240 3.8% 46%;
-    --accent: 32 95% 44%; /* Elegant Gold */
-    --accent-foreground: 240 6% 11%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 88%;
-    --input: 240 5.9% 90%;
-    --ring: 240 100% 12%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
     --radius: 0.5rem;
     
-    /* Chart Colors - Professional Palette */
-    --chart-1: 240 100% 12%; /* Deep Navy */
-    --chart-2: 240 5% 64%;  /* Sophisticated Gray */
-    --chart-3: 142 76% 36%; /* Refined Green */
-    --chart-4: 258 90% 66%; /* Elegant Purple */
-    --chart-5: 24 95% 53%;  /* Warm Orange */
+    /* Chart Colors - Black & White Palette */
+    --chart-1: 0 0% 0%; /* Pure Black */
+    --chart-2: 0 0% 45%; /* Medium Gray */
+    --chart-3: 0 0% 70%; /* Light Gray */
+    --chart-4: 0 0% 85%; /* Very Light Gray */
+    --chart-5: 0 0% 100%; /* Pure White */
   }
 
   .dark {
-    /* Elegant Professional Design System - Dark Theme */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 4.5%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 4.5%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 210 40% 98%; /* Crisp White */
-    --primary-foreground: 240 10% 3.9%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 32 95% 44%; /* Keep Elegant Gold in dark theme */
-    --accent-foreground: 240 10% 3.9%;
+    /* Clean Black & White Design System - Dark Theme */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 62.8% 55.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
     
-    /* Chart Colors - Professional Dark Mode Palette */
-    --chart-1: 210 40% 98%; /* Crisp White */
-    --chart-2: 240 5% 64.9%; /* Sophisticated Gray */
-    --chart-3: 142 70% 45%; /* Refined Green */
-    --chart-4: 258 90% 66%; /* Elegant Purple */
-    --chart-5: 24 95% 53%;  /* Warm Orange */
+    /* Chart Colors - Black & White Dark Mode Palette */
+    --chart-1: 0 0% 100%; /* Pure White */
+    --chart-2: 0 0% 65%; /* Light Gray */
+    --chart-3: 0 0% 45%; /* Medium Gray */
+    --chart-4: 0 0% 25%; /* Dark Gray */
+    --chart-5: 0 0% 0%; /* Pure Black */
   }
 }
 
@@ -120,7 +120,7 @@
   }
   
   .elegant-card {
-    @apply bg-card border border-border/20 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 hover:border-border/40;
+    @apply bg-card border border-border/10 rounded-none shadow-none hover:shadow-sm transition-all duration-300 hover:border-border/30;
   }
   
   .minimal-grid {

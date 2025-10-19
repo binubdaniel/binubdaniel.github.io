@@ -57,7 +57,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => (
   <motion.div 
     variants={itemVariants}
-    className="group elegant-card border-l-4 border-l-accent p-8 hover:shadow-xl transition-all duration-300 cursor-pointer"
+    className="group border border-border p-8 hover:border-foreground transition-all duration-300 cursor-pointer"
     whileHover={{ y: -5 }}
   >
     <div className="space-y-8">
@@ -65,22 +65,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-4">
           <motion.div 
-            className="p-3 bg-accent/10 rounded-full group-hover:bg-accent/20 transition-colors duration-300"
+            className="p-3 bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-300"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ duration: 0.2 }}
           >
-            <Icon className="h-6 w-6 text-accent" />
+            <Icon className="h-6 w-6" />
           </motion.div>
-          <h3 className="text-2xl font-light text-foreground group-hover:text-accent transition-colors duration-300">{title}</h3>
+          <h3 className="text-2xl font-light text-foreground group-hover:text-foreground transition-colors duration-300">{title}</h3>
         </div>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.2, rotate: 45 }}
           transition={{ duration: 0.2 }}
-          className="p-2 bg-accent/5 rounded-full group-hover:bg-accent/15 transition-colors duration-300"
+          className="p-2 bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-300"
         >
-          <ArrowUpRight className="h-5 w-5 text-accent" />
+          <ArrowUpRight className="h-5 w-5" />
         </motion.div>
       </div>
 
@@ -92,7 +92,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       {/* Impact Metrics */}
       <div className="space-y-4">
         <div className="flex items-center gap-2">
-          <TrendingUp className="h-4 w-4 text-accent" />
+          <TrendingUp className="h-4 w-4 text-foreground" />
           <span className="text-sm font-light text-foreground uppercase tracking-wider">Impact</span>
         </div>
         <motion.div 
@@ -108,9 +108,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               variants={impactVariants}
               className="group/impact"
             >
-              <div className="p-4 bg-secondary/10 rounded-lg hover:bg-secondary/20 hover:scale-105 transition-all duration-200 text-center">
+              <div className="p-4 border border-border hover:border-foreground hover:scale-105 transition-all duration-200 text-center">
                 <div className="flex items-center justify-center gap-2">
-                  <div className="w-2 h-2 bg-accent rounded-full group-hover/impact:scale-125 transition-transform duration-200" />
+                  <div className="w-2 h-2 bg-foreground group-hover/impact:scale-125 transition-transform duration-200" />
                   <p className="text-sm text-foreground/80 font-light group-hover/impact:text-foreground transition-colors duration-200">{item}</p>
                 </div>
               </div>
@@ -121,7 +121,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Technologies */}
       <div className="space-y-4">
-        <div className="h-px w-full bg-border/50" />
+        <div className="h-px w-full bg-border" />
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech, index) => (
             <motion.div
@@ -133,7 +133,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             >
               <Badge 
                 variant="secondary"
-                className="px-3 py-1.5 rounded-full font-light border border-secondary/20 hover:border-accent/30 hover:bg-accent/10 hover:text-accent transition-all duration-200"
+                className="px-3 py-1.5 rounded-none font-light border border-border hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-200"
               >
                 {tech}
               </Badge>
@@ -198,13 +198,13 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section className="relative bg-gradient-to-br from-background via-muted/5 to-background py-24">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.025]">
-        <div className="h-full w-full bg-[radial-gradient(circle_at_2px_2px,currentColor_1px,transparent_0)] bg-[size:40px_40px]" />
+    <section className="relative bg-background py-32">
+      {/* Minimal background */}
+      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -213,12 +213,12 @@ const ProjectsSection = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="mb-16 text-center">
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="inline-block">
-                <span className="text-accent font-light tracking-wider uppercase text-sm">Projects</span>
-                <div className="h-px w-full bg-accent mt-2" />
+                <span className="text-foreground font-light tracking-wider uppercase text-sm">Projects</span>
+                <div className="h-px w-full bg-foreground mt-2" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-light text-foreground">
+              <h2 className="text-5xl md:text-6xl font-thin text-foreground">
                 Featured Work
               </h2>
               <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
