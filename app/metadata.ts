@@ -6,8 +6,26 @@ export const metadata: Metadata = {
     default: "Binu Babu | AI Product Architect & Technology Consultant",
     template: "%s | Binu Babu"
   },
-  description: "Pioneering the future of AI product development with innovative frameworks and practical methodologies that transform how organizations build intelligent systems.",
-  keywords: ["AI Product Architect", "Technology Consultant", "AI Strategy", "AI Development", "Product Management"],
+  description: "Transform your AI initiatives from concept to market success. Expert AI product strategy, defensible AI products, and strategic consulting for companies building competitive AI solutions.",
+  keywords: [
+    "AI Product Architect", 
+    "AI Product Strategy", 
+    "AI Consulting", 
+    "Technology Consultant", 
+    "AI Product Development", 
+    "Defensible AI Products", 
+    "AI Product Management", 
+    "AI Strategy Consulting", 
+    "AI Product Roadmap", 
+    "AI Market Research", 
+    "AI Go-to-Market", 
+    "AI Growth Strategy", 
+    "AI Product Playbook", 
+    "AI Product Framework",
+    "AI Product Leadership",
+    "AI Competitive Advantage",
+    "AI Business Strategy"
+  ],
   authors: [{ name: "Binu Babu" }],
   creator: "Binu Babu",
   openGraph: {
@@ -15,7 +33,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://binubabu.in",
     title: "Binu Babu | AI Product Architect & Technology Consultant",
-    description: "Pioneering the future of AI product development with innovative frameworks and practical methodologies.",
+    description: "Transform your AI initiatives from concept to market success. Expert AI product strategy and strategic consulting for building defensible AI products.",
     siteName: "Binu Babu",
     images: [
       {
@@ -28,14 +46,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Binu Babu | AI Product Architect & Author",
-    description: "Pioneering the future of AI product development with innovative frameworks and practical methodologies.",
+    title: "Binu Babu | AI Product Architect & Technology Consultant",
+    description: "Transform your AI initiatives from concept to market success. Expert AI product strategy and strategic consulting for building defensible AI products.",
     images: ["/homepage.webp"]
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png"
   },
   manifest: "/site.webmanifest",
   robots: {
