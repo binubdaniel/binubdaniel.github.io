@@ -146,7 +146,7 @@ const HeroSection = () => {
                 product development and data-driven decision making.
               </p>
               
-              <div className="flex items-center gap-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
                 <a
                   href="mailto:binubabu@socife.com?subject=AI Product Strategy Inquiry&body=Hi Binu,%0D%0A%0D%0AI'm interested in discussing AI product strategy for our organization.%0D%0A%0D%0APlease let me know about availability and next steps.%0D%0A%0D%0AThank you!"
                   className="inline-flex items-center gap-3 bg-foreground text-background hover:bg-foreground/80 px-8 py-4 font-light transition-all duration-300"
