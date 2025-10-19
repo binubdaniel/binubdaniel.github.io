@@ -95,7 +95,7 @@ const AIStrategyInsights = () => {
     },
     {
       title: "Value Chain Innovation",
-      description: "AI enables entirely new business models and value chains. The most successful AI products don't just improve existing processes—they create new ways of working that weren't possible before artificial intelligence.",
+      description: "AI enables entirely new business models and value chains. The most successful AI products don't just improve existing processes; they create new ways of working that weren't possible before artificial intelligence.",
       icon: Zap,
       insights: [
         "Identify new value chains that AI enables",
@@ -107,7 +107,7 @@ const AIStrategyInsights = () => {
     },
     {
       title: "Strategic AI Positioning",
-      description: "Success in AI product development requires strategic thinking about competitive positioning, market timing, and sustainable differentiation. It's not just about having the best technology—it's about building the right product for the right market at the right time.",
+      description: "Success in AI product development requires strategic thinking about competitive positioning, market timing, and sustainable differentiation. It's not just about having the best technology; it's about building the right product for the right market at the right time.",
       icon: Target,
       insights: [
         "Position products for AI-native markets, not just AI-enhanced ones",

@@ -64,7 +64,7 @@ const ProductPlaybook = () => {
           name: "AI Product Strategy",
           items: [
             { title: "Defensibility Framework", desc: "Build moats through data network effects, proprietary workflows, and domain expertise. Focus on creating switching costs and unique value propositions" },
-            { title: "Value Chain Innovation", desc: "Identify new value chains that AI enables. Don't just automate existing processes - reimagine entire workflows and create new business models" },
+            { title: "Value Chain Innovation", desc: "Identify new value chains that AI enables. Don't just automate existing processes; reimagine entire workflows and create new business models" },
             { title: "Competitive Differentiation", desc: "Move beyond feature parity to fundamental workflow transformation. Build products that competitors can't easily replicate due to data advantages" },
             { title: "Ethical AI Governance", desc: "Establish responsible AI practices, bias detection, transparency measures, and ethical review processes from day one" },
             { title: "Technical Architecture", desc: "Design for AI-first: scalable ML infrastructure, real-time inference, model versioning, and continuous learning capabilities" }
@@ -81,7 +81,7 @@ const ProductPlaybook = () => {
           name: "Vision & Mission",
           items: [
             { title: "Product Vision Statement", desc: "Long-term aspirational goal (3-5 years), inspirational and clear" },
-            { title: "Mission Statement", desc: "Clear purpose - what problem are we solving and for whom?" },
+            { title: "Mission Statement", desc: "Clear purpose: what problem are we solving and for whom?" },
             { title: "Strategic Objectives", desc: "3-5 key objectives aligned with company strategy" },
             { title: "Success Criteria", desc: "How will we measure if we've achieved our vision?" }
           ]
@@ -92,24 +92,24 @@ const ProductPlaybook = () => {
             { title: "Customer Discovery", desc: "Jobs-to-be-done interviews, ethnographic research, contextual inquiry" },
             { title: "User Personas", desc: "3-5 detailed personas with goals, pain points, behaviors" },
             { title: "Customer Journey Mapping", desc: "Current state vs future state, touchpoints, emotions, pain points" },
-            { title: "Empathy Maps", desc: "What users think, feel, say, do - deep empathy building" }
+            { title: "Empathy Maps", desc: "What users think, feel, say, do: deep empathy building" }
           ]
         },
         {
           name: "Problem & Solution",
           items: [
             { title: "Problem Discovery", desc: "Customer interviews, pain point analysis, observation" },
-            { title: "Problem Validation", desc: "Quantify the problem - how big, how frequent, how painful?" },
+            { title: "Problem Validation", desc: "Quantify the problem: how big, how frequent, how painful?" },
             { title: "Solution Hypothesis", desc: "Proposed solution and why it's better than alternatives" },
             { title: "Value Proposition Canvas", desc: "Customer jobs, pains, gains vs product features, pain relievers, gain creators" },
-            { title: "Competitive Analysis", desc: "Direct competitors, substitutes, alternatives - SWOT analysis" },
+            { title: "Competitive Analysis", desc: "Direct competitors, substitutes, alternatives: SWOT analysis" },
             { title: "Differentiation Strategy", desc: "What makes us 10x better? Defensible moat?" }
           ]
         },
         {
           name: "Market Sizing & Business Model",
           items: [
-            { title: "TAM (Total Addressable Market)", desc: "Total market demand for the solution - top down and bottom up" },
+            { title: "TAM (Total Addressable Market)", desc: "Total market demand for the solution: top down and bottom up" },
             { title: "SAM (Serviceable Addressable Market)", desc: "Segment we can reach with our channels and capabilities" },
             { title: "SOM (Serviceable Obtainable Market)", desc: "Realistic market share we can capture (Year 1-3)" },
             { title: "Market Trends", desc: "Growth trajectory, regulatory changes, technology shifts, macro trends" },
@@ -129,9 +129,9 @@ const ProductPlaybook = () => {
         {
           name: "Product Roadmapping",
           items: [
-            { title: "Feature Prioritization Framework", desc: "RICE, Value vs Effort, Kano Model, ICE - choose and apply consistently" },
-            { title: "MVP Definition", desc: "Minimum Viable Product - smallest feature set for validation" },
-            { title: "Phased Rollout Plan", desc: "MVP → V1.0 → V2.0 - clear themes and goals per phase" },
+            { title: "Feature Prioritization Framework", desc: "RICE, Value vs Effort, Kano Model, ICE: choose and apply consistently" },
+            { title: "MVP Definition", desc: "Minimum Viable Product: smallest feature set for validation" },
+            { title: "Phased Rollout Plan", desc: "MVP → V1.0 → V2.0: clear themes and goals per phase" },
             { title: "Timeline & Milestones", desc: "Key dates, dependencies, critical path, buffer time" },
             { title: "Resource Requirements", desc: "Team size, skills needed, budget allocation, tools" },
             { title: "Success Metrics by Phase", desc: "What does good look like at each milestone?" }
@@ -151,7 +151,7 @@ const ProductPlaybook = () => {
             { title: "Data Architecture", desc: "Data models, storage, pipelines, privacy, governance" },
             { title: "Team Structure", desc: "Squad model, roles (eng, design, PM, QA), RACI, decision-making" },
             { title: "Sprint Planning", desc: "Agile/Scrum setup, sprint length (2 weeks), ceremonies, definition of done" },
-            { title: "Development Methodology", desc: "Agile, Scrum, Kanban, Scrumban - define your process" },
+            { title: "Development Methodology", desc: "Agile, Scrum, Kanban, Scrumban: define your process" },
             { title: "Tool Stack Setup", desc: "Jira, Figma, GitHub, Slack, CI/CD pipeline, monitoring tools" }
           ]
         },
@@ -243,7 +243,7 @@ const ProductPlaybook = () => {
         {
           name: "Product Messaging & Content",
           items: [
-            { title: "Value Proposition", desc: "Core message - why should customers care? Elevator pitch" },
+            { title: "Value Proposition", desc: "Core message: why should customers care? Elevator pitch" },
             { title: "Key Messages by Audience", desc: "3-5 key points for each buyer persona" },
             { title: "Feature-Benefit Mapping", desc: "How features translate to customer benefits and business outcomes" },
             { title: "Sales Narrative & Pitch", desc: "The story we tell, demo flow, objection handling, proof points" },
@@ -255,7 +255,7 @@ const ProductPlaybook = () => {
           name: "Pricing, Packaging & Contracts",
           items: [
             { title: "Pricing Strategy", desc: "Value-based, competitive, cost-plus, penetration vs skimming" },
-            { title: "Pricing Tiers", desc: "Free, Basic, Pro, Enterprise - feature and usage differentiation" },
+            { title: "Pricing Tiers", desc: "Free, Basic, Pro, Enterprise: feature and usage differentiation" },
             { title: "Packaging Options", desc: "Bundles, add-ons, modules, good-better-best" },
             { title: "Contract Terms", desc: "Trial period, commitment terms (monthly/annual), cancellation policy" },
             { title: "SLA Commitments", desc: "Uptime guarantees, support response times, performance benchmarks" },
@@ -471,11 +471,11 @@ const ProductPlaybook = () => {
             <div>
               <h3 className="text-lg font-light text-foreground mb-4">How to Use This Playbook</h3>
               <ul className="space-y-3 text-sm text-muted-foreground font-light">
-                <li><strong className="text-foreground">Start with Cross-Cutting Themes</strong> - These foundational elements should be established before Phase 1</li>
-                <li><strong className="text-foreground">Sequential but Iterative</strong> - Follow phases in order, but expect to loop back as you learn</li>
-                <li><strong className="text-foreground">Customize for Context</strong> - Not every item applies to every product. Prioritize based on your needs</li>
-                <li><strong className="text-foreground">Metrics-Driven</strong> - Define success metrics at each phase and track religiously</li>
-                <li><strong className="text-foreground">Cross-Functional</strong> - This requires engineering, design, sales, marketing, and support throughout</li>
+                    <li><strong className="text-foreground">Start with Cross-Cutting Themes</strong>: These foundational elements should be established before Phase 1</li>
+                    <li><strong className="text-foreground">Sequential but Iterative</strong>: Follow phases in order, but expect to loop back as you learn</li>
+                    <li><strong className="text-foreground">Customize for Context</strong>: Not every item applies to every product. Prioritize based on your needs</li>
+                    <li><strong className="text-foreground">Metrics-Driven</strong>: Define success metrics at each phase and track religiously</li>
+                    <li><strong className="text-foreground">Cross-Functional</strong>: This requires engineering, design, sales, marketing, and support throughout</li>
               </ul>
             </div>
           </div>

@@ -92,7 +92,7 @@ export const ContactSection = () => {
                 Ready to Transform Your AI Initiatives?
               </h2>
               <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                Join companies who&apos;ve successfully transformed their AI strategies. Limited availability this quarter - secure your consultation now.
+                Join companies who&apos;ve successfully transformed their AI strategies. Limited availability this quarter; secure your consultation now.
               </p>
             </div>
           </motion.div>

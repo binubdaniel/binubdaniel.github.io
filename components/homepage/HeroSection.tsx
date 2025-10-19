@@ -92,7 +92,7 @@ const HeroSection = () => {
                   AI Product Architect & Technology Consultant
                 </p>
                 <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed font-light">
-                  Building AI products that create competitive moats and drive real business value. 
+                  Building AI products that create competitive moats and drive real business value. {" "}
                   <span className="text-foreground font-medium">70% of AI products fail. Yours doesn&apos;t have to.</span>
                 </p>
               </motion.div>
