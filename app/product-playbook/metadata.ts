@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://binubabu.in'),
   title: "AI Product Development Playbook",
   description: "Comprehensive framework for building defensible AI products from concept to scale. Strategic AI product development methodology covering strategy, execution, launch, and growth phases.",
   keywords: [

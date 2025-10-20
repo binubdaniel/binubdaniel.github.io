@@ -2,6 +2,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://binubabu.in'),
   title: {
     default: "Binu Babu | AI Product Architect & Technology Consultant",
     template: "%s | Binu Babu"
