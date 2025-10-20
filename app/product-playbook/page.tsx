@@ -3,50 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, ChevronRight, CheckCircle2, AlertCircle } from 'lucide-react';
-import { Metadata } from 'next';
 import { StructuredData, PlaybookArticleSchema } from '@/components/StructuredData';
-
-export const metadata: Metadata = {
-  title: "AI Product Development Playbook",
-  description: "Comprehensive framework for building defensible AI products from concept to scale. Strategic AI product development methodology covering strategy, execution, launch, and growth phases.",
-  keywords: [
-    "AI Product Development Playbook",
-    "AI Product Framework", 
-    "AI Product Strategy",
-    "AI Product Management",
-    "AI Product Roadmap",
-    "AI Product Methodology",
-    "Defensible AI Products",
-    "AI Product Launch",
-    "AI Product Scaling",
-    "AI Product Consulting",
-    "AI Product Architecture",
-    "AI Product Planning",
-    "AI Product Execution",
-    "AI Product Growth",
-    "AI Product Framework Guide"
-  ],
-  openGraph: {
-    title: "AI Product Development Playbook | Binu Babu",
-    description: "Comprehensive framework for building defensible AI products from concept to scale. Strategic AI product development methodology.",
-    type: "website",
-    url: "https://binubabu.in/product-playbook",
-    images: [
-      {
-        url: "/homepage.webp",
-        width: 1200,
-        height: 630,
-        alt: "AI Product Development Playbook - Strategic Framework"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Product Development Playbook | Binu Babu",
-    description: "Comprehensive framework for building defensible AI products from concept to scale.",
-    images: ["/homepage.webp"]
-  }
-};
 
 const ProductPlaybook = () => {
   const [expandedPhase, setExpandedPhase] = useState<string | null>(null);
@@ -554,16 +511,18 @@ const ProductPlaybook = () => {
                     <div key={idx} className="border-b border-border last:border-b-0">
                       <button
                         onClick={() => toggleSection(key, idx)}
-                        className="w-full p-6 flex items-center justify-between hover:bg-muted transition-all"
+                        className="w-full p-6 flex items-center justify-start hover:bg-muted transition-all"
                       >
-                        <h3 className="text-lg font-light text-foreground">
+                        <h3 className="text-lg font-light text-foreground flex-1 text-left">
                           {section.name}
                         </h3>
-                        {expandedSection[`${key}-${idx}`] ? (
-                          <ChevronDown className="w-5 h-5 text-foreground" />
-                        ) : (
-                          <ChevronRight className="w-5 h-5 text-foreground" />
-                        )}
+                        <div className="ml-4 flex-shrink-0">
+                          {expandedSection[`${key}-${idx}`] ? (
+                            <ChevronDown className="w-5 h-5 text-foreground" />
+                          ) : (
+                            <ChevronRight className="w-5 h-5 text-foreground" />
+                          )}
+                        </div>
                       </button>
 
                       {expandedSection[`${key}-${idx}`] && (
