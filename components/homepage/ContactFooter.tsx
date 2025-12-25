@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ArrowUpRight, ArrowRight, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Calendar, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -89,10 +89,10 @@ export const ContactSection = () => {
                 <div className="h-px w-full bg-foreground mt-2" />
               </div>
               <h2 className="text-5xl md:text-6xl font-thin text-foreground">
-                Ready to Transform Your AI Initiatives?
+                Looking for an AI Strategy Partner?
               </h2>
               <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                Join companies who&apos;ve successfully transformed their AI strategies. Limited availability this quarter; secure your consultation now.
+                Helping CEOs, Founders, and Product Leaders architect the next generation of AI-native products. Secure your strategy consultation below.
               </p>
             </div>
           </motion.div>
@@ -103,11 +103,11 @@ export const ContactSection = () => {
             className="flex flex-col md:flex-row justify-center items-center gap-6"
           >
             <ElegantButton 
-              href="mailto:binubabu@socife.com?subject=AI Consulting Inquiry&body=Hi Binu,%0D%0A%0D%0AI'm interested in your AI consulting services.%0D%0A%0D%0APlease let me know about availability and next steps.%0D%0A%0D%0AThank you!" 
+              href="https://calendar.app.google/8aUmjsXDvFni8wF38" 
               variant="primary"
-              icon={<Mail className="h-5 w-5" />}
+              icon={<Calendar className="h-5 w-5" />}
             >
-              Secure Your Consultation
+              Book a Strategy Call
             </ElegantButton>
             <ElegantButton 
               href="https://linkedin.com/in/binubdaniel" 

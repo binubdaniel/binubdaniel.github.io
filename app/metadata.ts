@@ -4,28 +4,27 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   metadataBase: new URL('https://binubabu.in'),
   title: {
-    default: "Binu Babu | AI Product Architect & Technology Consultant",
+    default: "AI Product Consultant | Binu Babu",
     template: "%s | Binu Babu"
   },
-  description: "Transform your AI initiatives from concept to market success. Expert AI product strategy, defensible AI products, and strategic consulting for companies building competitive AI solutions.",
+  description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership. Specialist in building production-ready Gen AI agents and agentic workflows.",
   keywords: [
-    "AI Product Architect", 
+    "AI Product Consultant",
+    "Gen AI Agent Architecture",
+    "Agentic Workflows",
+    "LLM Engineering", 
     "AI Product Strategy", 
     "AI Consulting", 
     "Technology Consultant", 
     "AI Product Development", 
-    "Defensible AI Products", 
+    "Production-Ready AI Systems",
     "AI Product Management", 
     "AI Strategy Consulting", 
     "AI Product Roadmap", 
-    "AI Market Research", 
+    "AI Agent Engineering",
     "AI Go-to-Market", 
     "AI Growth Strategy", 
-    "AI Product Playbook", 
-    "AI Product Framework",
-    "AI Product Leadership",
-    "AI Competitive Advantage",
-    "AI Business Strategy"
+    "AI Product Playbook"
   ],
   authors: [{ name: "Binu Babu" }],
   creator: "Binu Babu",
@@ -33,8 +32,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://binubabu.in",
-    title: "Binu Babu | AI Product Architect & Technology Consultant",
-    description: "Transform your AI initiatives from concept to market success. Expert AI product strategy and strategic consulting for building defensible AI products.",
+    title: "AI Product Consultant | Binu Babu",
+    description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership. Specialist in building production-ready Gen AI agents and agentic workflows.",
     siteName: "Binu Babu",
     images: [
       {
@@ -47,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Binu Babu | AI Product Architect & Technology Consultant",
-    description: "Transform your AI initiatives from concept to market success. Expert AI product strategy and strategic consulting for building defensible AI products.",
+    title: "AI Product Consultant | Binu Babu",
+    description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership.",
     images: ["/homepage.webp"]
   },
   icons: {

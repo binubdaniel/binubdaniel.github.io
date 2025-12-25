@@ -148,51 +148,51 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Enterprise AI Chatbot Suite",
-      description: "Advanced chatbot platform leveraging GPT models with custom fine-tuning for domain-specific tasks, revolutionizing customer support and engagement.",
+      title: "Agentic Support Orchestrator",
+      description: "A multi-agent system that autonomously handles Tier 1 & 2 support tickets by coordinating between RAG, CRM tools, and self-correction loops.",
       impact: [
-        "65% Cost Reduction",
-        "80% Faster Response",
-        "10K+ Daily Users",
-        "96% Satisfaction Rate"
+        "75% Resolution Rate",
+        "85% Operational ROI",
+        "Sub-30s Avg Response",
+        "92% Hallucination-Free"
       ],
-      technologies: ["OpenAI", "Node.js", "React", "Redis"],
+      technologies: ["LangGraph", "OpenAI", "Python", "Pinecone"],
       icon: Cpu
     },
     {
-      title: "Voice Analysis System",
-      description: "AI-powered voice biometric system using deep learning for voice print analysis and authentication, enhancing security infrastructure.",
+      title: "Autonomous Engineering Agent",
+      description: "An AI agent engineered to perform complex codebase refactoring and documentation generation by understanding cross-file dependencies and logic.",
       impact: [
-        "96% Detection Rate",
-        "70% Faster Auth",
-        "50M+ Verifications",
-        "90% Fraud Reduction"
+        "60% Faster Refactoring",
+        "100% Doc Coverage",
+        "Zero Logic Regressions",
+        "95% Engineer Approval"
       ],
-      technologies: ["TensorFlow", "Python", "FastAPI", "Docker"],
+      technologies: ["Claude 3.5", "TypeScript", "Tree-sitter", "Node.js"],
       icon: Terminal
     },
     {
-      title: "Literary Social Platform",
-      description: "Scalable social platform with real-time notifications and AI-powered recommendations, connecting readers and authors globally.",
+      title: "Hybrid RAG Knowledge Graph",
+      description: "A production-grade RAG system that combines vector search with GraphDB to enable complex reasoning over structured and unstructured data.",
       impact: [
-        "50K+ Active Users",
-        "200% Engagement",
-        "85% Retention",
-        "4.8/5 Rating"
+        "40% Accuracy Lift",
+        "Complex Query Support",
+        "Zero-Shot Success",
+        "Real-time Updates"
       ],
-      technologies: ["Next.js", "MongoDB", "Redis", "Kafka"],
+      technologies: ["Neo4j", "LlamaIndex", "FastAPI", "React"],
       icon: BookOpen
     },
     {
-      title: "Content Generator",
-      description: "ML-powered content generation platform using custom CNN/RNN models for multi-lingual support, streamlining content creation workflows.",
+      title: "Gen AI Performance Engine",
+      description: "A specialized middleware for LLM orchestration that handles load balancing, semantic caching, and dynamic model routing to optimize cost and latency.",
       impact: [
-        "85% Accuracy Rate",
-        "75% Cost Reduction",
-        "1M+ Pages Generated",
-        "3 New Markets"
+        "65% Cost Reduction",
+        "40% Latency Drop",
+        "99.9% Uptime",
+        "3M+ Tokens/Day"
       ],
-      technologies: ["PyTorch", "FastAPI", "React", "Docker"],
+      technologies: ["Go", "Redis", "Prometheus", "Docker"],
       icon: Box
     }
   ];

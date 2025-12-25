@@ -426,11 +426,11 @@ const ProductPlaybook = () => {
                   >
                     Binu Babu
                   </Link>
-                  <p className="text-sm text-muted-foreground font-light">AI Product Architect & Technology Consultant</p>
+                  <p className="text-sm text-muted-foreground font-light">AI Product Consultant</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-muted-foreground font-light">Product Development Playbook</p>
-                  <p className="text-xs text-muted-foreground font-light">Strategic Framework for AI Products</p>
+                  <p className="text-sm text-muted-foreground font-light">AI & Gen AI Agents Playbook</p>
+                  <p className="text-xs text-muted-foreground font-light">Strategic Framework for Agentic Orchestration</p>
                 </div>
               </div>
             </div>
@@ -439,14 +439,14 @@ const ProductPlaybook = () => {
       <div className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-thin text-foreground mb-6">
-            AI Product Development Playbook
+            AI & Gen AI Agents Playbook
           </h1>
           <div className="h-px w-32 bg-foreground mx-auto mb-6" />
           <p className="text-xl text-muted-foreground mb-4 font-light">
-            Cross-Cutting Themes → Strategy → Build → Launch → Scale
+            Cross-Cutting Themes → Strategy → Engineering → Orchestration → Scale
           </p>
           <p className="text-sm text-muted-foreground font-light">
-            Comprehensive framework for building defensible AI products in an era of disruption
+            Comprehensive framework for building production-ready agentic systems in an era of rapid disruption
           </p>
         </div>
 
@@ -455,14 +455,14 @@ const ProductPlaybook = () => {
           <h3 className="text-xl font-light text-foreground mb-6">Strategic Context: The AI Revolution</h3>
           <div className="grid md:grid-cols-2 gap-8 text-sm text-muted-foreground font-light">
             <div>
-              <h4 className="font-light text-foreground mb-3">Building Defensible AI Products</h4>
-              <p className="mb-4">In an era where AI capabilities are becoming commoditized, true competitive advantage comes from building products that create defensible moats through data network effects, proprietary workflows, and deep domain expertise.</p>
-              <p>Focus on creating products that become more valuable as they scale, where switching costs increase over time, and where your AI becomes uniquely tailored to your customers&apos; specific needs.</p>
+              <h4 className="font-light text-foreground mb-3">The Shift to Agentic AI</h4>
+              <p className="mb-4">We are moving beyond text generation to autonomous execution. Defensibility no longer comes from the model itself (which is commoditized), but from the orchestration of agentic workflows that integrate with proprietary data.</p>
+              <p>Focus on building systems that solve complex, multi-step business problems through reliable tool-calling and recursive state management.</p>
             </div>
             <div>
-              <h4 className="font-light text-foreground mb-3">Disruption in SaaS</h4>
-              <p className="mb-4">Traditional SaaS models are being disrupted by AI-native products that deliver value through intelligence rather than just functionality. The winners will be those who reimagine entire workflows, not just automate existing processes.</p>
-              <p>Build products that fundamentally change how work gets done, creating new value chains that didn&apos;t exist before AI made them possible.</p>
+              <h4 className="font-light text-foreground mb-3">Engineering for Reliability</h4>
+              <p className="mb-4">90% of Gen AI experiments fail because they aren&apos;t engineered for production. This playbook focuses on the rigorous engineering required to make agents reliable, observable, and safe for enterprise deployment.</p>
+              <p>Build products that fundamentally change how work gets done, creating new value chains through agentic autonomy.</p>
             </div>
           </div>
         </div>
@@ -586,14 +586,21 @@ const ProductPlaybook = () => {
                 >
                   Binu Babu
                 </Link>
-                <p className="text-sm text-muted-foreground font-light">AI Product Architect & Technology Consultant</p>
+                <p className="text-sm text-muted-foreground font-light">AI Product Consultant</p>
                 <p className="text-xs text-muted-foreground font-light mt-2">
                   Trusted by companies to transform AI initiatives from concept to market success
                 </p>
               </div>
               <div className="text-right">
                 <p className="text-sm text-muted-foreground font-light">Contact</p>
-                <p className="text-xs text-muted-foreground font-light">binubabu@socife.com</p>
+                <a 
+                  href="https://calendar.app.google/8aUmjsXDvFni8wF38"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-muted-foreground font-light hover:text-foreground transition-colors"
+                >
+                  Book a Strategy Call
+                </a>
                 <p className="text-xs text-muted-foreground font-light">linkedin.com/in/binubdaniel</p>
               </div>
             </div>

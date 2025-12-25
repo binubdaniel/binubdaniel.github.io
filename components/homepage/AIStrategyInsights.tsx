@@ -70,51 +70,51 @@ const InsightCard: React.FC<InsightCardProps> = ({ title, description, icon: Ico
 const AIStrategyInsights = () => {
   const strategyInsights = [
     {
-      title: "Building Defensible AI Products",
-      description: "In an era where AI capabilities are becoming commoditized, true competitive advantage comes from building products that create defensible moats through data network effects, proprietary workflows, and deep domain expertise.",
+      title: "Agentic Strategic Moats",
+      description: "For CEOs & Founders: In the era of commoditized LLMs, defensibility shifts from the model to the orchestration. True moats are built through agentic workflows that integrate deeply with your proprietary data and business logic.",
       icon: Shield,
       insights: [
-        "Focus on creating products that become more valuable as they scale",
-        "Build switching costs that increase over time",
-        "Develop AI that becomes uniquely tailored to customers' specific needs",
-        "Create proprietary workflows that competitors can't easily replicate",
-        "Establish data network effects where more users improve the product"
+        "Orchestrate multi-step reasoning that competitors can't easily replicate",
+        "Build agents that resolve ambiguity through proprietary internal data",
+        "Create feedback loops where execution data compounds your advantage",
+        "Increase customer switching costs by embedding agents into core operations",
+        "Leverage RAG and Agentic Memory for persistent domain expertise"
       ]
     },
     {
-      title: "Disruption in SaaS",
-      description: "Traditional SaaS models are being disrupted by AI-native products that deliver value through intelligence rather than just functionality. The winners will be those who reimagine entire workflows, not just automate existing processes.",
+      title: "The Shift to Agentic SaaS",
+      description: "For Product Leaders: Traditional SaaS is being replaced by Agentic systems that move from 'point and click' to 'instruct and execute'. The winners will be those who reimagine workflows where the software is the primary actor.",
       icon: TrendingUp,
       insights: [
-        "Move beyond feature parity to fundamental workflow transformation",
-        "Build products that fundamentally change how work gets done",
-        "Create new value chains that didn't exist before AI made them possible",
-        "Focus on intelligence-driven value rather than just functionality",
-        "Reimagine entire workflows instead of just automating existing processes"
+        "Transform linear UIs into intent-driven autonomous agents",
+        "Build systems that proactively manage tasks instead of reacting to inputs",
+        "Focus on outcome-based value rather than seat-based licensing",
+        "Reduce operational friction by automating end-to-step decision logic",
+        "Reimagine high-value workflows through the lens of agentic autonomy"
       ]
     },
     {
-      title: "Value Chain Innovation",
-      description: "AI enables entirely new business models and value chains. The most successful AI products don't just improve existing processes; they create new ways of working that weren't possible before artificial intelligence.",
+      title: "ROI-Driven AI Engineering",
+      description: "For Technical Leaders: Building production-ready agents requires more than a prompt. It demands rigorous engineering around reliability, observability, and safety guardrails to ensure predictable business outcomes.",
       icon: Zap,
       insights: [
-        "Identify new value chains that AI enables",
-        "Create business models that didn't exist before AI",
-        "Build products that enable entirely new workflows",
-        "Focus on market creation rather than just market capture",
-        "Develop first-mover advantages in AI-native markets"
+        "Implement robust error handling and self-correction in agent loops",
+        "Develop specialized evaluation frameworks for business performance",
+        "Build scalable infrastructure for long-running agentic tasks",
+        "Establish guardrails to prevent agent drift and recursive hallucination",
+        "Optimize Latency and Cost through strategic model orchestration"
       ]
     },
     {
-      title: "Strategic AI Positioning",
-      description: "Success in AI product development requires strategic thinking about competitive positioning, market timing, and sustainable differentiation. It's not just about having the best technology; it's about building the right product for the right market at the right time.",
+      title: "AI-Native Strategic Architecture",
+      description: "Building the Foundation: Success in modern AI requires a fundamental rethink of the tech stack. It's not about adding AI as a feature, but building architectures that prioritize data flow and agentic autonomy.",
       icon: Target,
       insights: [
-        "Position products for AI-native markets, not just AI-enhanced ones",
-        "Build sustainable competitive advantages through data and domain expertise",
-        "Focus on market timing and competitive windows",
-        "Develop strategic partnerships and ecosystem positioning",
-        "Create defensible moats that compound over time"
+        "Design modular architectures for rapid LLM model swapping",
+        "Prioritize structured data output for reliable system integration",
+        "Build for agentic observability and trace-based debugging",
+        "Develop strategic data pipelines for fine-tuning and steering",
+        "Create defensible systems through integrated agent-tool ecosystems"
       ]
     }
   ];

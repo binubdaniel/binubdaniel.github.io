@@ -23,33 +23,33 @@ export const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) =>
 // Predefined structured data for Binu Babu
 export const BinuBabuPersonSchema = {
   name: "Binu Babu",
-  jobTitle: "AI Product Architect & Technology Consultant",
-  description: "Transform your AI initiatives from concept to market success. Expert AI product strategy, defensible AI products, and strategic consulting for companies building competitive AI solutions.",
+  jobTitle: "AI Product Consultant",
+  description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership. Specialist in building production-ready Gen AI agents and agentic workflows.",
   url: "https://binubabu.in",
   sameAs: [
     "https://linkedin.com/in/binubdaniel"
   ],
   knowsAbout: [
+    "Gen AI Agent Architecture",
+    "Agentic Workflows",
+    "LLM Engineering",
     "AI Product Strategy",
-    "AI Product Development", 
-    "Defensible AI Products",
+    "Production-Ready AI Systems",
     "AI Product Management",
     "AI Consulting",
     "Technology Strategy",
-    "Product Architecture",
-    "AI Go-to-Market",
-    "AI Growth Strategy"
+    "Product Architecture"
   ],
   hasOccupation: {
     "@type": "Occupation",
-    "name": "AI Product Architect",
-    "description": "Strategic AI product development and consulting"
+    "name": "AI & Gen AI Agents Architect",
+    "description": "Strategic AI product engineering and agentic system consulting"
   }
 };
 
 export const WebsiteSchema = {
   name: "Binu Babu",
-  description: "AI Product Architect & Technology Consultant - Transform your AI initiatives from concept to market success",
+  description: "AI & Gen AI Agents Architect - Engineering production-ready agentic systems and AI products",
   url: "https://binubabu.in",
   author: {
     "@type": "Person",

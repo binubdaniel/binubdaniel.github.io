@@ -18,10 +18,10 @@ import { ThemeSwitcher } from "../theme-switcher";
 const HeroSection = () => {
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const bookPhrases = [
-    "Build defensible AI products",
-    "From concept to market success", 
-    "Strategic AI product development",
-    "Limited availability this quarter"
+    "From LLM Wrappers to Agentic Workflows",
+    "Architecting Defensible AI Moats",
+    "Engineering for Production Reliability",
+    "Strategic Advisory for AI-Native Leaders"
   ];
   
   useEffect(() => {
@@ -89,11 +89,11 @@ const HeroSection = () => {
                 </h1>
                 <div className="h-px w-32 bg-foreground" />
                 <p className="text-xl md:text-2xl text-muted-foreground font-light">
-                  AI Product Architect & Technology Consultant
+                  AI Product Consultant
                 </p>
                 <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed font-light">
-                  Building AI products that create competitive moats and drive real business value. {" "}
-                  <span className="text-foreground font-medium">70% of AI products fail. Yours doesn&apos;t have to.</span>
+                  Advising CEOs, Founders, and Product Leaders on building defensible, production-grade AI systems. {" "}
+                  <span className="text-foreground font-medium">The AI landscape is moving from chat to orchestrators. Are you ready?</span>
                 </p>
               </motion.div>
             </motion.div>
@@ -127,7 +127,7 @@ const HeroSection = () => {
               className="space-y-6"
             >
               <div className="space-y-4">
-                <h3 className="text-xl font-light text-foreground">AI Product Consulting</h3>
+                <h3 className="text-xl font-light text-foreground">Expert Consulting</h3>
                 <motion.p
                   key={currentPhrase}
                   initial={{ opacity: 0, y: 10 }}
@@ -148,10 +148,12 @@ const HeroSection = () => {
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
                 <a
-                  href="mailto:binubabu@socife.com?subject=AI Product Strategy Inquiry&body=Hi Binu,%0D%0A%0D%0AI'm interested in discussing AI product strategy for our organization.%0D%0A%0D%0APlease let me know about availability and next steps.%0D%0A%0D%0AThank you!"
+                  href="https://calendar.app.google/8aUmjsXDvFni8wF38"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-foreground text-background hover:bg-foreground/80 px-8 py-4 font-light transition-all duration-300"
                 >
-                  <span>Get in Touch</span>
+                  <span>Book a Strategy Call</span>
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 
@@ -159,7 +161,7 @@ const HeroSection = () => {
                   href="/product-playbook"
                   className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-all duration-300 font-light"
                 >
-                  <span>Product Playbook</span>
+                  <span>AI Playbook</span>
                 </a>
                 
                 <a

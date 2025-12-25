@@ -2,24 +2,18 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://binubabu.in'),
-  title: "AI Product Development Playbook",
-  description: "Comprehensive framework for building defensible AI products from concept to scale. Strategic AI product development methodology covering strategy, execution, launch, and growth phases.",
+  title: "AI & Gen AI Agents Development Playbook",
+  description: "Comprehensive framework for building production-ready Gen AI agents and agentic systems from concept to scale.",
   keywords: [
-    "AI Product Development Playbook",
-    "AI Product Framework", 
-    "AI Product Strategy",
-    "AI Product Management",
-    "AI Product Roadmap",
-    "AI Product Methodology",
-    "Defensible AI Products",
-    "AI Product Launch",
-    "AI Product Scaling",
-    "AI Product Consulting",
-    "AI Product Architecture",
-    "AI Product Planning",
+    "AI & Gen AI Agents Playbook",
+    "Agentic Framework",
+    "Gen AI Agent Strategy",
+    "LLM Engineering Roadmap",
+    "Agentic Workflows",
+    "Production AI Methodology",
+    "AI Agent Architecture",
     "AI Product Execution",
-    "AI Product Growth",
-    "AI Product Framework Guide"
+    "AI Growth Strategy"
   ],
   openGraph: {
     title: "AI Product Development Playbook | Binu Babu",

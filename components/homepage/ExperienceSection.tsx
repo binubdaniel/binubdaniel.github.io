@@ -141,33 +141,33 @@ const ExperienceSection = () => {
       company: "Techjays - Coimbatore, Tamil Nadu",
       period: "July 2025 - Present",
       description:
-        "Driving AI product strategy and development initiatives. Leading cross-functional teams to deliver innovative AI solutions while establishing product frameworks for emerging technologies.",
+        "Leading the architectural shift from legacy SaaS to Agentic AI systems. Engineering multi-agent orchestration frameworks that automate complex enterprise workflows with high reliability.",
       achievements: [
-        "Recently joined to lead AI product development initiatives",
-        "Establishing product strategy for next-generation AI solutions",
-        "Building frameworks for AI product development and team collaboration",
+        "Architecting enterprise-grade multi-agent systems for autonomous workflow execution",
+        "Developing internal RAG and LLM orchestration benchmarks for production readiness",
+        "Building scalable agentic memory systems to handle long-running business processes",
       ],
       learnings: [
-        "Early stage - focused on understanding market dynamics and team capabilities",
-        "Developing expertise in AI product management methodologies",
-        "Learning to balance innovation with practical implementation timelines",
+        "The shift from static prompts to agentic orchestration requires deep recursive logic",
+        "Reliability in agents is an engineering challenge, not just a model challenge",
+        "Business ROI in Gen AI comes from autonomous execution, not just text generation",
       ],
     },
     {
-      role: "Technical Lead",
+      role: "Technical Lead (AI Integration)",
       company: "Bridge Global - Kochi, Kerala",
       period: "September 2024 - July 2025",
       description:
-        "Led AI integration initiatives and engineering teams in delivering cutting-edge solutions. Focused on implementing advanced technologies while mentoring and growing technical talent.",
+        "Led the engineering of advanced AI solutions, focusing on RAG (Retrieval Augmented Generation) and LLM pipeline optimization. Bridged the gap between experimental AI and production-ready systems.",
       achievements: [
-        "Mentored engineering teams in developing scalable solutions while maintaining exceptional quality standards",
-        "Implemented advanced AI technologies including RAG and LLMs to revolutionize product development",
-        "Established comprehensive training programs for junior engineers through structured mentorship",
+        "Engineered robust RAG pipelines that reduced hallucination rates by 45% in production",
+        "Optimized LLM inference latency by 60% through custom orchestration and caching strategies",
+        "Mentored 15+ engineers in transitioning from traditional full-stack to AI-native engineering",
       ],
       learnings: [
-        "Effective leadership requires balance of technical expertise and people management skills",
-        "Clear communication is crucial for successful cross-functional collaboration",
-        "Strategic technical decisions must align with long-term business objectives",
+        "Data quality and retrieval strategy are the primary bottlenecks in production AI",
+        "Engineering for 'fail-soft' AI systems is critical for enterprise adoption",
+        "Effective AI leadership requires deeply understanding the underlying model limitations",
       ],
     },
     {
