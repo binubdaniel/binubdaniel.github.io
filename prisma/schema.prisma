@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Post {
+  id          String     @id @default(uuid())
+  slug        String     @unique
+  title       String
+  content     String     @db.Text // markdown body
+  excerpt     String?
+  coverImage  String?    @map("cover_image")
+  status      PostStatus @default(DRAFT)
+
+  // SEO / AEO (answer-engine) / AI-citability metadata
+  tags            String[] @default([])
+  metaTitle       String?  @map("meta_title")
+  metaDescription String?  @map("meta_description")
+  canonicalUrl    String?  @map("canonical_url")
+  tldr            String?  @db.Text // short direct-answer summary (AEO)
+  faq             Json?    // [{ question, answer }] -> FAQPage structured data
+
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+  publishedAt DateTime?  @map("published_at")
+
+  @@index([status, publishedAt])
+  @@map("posts")
+}

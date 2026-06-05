@@ -5,83 +5,64 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ```bash
-# Development
 npm run dev         # Start development server on localhost:3000
 npm run build       # Build production application
 npm run start       # Start production server
 npm run lint        # Run ESLint for code quality
-
-# Development workflow
-npm run dev         # Primary development command
 ```
 
 ## Architecture Overview
 
-This is a Next.js 15 personal website and AI-powered chat application using the App Router pattern with several key architectural components:
+A Next.js 15 (App Router) personal site for Binu Babu. Currently a static portfolio; being extended into a dynamic platform with an admin panel, AI-assisted blog creator, public blog, and newsletter.
 
-### Core Structure
-- **Next.js App Router**: Uses the modern `app/` directory structure
-- **TypeScript**: Full TypeScript implementation with strict typing
-- **Tailwind CSS + Radix UI**: Styling with component library integration
-- **Supabase**: Database and authentication backend
-- **Vercel Analytics**: Built-in analytics tracking
+**Deployed on Vercel** (Node server runtime). Despite the repo name `binubdaniel.github.io`, this is NOT a GitHub Pages site — there is no static-export config or GH Pages workflow, and the server-side features below require a Node host.
+
+### Core Stack
+- **Next.js 15 + React 19** with the App Router (`app/` directory)
+- **TypeScript** (strict mode)
+- **Tailwind CSS 3 + Radix UI** for styling/primitives
+- **Framer Motion** for animation
+- **Supabase** for database + auth (configured via env)
+- **Vercel Analytics**
 
 ### Key Directories
-- `app/`: Next.js app router pages and API routes
-- `components/`: Reusable UI components organized by feature
-- `lib/`: Core business logic and utilities
-- `hooks/`: Custom React hooks
-- `types/`: TypeScript type definitions
+- `app/`: routes, layouts, and API routes
+- `components/homepage/`: portfolio sections (Hero, Experience, Projects, Contact, etc.)
+- `components/ui/`: reusable Radix-based primitives
+- `lib/`: utilities (`utils.ts` — `cn`, `formatDate`)
 
-### AI Chat System
-The application features a sophisticated AI chat system built with:
-- **LangGraph Architecture**: Custom chat processing pipeline in `lib/langgraph/`
-- **State Management**: Complex chat state with validation, meeting scheduling, and conversation flow
-- **API Route**: `/api/chat` handles chat processing with comprehensive error handling
-- **Anthropic SDK**: Integration for AI responses
+### Current Routes
+- `/` — portfolio homepage (`app/page.tsx`)
+- `/product-playbook` — consulting methodology guide
 
-### Key Features
-- **Chat Interface**: Full-featured chat UI with message history, typing indicators, and error handling
-- **Personal Website**: Portfolio sections including projects, skills, and contact information
-- **Theme System**: Dark/light mode switching with next-themes
-- **Email Integration**: SMTP configuration for contact forms and notifications
-- **Responsive Design**: Mobile-first responsive layout
+### Planned Architecture (blog + newsletter initiative)
+- **Admin panel** (`/admin/*`): single-admin auth via Supabase Auth, protected by middleware
+- **AI blog creator**: type thoughts → iterative AI editing → publish. Provider is **switchable between OpenAI and Anthropic** via env var (do not hardcode one vendor)
+- **Public blog**: `/blog` (index) and `/blog/[slug]` (markdown rendered with react-markdown + @tailwindcss/typography)
+- **Newsletter**: public signup → **Resend Audiences** (managed contacts + Broadcasts); send a broadcast when a post is published
+- **Data**: a `posts` table in Supabase with RLS (anon reads `published`, authenticated admin writes)
 
-### Environment Variables Required
+### Environment Variables
 ```bash
-# Supabase
+# Supabase (already configured in .env.local)
 NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=   # new Supabase key format (sb_publishable_…); replaces the legacy anon JWT
+DATABASE_URL=
+DIRECT_URL=
+SUPABASE_SERVICE_ROLE_KEY=   # for server-side admin writes (add when needed)
 
-# Email (Gmail/SMTP)
-GMAIL_USER=
-GMAIL_APP_PASSWORD=
-SMTP_FROM=
-GMAIL_CLIENT_ID=
-GMAIL_CLIENT_SECRET=
-GMAIL_REFRESH_TOKEN=
-GMAIL_ACCESS_TOKEN=
+# AI (switchable provider)
+OPENAI_API_KEY=              # already configured
+ANTHROPIC_API_KEY=           # add if using Claude
+AI_PROVIDER=                 # "openai" | "anthropic"
+
+# Newsletter (add at the newsletter phase)
 RESEND_API_KEY=
-
-# AI Services
-ANTHROPIC_API_KEY=
+RESEND_AUDIENCE_ID=
+RESEND_FROM=
 ```
 
-### Component Architecture
-- **Chat Components**: Modular chat interface in `components/chat/`
-- **Homepage Components**: Feature sections in `components/homepage/`
-- **UI Components**: Reusable primitives in `components/ui/`
-- **Layout Components**: Shared layout elements and navigation
-
-### Data Flow
-1. Chat messages processed through LangGraph pipeline
-2. State managed through custom React hooks (`useChat`, `useSessions`)
-3. Supabase handles message persistence and session management
-4. Real-time updates through React state management
-
-### Development Notes
-- Uses React 19 with Next.js 15 for latest features
-- Implements proper error boundaries and loading states
-- Follows TypeScript strict mode practices
-- Uses Zod for runtime validation
-- Implements comprehensive error handling with custom error types
+### Conventions
+- Server secrets are read via `process.env` in server code only — never expose them through `next.config` `env` (that inlines them into the client bundle)
+- `NEXT_PUBLIC_*` vars are the only ones safe for the browser
+- Follow TypeScript strict mode; prefer editing existing files over adding new ones
