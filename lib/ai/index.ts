@@ -51,15 +51,24 @@ async function runOpenAI(input: BlogEditInput): Promise<string> {
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const model = process.env.OPENAI_MODEL ?? "gpt-4o";
 
-  const completion = await client.chat.completions.create({
+  // Stream and accumulate so a long rewrite doesn't hit an HTTP/function
+  // timeout. 16384 is gpt-4o's output ceiling (~12k words).
+  const stream = await client.chat.completions.create({
     model,
+    max_tokens: 16384,
+    stream: true,
     messages: [
       { role: "system", content: SYSTEM_PROMPT },
       { role: "user", content: buildUserPrompt(input) },
     ],
   });
 
-  const text = completion.choices[0]?.message?.content?.trim();
+  let text = "";
+  for await (const chunk of stream) {
+    text += chunk.choices[0]?.delta?.content ?? "";
+  }
+
+  text = text.trim();
   if (!text) throw new Error("OpenAI returned an empty response.");
   return text;
 }
@@ -68,9 +77,12 @@ async function runAnthropic(input: BlogEditInput): Promise<string> {
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const model = process.env.ANTHROPIC_MODEL ?? "claude-opus-4-7";
 
-  const message = await client.messages.create({
+  // Stream with a high ceiling so long posts aren't truncated, and use
+  // finalMessage() to avoid HTTP timeouts on large outputs (Opus supports
+  // up to 128k output; 32k is ample for a blog and stays well within limits).
+  const stream = client.messages.stream({
     model,
-    max_tokens: 16000,
+    max_tokens: 32000,
     system: [
       {
         type: "text",
@@ -81,6 +93,7 @@ async function runAnthropic(input: BlogEditInput): Promise<string> {
     messages: [{ role: "user", content: buildUserPrompt(input) }],
   });
 
+  const message = await stream.finalMessage();
   const text = message.content
     .filter((block): block is Anthropic.TextBlock => block.type === "text")
     .map((block) => block.text)

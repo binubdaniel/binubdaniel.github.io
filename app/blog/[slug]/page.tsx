@@ -9,6 +9,7 @@ import { normalizeFaq } from "@/lib/blog-format";
 import { articleJsonLd, faqJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import PostBody from "@/components/blog/PostBody";
+import { FadeIn } from "@/components/ui/fade-in";
 import { ArrowLeft } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -73,7 +74,7 @@ export default async function BlogPostPage({
   const date = post.publishedAt ?? post.updatedAt;
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-12">
+    <main className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
       {/* Structured data for search + answer engines */}
       <script
         type="application/ld+json"
@@ -88,13 +89,13 @@ export default async function BlogPostPage({
 
       <Link
         href="/blog"
-        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
+        className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="mr-1.5 h-4 w-4" />
-        Blog
+        Writing
       </Link>
 
-      <article className="mt-6">
+      <FadeIn className="mt-10"><article>
         {post.coverImage && (
           <figure className="mb-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -132,29 +133,33 @@ export default async function BlogPostPage({
           </figure>
         )}
 
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        <time
+          dateTime={date.toISOString()}
+          className="text-xs uppercase tracking-[0.2em] text-muted-foreground"
+        >
+          {formatDate(date.toISOString())}
+        </time>
+        <h1 className="mt-4 text-4xl font-thin tracking-tight text-foreground sm:text-5xl">
           {post.title}
         </h1>
-
-        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
-          <time dateTime={date.toISOString()}>{formatDate(date.toISOString())}</time>
-          {post.tags.length > 0 && (
-            <span className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span key={tag} className="border border-border px-2 py-0.5 text-xs">
-                  {tag}
-                </span>
-              ))}
-            </span>
-          )}
-        </div>
+        {post.tags.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-2 text-xs text-muted-foreground">
+            {post.tags.map((tag) => (
+              <span key={tag} className="border border-border px-2 py-0.5">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         {post.tldr && (
-          <aside className="mt-8 border-l-2 border-foreground bg-muted/50 px-4 py-3">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          <aside className="mt-10 border-l border-foreground bg-muted/40 px-5 py-4">
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
               TL;DR
             </p>
-            <p className="mt-1 text-foreground">{post.tldr}</p>
+            <p className="mt-2 font-light leading-relaxed text-foreground">
+              {post.tldr}
+            </p>
           </aside>
         )}
 
@@ -163,21 +168,24 @@ export default async function BlogPostPage({
         </div>
 
         {faq.length > 0 && (
-          <section className="mt-12 border-t border-border pt-8">
-            <h2 className="text-xl font-semibold text-foreground">
+          <section className="mt-16 border-t border-border pt-10">
+            <h2 className="text-2xl font-thin tracking-tight text-foreground">
               Frequently asked questions
             </h2>
-            <dl className="mt-4 space-y-6">
+            <dl className="mt-6 space-y-6">
               {faq.map((item, i) => (
                 <div key={i}>
                   <dt className="font-medium text-foreground">{item.question}</dt>
-                  <dd className="mt-1 text-muted-foreground">{item.answer}</dd>
+                  <dd className="mt-1 font-light leading-relaxed text-muted-foreground">
+                    {item.answer}
+                  </dd>
                 </div>
               ))}
             </dl>
           </section>
         )}
       </article>
+      </FadeIn>
     </main>
   );
 }

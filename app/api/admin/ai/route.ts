@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { getAdminUser } from "@/lib/supabase/server";
 import { runBlogEdit } from "@/lib/ai";
 
+// Long rewrites can run tens of seconds — give the function room on Vercel
+// (default is short; this raises the ceiling within plan limits).
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   // Middleware only matches /admin/*, not /api/* — gate here explicitly.
   const user = await getAdminUser();
