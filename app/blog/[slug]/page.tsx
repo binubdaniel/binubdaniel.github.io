@@ -10,6 +10,7 @@ import { articleJsonLd, faqJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import PostBody from "@/components/blog/PostBody";
 import { FadeIn } from "@/components/ui/fade-in";
+import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
 import { ArrowLeft } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -184,6 +185,8 @@ export default async function BlogPostPage({
             </dl>
           </section>
         )}
+
+        <NewsletterCTA />
       </article>
       </FadeIn>
     </main>

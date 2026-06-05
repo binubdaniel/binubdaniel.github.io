@@ -1,6 +1,8 @@
 {
   "name": "Binu Babu",
   "short_name": "BB",
+  "start_url": "/blog?source=pwa",
+  "scope": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

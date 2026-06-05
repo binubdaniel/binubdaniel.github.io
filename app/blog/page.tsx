@@ -6,6 +6,7 @@ import { formatDate } from "@/lib/utils";
 import { SITE_URL } from "@/lib/site";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { FadeIn } from "@/components/ui/fade-in";
+import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
 
 // Rendered per request (reads the DB). Avoids any build-time DB dependency.
 export const dynamic = "force-dynamic";
@@ -108,6 +109,8 @@ export default async function BlogIndexPage() {
           ))}
         </ul>
       )}
+
+      <NewsletterCTA />
     </main>
   );
 }
