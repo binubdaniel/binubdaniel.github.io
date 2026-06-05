@@ -11,6 +11,8 @@ import { SITE_URL } from "@/lib/site";
 import PostBody from "@/components/blog/PostBody";
 import { FadeIn } from "@/components/ui/fade-in";
 import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
+import { ShareButtons } from "@/components/blog/ShareButtons";
+import { getRelatedPosts } from "@/lib/posts";
 import { ArrowLeft } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -73,6 +75,8 @@ export default async function BlogPostPage({
   const article = articleJsonLd(post);
   const faqLd = faqJsonLd(faq);
   const date = post.publishedAt ?? post.updatedAt;
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  const related = await getRelatedPosts(post.id, post.tags);
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
@@ -153,6 +157,10 @@ export default async function BlogPostPage({
           </div>
         )}
 
+        <div className="mt-6">
+          <ShareButtons url={url} title={post.title} />
+        </div>
+
         {post.tldr && (
           <aside className="mt-10 border-l border-foreground bg-muted/40 px-5 py-4">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -183,6 +191,48 @@ export default async function BlogPostPage({
                 </div>
               ))}
             </dl>
+          </section>
+        )}
+
+        <div className="mt-12 flex items-center justify-between border-t border-border pt-8">
+          <ShareButtons url={url} title={post.title} label />
+          <Link
+            href="/blog"
+            className="text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+          >
+            All posts
+          </Link>
+        </div>
+
+        {related.length > 0 && (
+          <section className="mt-16 border-t border-border pt-10">
+            <h2 className="text-2xl font-thin tracking-tight text-foreground">
+              Read next
+            </h2>
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+              {related.map((r) => (
+                <Link
+                  key={r.id}
+                  href={`/blog/${r.slug}`}
+                  className="group flex flex-col border border-border p-5 transition-all duration-300 hover:border-foreground"
+                >
+                  <h3 className="font-light text-foreground transition-colors group-hover:text-muted-foreground">
+                    {r.title}
+                  </h3>
+                  {r.excerpt && (
+                    <p className="mt-2 line-clamp-2 text-sm font-light leading-relaxed text-muted-foreground">
+                      {r.excerpt}
+                    </p>
+                  )}
+                  <time
+                    dateTime={(r.publishedAt ?? r.updatedAt).toISOString()}
+                    className="mt-auto pt-4 text-xs uppercase tracking-[0.15em] text-muted-foreground"
+                  >
+                    {formatDate((r.publishedAt ?? r.updatedAt).toISOString())}
+                  </time>
+                </Link>
+              ))}
+            </div>
           </section>
         )}
 
