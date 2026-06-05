@@ -41,6 +41,14 @@ export async function POST(request: Request) {
         typeof body.coverImage === "string"
           ? body.coverImage.trim() || null
           : null,
+      coverCredit:
+        typeof body.coverCredit === "string"
+          ? body.coverCredit.trim() || null
+          : null,
+      coverCreditUrl:
+        typeof body.coverCreditUrl === "string"
+          ? body.coverCreditUrl.trim() || null
+          : null,
       tags: normalizeTags(body.tags),
       metaTitle:
         typeof body.metaTitle === "string" ? body.metaTitle.trim() || null : null,

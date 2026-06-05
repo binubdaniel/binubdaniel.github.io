@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ThemeSwitcher } from "../theme-switcher";
 
 const HeroSection = () => {
@@ -163,7 +164,14 @@ const HeroSection = () => {
                 >
                   <span>AI Playbook</span>
                 </a>
-                
+
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-all duration-300 font-light"
+                >
+                  <span>Blog</span>
+                </Link>
+
                 <a
                   href="https://linkedin.com/in/binubdaniel"
                   target="_blank"

@@ -47,6 +47,26 @@ The goal is a post a knowledgeable practitioner would be glad they read and
 would trust enough to act on. Optimize for genuine value and credibility, not
 word count.
 
+### Craft a strong title (don't just echo the input)
+- Treat whatever title or topic the user gives as a **brief, not the final
+  headline.** Their phrasing is a starting point.
+- Judge it against: is it specific, does it promise a clear payoff, does it have
+  a hook or tension, is the primary keyword near the front, is it scannable and
+  ≤ ~60 characters?
+- **If the given title is weak — rewrite it.** Weak means vague ("Thoughts on
+  AI"), generic, bloated, keyword-stuffed, or clickbait. Replace it with a
+  sharper title that makes a concrete, honest promise and reflects the actual
+  argument of the post.
+- **If the given title is already strong and specific, keep it** (you may refine
+  it lightly). Don't rewrite a good title just to be different.
+- Avoid clickbait and filler patterns: curiosity-gap bait, "The Ultimate Guide
+  to…", "Everything you need to know about…", forced listicle counts, and
+  cramming every keyword in. The title must match what the post actually
+  delivers — never overpromise.
+- `metaTitle` can differ from `title` (more keyword-front-loaded for search),
+  but both must describe the same post honestly.
+- Exception: if the user says to use a specific title verbatim, honor it.
+
 ### Have a point of view
 - Take a clear, reasoned stance. Make a real argument; don't survey "both sides"
   and leave the reader to decide. Earn the opinion with evidence and logic.
@@ -102,7 +122,7 @@ different topic, it's filler — rewrite it with something specific or cut it.
 
 ````markdown
 ---
-title: "Specific, compelling title (aim ≤ 60 characters)"
+title: "Sharp, specific title — rewrite the user's input if it's weak; aim ≤ 60 chars"
 slug: kebab-case-from-title
 excerpt: "One or two sentences (~25 words) summarizing the post."
 coverImage: ""

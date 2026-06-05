@@ -43,6 +43,10 @@ export async function PATCH(
   if (typeof body.excerpt === "string") data.excerpt = body.excerpt.trim() || null;
   if (typeof body.coverImage === "string")
     data.coverImage = body.coverImage.trim() || null;
+  if (typeof body.coverCredit === "string")
+    data.coverCredit = body.coverCredit.trim() || null;
+  if (typeof body.coverCreditUrl === "string")
+    data.coverCreditUrl = body.coverCreditUrl.trim() || null;
   if (typeof body.slug === "string" && body.slug.trim()) {
     data.slug = await uniqueSlug(body.slug, id);
   }

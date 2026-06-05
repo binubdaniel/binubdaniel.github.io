@@ -20,6 +20,9 @@ model Post {
   content     String     @db.Text // markdown body
   excerpt     String?
   coverImage  String?    @map("cover_image")
+  // Cover image attribution (e.g. Pexels): "Photo by {coverCredit}"
+  coverCredit    String? @map("cover_credit")
+  coverCreditUrl String? @map("cover_credit_url")
   status      PostStatus @default(DRAFT)
 
   // SEO / AEO (answer-engine) / AI-citability metadata

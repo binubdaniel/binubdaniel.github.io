@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import MarkdownRenderer from "@/components/ui/markdown-renderer";
+import ImagePickerModal, {
+  type PexelsImage,
+} from "@/components/admin/ImagePickerModal";
 import { slugify } from "@/lib/utils";
 import {
   ArrowLeft,
@@ -15,6 +18,7 @@ import {
   ClipboardPaste,
   Plus,
   X,
+  Image as ImageIcon,
 } from "lucide-react";
 
 interface FaqItem {
@@ -29,6 +33,8 @@ export interface EditablePost {
   content: string;
   excerpt: string | null;
   coverImage: string | null;
+  coverCredit: string | null;
+  coverCreditUrl: string | null;
   tags: string[];
   metaTitle: string | null;
   metaDescription: string | null;
@@ -53,6 +59,10 @@ export default function PostEditor({ post }: { post?: EditablePost }) {
   const [content, setContent] = useState(post?.content ?? "");
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
   const [coverImage, setCoverImage] = useState(post?.coverImage ?? "");
+  const [coverCredit, setCoverCredit] = useState(post?.coverCredit ?? "");
+  const [coverCreditUrl, setCoverCreditUrl] = useState(
+    post?.coverCreditUrl ?? "",
+  );
   const [tagsInput, setTagsInput] = useState((post?.tags ?? []).join(", "));
   const [metaTitle, setMetaTitle] = useState(post?.metaTitle ?? "");
   const [metaDescription, setMetaDescription] = useState(
@@ -70,6 +80,29 @@ export default function PostEditor({ post }: { post?: EditablePost }) {
   const [saving, setSaving] = useState(false);
   const [view, setView] = useState<"write" | "preview">("write");
   const [error, setError] = useState<string | null>(null);
+  const [coverPickerOpen, setCoverPickerOpen] = useState(false);
+  const [bodyPickerOpen, setBodyPickerOpen] = useState(false);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+
+  // Cover image: store Pexels' landscape size (good OG dimensions) + credit.
+  function selectCover(img: PexelsImage) {
+    setCoverImage(img.src.landscape);
+    setCoverCredit(img.photographer);
+    setCoverCreditUrl(img.photographerUrl);
+  }
+
+  // Inline image: insert Markdown at the cursor in the body textarea.
+  function insertBodyImage(img: PexelsImage) {
+    const md = `![${img.alt}](${img.src.large})`;
+    const ta = contentRef.current;
+    if (!ta) {
+      setContent((c) => (c ? `${c}\n\n${md}\n` : `${md}\n`));
+      return;
+    }
+    const start = ta.selectionStart ?? content.length;
+    const end = ta.selectionEnd ?? content.length;
+    setContent(content.slice(0, start) + md + content.slice(end));
+  }
 
   function onTitleChange(value: string) {
     setTitle(value);
@@ -158,6 +191,8 @@ export default function PostEditor({ post }: { post?: EditablePost }) {
       content,
       excerpt,
       coverImage,
+      coverCredit,
+      coverCreditUrl,
       tags: tagsArray(),
       metaTitle,
       metaDescription,
@@ -267,12 +302,42 @@ export default function PostEditor({ post }: { post?: EditablePost }) {
             <label htmlFor="cover" className="text-sm font-medium">
               Cover image URL
             </label>
-            <Input
-              id="cover"
-              value={coverImage}
-              onChange={(e) => setCoverImage(e.target.value)}
-              placeholder="https://…"
-            />
+            <div className="flex gap-2">
+              <Input
+                id="cover"
+                value={coverImage}
+                onChange={(e) => {
+                  // A hand-typed URL isn't the Pexels pick — drop its credit.
+                  setCoverImage(e.target.value);
+                  setCoverCredit("");
+                  setCoverCreditUrl("");
+                }}
+                placeholder="https://…"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setCoverPickerOpen(true)}
+              >
+                <ImageIcon className="mr-1.5 h-4 w-4" />
+                Pexels
+              </Button>
+            </div>
+            {coverImage && (
+              <div className="mt-2 max-w-xs">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={coverImage}
+                  alt="Cover preview"
+                  className="aspect-video w-full rounded-md border border-border object-cover"
+                />
+                {coverCredit && (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Photo by {coverCredit} / Pexels
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -341,6 +406,15 @@ export default function PostEditor({ post }: { post?: EditablePost }) {
             <div className="flex gap-1">
               <Button
                 type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setBodyPickerOpen(true)}
+              >
+                <ImageIcon className="mr-1.5 h-3.5 w-3.5" />
+                Image
+              </Button>
+              <Button
+                type="button"
                 variant={view === "write" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setView("write")}
@@ -361,6 +435,7 @@ export default function PostEditor({ post }: { post?: EditablePost }) {
           </div>
           {view === "write" ? (
             <textarea
+              ref={contentRef}
               value={content}
               onChange={(e) => setContent(e.target.value)}
               rows={18}
@@ -536,6 +611,21 @@ export default function PostEditor({ post }: { post?: EditablePost }) {
           )}
         </div>
       </div>
+
+      <ImagePickerModal
+        open={coverPickerOpen}
+        onClose={() => setCoverPickerOpen(false)}
+        onSelect={selectCover}
+        orientation="landscape"
+        title="Choose a cover image"
+      />
+      <ImagePickerModal
+        open={bodyPickerOpen}
+        onClose={() => setBodyPickerOpen(false)}
+        onSelect={insertBodyImage}
+        orientation="landscape"
+        title="Insert an image"
+      />
     </main>
   );
 }
