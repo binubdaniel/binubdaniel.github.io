@@ -85,14 +85,18 @@ export const ContactSection = () => {
           <motion.div variants={itemVariants} className="mb-16">
             <div className="space-y-8">
               <div className="inline-block">
-                <span className="text-foreground font-light tracking-wider uppercase text-sm">Contact</span>
-                <div className="h-px w-full bg-foreground mt-2" />
+                <span className="text-sm font-light uppercase tracking-wider text-foreground">
+                  Contact
+                </span>
+                <div className="mt-2 h-px w-full bg-foreground" />
               </div>
-              <h2 className="text-5xl md:text-6xl font-thin text-foreground">
-                Looking for an AI Strategy Partner?
+              <h2 className="text-5xl font-thin tracking-tight text-foreground md:text-6xl">
+                Working on something?
               </h2>
-              <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                Helping CEOs, Founders, and Product Leaders architect the next generation of AI-native products. Secure your strategy consultation below.
+              <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-muted-foreground">
+                If you are building an AI product and want a second brain on the
+                strategy or the engineering, I am around. The first call is free
+                and usually pretty useful.
               </p>
             </div>
           </motion.div>
@@ -138,19 +142,15 @@ export const Footer = () => {
         >
           {/* Main Footer Content */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-light text-foreground">
-              Binu Babu
-            </h3>
-            <div className="h-px w-16 bg-foreground mx-auto" />
-            <p className="text-muted-foreground font-light">
-              AI Product Architect & Technology Consultant
-            </p>
+            <h3 className="text-2xl font-light text-foreground">Binu Babu</h3>
+            <div className="mx-auto h-px w-16 bg-foreground" />
+            <p className="font-light text-muted-foreground">AI Product Consultant</p>
           </div>
 
           {/* Copyright */}
-          <div className="pt-8 border-t border-border">
-            <p className="text-sm text-muted-foreground font-light">
-              © {currentYear} Binu Babu. Crafting the future of AI products with precision and purpose.
+          <div className="border-t border-border pt-8">
+            <p className="text-sm font-light text-muted-foreground">
+              © {currentYear} Binu Babu. Built in Kerala, India.
             </p>
           </div>
         </motion.div>

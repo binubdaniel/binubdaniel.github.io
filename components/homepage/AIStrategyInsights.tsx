@@ -1,8 +1,9 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 import { Shield, TrendingUp, Zap, Target, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Eyebrow } from "@/components/ui/eyebrow";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -10,9 +11,9 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.08,
-      duration: 0.6
-    }
-  }
+      duration: 0.6,
+    },
+  },
 };
 
 const itemVariants = {
@@ -22,101 +23,67 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number]
-    }
-  }
+      ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
+    },
+  },
 };
 
 interface InsightCardProps {
   title: string;
-  description: string;
+  take: string;
   icon: React.ComponentType<{ className?: string }>;
-  insights: string[];
 }
 
-const InsightCard: React.FC<InsightCardProps> = ({ title, description, icon: Icon, insights }) => (
-  <motion.div 
+const InsightCard: React.FC<InsightCardProps> = ({
+  title,
+  take,
+  icon: Icon,
+}) => (
+  <motion.div
     variants={itemVariants}
-    className="group border border-border p-8 hover:border-foreground transition-all duration-300"
+    className="group border border-border p-8 transition-all duration-300 hover:border-foreground"
     whileHover={{ y: -2 }}
   >
-    <div className="space-y-6">
-      <div className="flex items-start gap-6">
-        <motion.div 
-          className="flex-shrink-0 p-3 bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-300"
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Icon className="h-5 w-5" />
-        </motion.div>
-        <div className="space-y-4">
-          <h3 className="text-lg font-light text-foreground group-hover:text-foreground transition-colors duration-300">{title}</h3>
-          <p className="text-muted-foreground leading-relaxed font-light text-sm">{description}</p>
-        </div>
-      </div>
-      
+    <div className="flex items-start gap-6">
+      <motion.div
+        className="flex-shrink-0 bg-muted p-3 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.2 }}
+      >
+        <Icon className="h-5 w-5" />
+      </motion.div>
       <div className="space-y-3">
-        {insights.map((insight, index) => (
-          <div key={index} className="flex items-start gap-3">
-            <div className="w-1.5 h-1.5 mt-2 bg-foreground group-hover:scale-125 transition-transform duration-200 flex-shrink-0" />
-            <p className="text-xs text-muted-foreground font-light leading-relaxed">{insight}</p>
-          </div>
-        ))}
+        <h3 className="text-lg font-light text-foreground">{title}</h3>
+        <p className="text-sm font-light leading-relaxed text-muted-foreground">
+          {take}
+        </p>
       </div>
     </div>
   </motion.div>
 );
 
 const AIStrategyInsights = () => {
-  const strategyInsights = [
+  const opinions = [
     {
-      title: "Agentic Strategic Moats",
-      description: "For CEOs & Founders: In the era of commoditized LLMs, defensibility shifts from the model to the orchestration. True moats are built through agentic workflows that integrate deeply with your proprietary data and business logic.",
       icon: Shield,
-      insights: [
-        "Orchestrate multi-step reasoning that competitors can't easily replicate",
-        "Build agents that resolve ambiguity through proprietary internal data",
-        "Create feedback loops where execution data compounds your advantage",
-        "Increase customer switching costs by embedding agents into core operations",
-        "Leverage RAG and Agentic Memory for persistent domain expertise"
-      ]
+      title: "The moat moved off the model",
+      take: "When every team can call the same models, the model stops being the moat. Defensibility lives in the orchestration: the workflows, the proprietary data your agents reason over, and the execution loops that compound the more they run. That is the part a competitor cannot copy by swapping in a new LLM.",
     },
     {
-      title: "The Shift to Agentic SaaS",
-      description: "For Product Leaders: Traditional SaaS is being replaced by Agentic systems that move from 'point and click' to 'instruct and execute'. The winners will be those who reimagine workflows where the software is the primary actor.",
       icon: TrendingUp,
-      insights: [
-        "Transform linear UIs into intent-driven autonomous agents",
-        "Build systems that proactively manage tasks instead of reacting to inputs",
-        "Focus on outcome-based value rather than seat-based licensing",
-        "Reduce operational friction by automating end-to-step decision logic",
-        "Reimagine high-value workflows through the lens of agentic autonomy"
-      ]
+      title: "From point and click to instruct and execute",
+      take: "SaaS is shifting from software you operate to software that operates for you. The products worth building are not bolting a chat box onto an old workflow; they rebuild the workflow so the software is the one doing the work. That changes the interface, the pricing, and what done even means.",
     },
     {
-      title: "ROI-Driven AI Engineering",
-      description: "For Technical Leaders: Building production-ready agents requires more than a prompt. It demands rigorous engineering around reliability, observability, and safety guardrails to ensure predictable business outcomes.",
       icon: Zap,
-      insights: [
-        "Implement robust error handling and self-correction in agent loops",
-        "Develop specialized evaluation frameworks for business performance",
-        "Build scalable infrastructure for long-running agentic tasks",
-        "Establish guardrails to prevent agent drift and recursive hallucination",
-        "Optimize Latency and Cost through strategic model orchestration"
-      ]
+      title: "Reliability is an engineering problem, not a model one",
+      take: "A demo that works once is not a product. Production agents need error handling, evaluation, guardrails, and observability: the unglamorous parts that decide whether a business can trust an agent with real work. Most failed Gen AI projects died here, long before the model was the limit.",
     },
     {
-      title: "AI-Native Strategic Architecture",
-      description: "Building the Foundation: Success in modern AI requires a fundamental rethink of the tech stack. It's not about adding AI as a feature, but building architectures that prioritize data flow and agentic autonomy.",
       icon: Target,
-      insights: [
-        "Design modular architectures for rapid LLM model swapping",
-        "Prioritize structured data output for reliable system integration",
-        "Build for agentic observability and trace-based debugging",
-        "Develop strategic data pipelines for fine-tuning and steering",
-        "Create defensible systems through integrated agent-tool ecosystems"
-      ]
-    }
+      title: "Build the stack AI native",
+      take: "Adding AI as a feature on top of an existing architecture rarely holds. The systems that last are designed around data flow and agent autonomy from day one: modular enough to swap models, structured enough that outputs are reliable, observable enough that you debug a trace instead of guessing.",
+    },
   ];
 
   return (
@@ -126,64 +93,51 @@ const AIStrategyInsights = () => {
         <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-6">
-        <motion.div 
+      <div className="relative mx-auto max-w-6xl px-6">
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="space-y-20"
         >
           {/* Section Header */}
-          <motion.div 
-            variants={itemVariants}
-            className="text-center"
-          >
-            <div className="space-y-8">
-              <div className="inline-block">
-                <span className="text-foreground font-light tracking-wider uppercase text-sm">AI Strategy</span>
-                <div className="h-px w-full bg-foreground mt-2" />
-              </div>
-              <h2 className="text-5xl md:text-6xl font-thin text-foreground">
-                Strategic AI Insights
-              </h2>
-              <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                Building successful AI products requires strategic thinking about defensibility, disruption, and value creation in an era of rapid technological change.
-              </p>
-            </div>
+          <motion.div variants={itemVariants} className="mb-16 max-w-2xl">
+            <Eyebrow>AI Strategy</Eyebrow>
+            <h2 className="mt-6 text-5xl font-thin tracking-tight text-foreground md:text-6xl">
+              A few opinions, strongly held
+            </h2>
+            <p className="mt-4 text-lg font-light leading-relaxed text-muted-foreground">
+              On where defensibility actually comes from, and why most AI
+              products stall before they reach production.
+            </p>
           </motion.div>
 
           {/* Insights Grid */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 gap-8 md:grid-cols-2"
           >
-            {strategyInsights.map((insight, index) => (
-              <InsightCard
-                key={index}
-                {...insight}
-              />
+            {opinions.map((insight) => (
+              <InsightCard key={insight.title} {...insight} />
             ))}
           </motion.div>
 
           {/* Playbook CTA */}
-          <motion.div 
-            variants={itemVariants}
-            className="text-center mt-16"
-          >
-            <div className="border border-border p-8 max-w-2xl mx-auto">
-              <h3 className="text-xl font-light text-foreground mb-4">
-                Comprehensive AI Product Development Framework
+          <motion.div variants={itemVariants} className="mt-16">
+            <div className="max-w-2xl border border-border p-8">
+              <h3 className="mb-4 text-xl font-light text-foreground">
+                The whole playbook
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6 font-light">
-                Get the complete strategic framework for building defensible AI products from concept to scale. 
-                Detailed playbook covering strategy, execution, launch, and growth phases.
+              <p className="mb-6 font-light leading-relaxed text-muted-foreground">
+                I wrote down the full framework I use to take AI products from
+                idea to scale: strategy, execution, launch, and growth. It is
+                long, opinionated, and free.
               </p>
               <a
                 href="/product-playbook"
-                className="inline-flex items-center gap-3 bg-foreground text-background hover:bg-foreground/80 px-8 py-4 font-light transition-all duration-300"
+                className="inline-flex items-center gap-3 bg-foreground px-8 py-4 font-light text-background transition-all duration-300 hover:bg-foreground/80"
               >
-                <span>View Complete Playbook</span>
+                <span>Read the playbook</span>
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>

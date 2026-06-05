@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, ChevronRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { StructuredData, PlaybookArticleSchema } from '@/components/StructuredData';
+import { Eyebrow } from '@/components/ui/eyebrow';
 
 const ProductPlaybook = () => {
   const [expandedPhase, setExpandedPhase] = useState<string | null>(null);
@@ -437,16 +438,16 @@ const ProductPlaybook = () => {
           </header>
 
       <div className="max-w-6xl mx-auto px-6 py-20">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-thin text-foreground mb-6">
-            AI & Gen AI Agents Playbook
+        <div className="mb-16 max-w-3xl">
+          <Eyebrow>Playbook</Eyebrow>
+          <h1 className="mt-6 text-5xl font-thin tracking-tight text-foreground md:text-6xl">
+            AI &amp; Gen AI Agents Playbook
           </h1>
-          <div className="h-px w-32 bg-foreground mx-auto mb-6" />
-          <p className="text-xl text-muted-foreground mb-4 font-light">
-            Cross-Cutting Themes → Strategy → Engineering → Orchestration → Scale
-          </p>
-          <p className="text-sm text-muted-foreground font-light">
-            Comprehensive framework for building production-ready agentic systems in an era of rapid disruption
+          <p className="mt-6 text-lg font-light leading-relaxed text-muted-foreground">
+            This is the actual checklist I work from when taking an AI product
+            from idea to scale: cross-cutting themes, then strategy, engineering,
+            orchestration, and growth. It is long on purpose. You are meant to
+            cherry-pick what fits your situation, not follow it like a recipe.
           </p>
         </div>
 
@@ -461,7 +462,7 @@ const ProductPlaybook = () => {
             </div>
             <div>
               <h4 className="font-light text-foreground mb-3">Engineering for Reliability</h4>
-              <p className="mb-4">90% of Gen AI experiments fail because they aren&apos;t engineered for production. This playbook focuses on the rigorous engineering required to make agents reliable, observable, and safe for enterprise deployment.</p>
+              <p className="mb-4">Most Gen AI experiments never make it to production, and it is usually an engineering problem rather than a model one. This playbook focuses on the work that makes agents reliable, observable, and safe enough for real enterprise use.</p>
               <p>Build products that fundamentally change how work gets done, creating new value chains through agentic autonomy.</p>
             </div>
           </div>
@@ -587,9 +588,6 @@ const ProductPlaybook = () => {
                   Binu Babu
                 </Link>
                 <p className="text-sm text-muted-foreground font-light">AI Product Consultant</p>
-                <p className="text-xs text-muted-foreground font-light mt-2">
-                  Trusted by companies to transform AI initiatives from concept to market success
-                </p>
               </div>
               <div className="text-right">
                 <p className="text-sm text-muted-foreground font-light">Contact</p>
@@ -606,8 +604,9 @@ const ProductPlaybook = () => {
             </div>
             <div className="mt-6 pt-6 border-t border-border">
               <p className="text-xs text-muted-foreground font-light text-center">
-                This playbook represents years of experience building AI products that drive real business value. 
-                Use it as a framework, adapt it to your context, and always prioritize customer outcomes over technical perfection.
+                Use it as a starting point, adapt it to your context, and lean
+                toward customer outcomes over technical perfection. If it helps,
+                let me know.
               </p>
             </div>
           </div>

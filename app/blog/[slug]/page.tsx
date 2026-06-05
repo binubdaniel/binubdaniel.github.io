@@ -74,7 +74,7 @@ export default async function BlogPostPage({
   const date = post.publishedAt ?? post.updatedAt;
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+    <main className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
       {/* Structured data for search + answer engines */}
       <script
         type="application/ld+json"

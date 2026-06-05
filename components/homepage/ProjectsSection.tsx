@@ -1,9 +1,10 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, Box, Terminal, Cpu, BookOpen, TrendingUp } from "lucide-react";
+import { Box, Terminal, Cpu, Brain } from "lucide-react";
 import { motion } from "framer-motion";
+import { Eyebrow } from "@/components/ui/eyebrow";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -11,9 +12,9 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.12,
-      duration: 0.6
-    }
-  }
+      duration: 0.6,
+    },
+  },
 };
 
 const itemVariants = {
@@ -23,27 +24,15 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number]
-    }
-  }
-};
-
-const impactVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut" as const
-    }
-  }
+      ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
+    },
+  },
 };
 
 interface ProjectCardProps {
   title: string;
   description: string;
-  impact: string[];
+  outcome: string;
   technologies: string[];
   icon: React.ComponentType<{ className?: string }>;
 }
@@ -51,95 +40,46 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
-  impact,
+  outcome,
   technologies,
-  icon: Icon
+  icon: Icon,
 }) => (
-  <motion.div 
+  <motion.div
     variants={itemVariants}
-    className="group border border-border p-8 hover:border-foreground transition-all duration-300 cursor-pointer"
+    className="group flex flex-col border border-border p-8 transition-all duration-300 hover:border-foreground"
     whileHover={{ y: -5 }}
   >
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-4">
-          <motion.div 
-            className="p-3 bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-300"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ duration: 0.2 }}
+    <div className="flex items-center gap-4">
+      <motion.div
+        className="bg-muted p-3 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ duration: 0.2 }}
+      >
+        <Icon className="h-6 w-6" />
+      </motion.div>
+      <h3 className="text-2xl font-light text-foreground">{title}</h3>
+    </div>
+
+    <p className="mt-6 font-light leading-relaxed text-muted-foreground">
+      {description}
+    </p>
+
+    <p className="mt-4 text-sm font-light leading-relaxed text-foreground/80">
+      {outcome}
+    </p>
+
+    <div className="mt-auto pt-8">
+      <div className="mb-4 h-px w-full bg-border" />
+      <div className="flex flex-wrap gap-2">
+        {technologies.map((tech) => (
+          <Badge
+            key={tech}
+            variant="secondary"
+            className="rounded-none border border-border px-3 py-1.5 font-light transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
           >
-            <Icon className="h-6 w-6" />
-          </motion.div>
-          <h3 className="text-2xl font-light text-foreground group-hover:text-foreground transition-colors duration-300">{title}</h3>
-        </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.2, rotate: 45 }}
-          transition={{ duration: 0.2 }}
-          className="p-2 bg-muted group-hover:bg-foreground group-hover:text-background transition-colors duration-300"
-        >
-          <ArrowUpRight className="h-5 w-5" />
-        </motion.div>
-      </div>
-
-      {/* Description */}
-      <p className="text-muted-foreground leading-relaxed font-light group-hover:text-foreground/80 transition-colors duration-300">
-        {description}
-      </p>
-
-      {/* Impact Metrics */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <TrendingUp className="h-4 w-4 text-foreground" />
-          <span className="text-sm font-light text-foreground uppercase tracking-wider">Impact</span>
-        </div>
-        <motion.div 
-          className="grid grid-cols-2 gap-4"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {impact.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={impactVariants}
-              className="group/impact"
-            >
-              <div className="p-4 border border-border hover:border-foreground hover:scale-105 transition-all duration-200 text-center">
-                <div className="flex items-center justify-center gap-2">
-                  <div className="w-2 h-2 bg-foreground group-hover/impact:scale-125 transition-transform duration-200" />
-                  <p className="text-sm text-foreground/80 font-light group-hover/impact:text-foreground transition-colors duration-200">{item}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Technologies */}
-      <div className="space-y-4">
-        <div className="h-px w-full bg-border" />
-        <div className="flex flex-wrap gap-2">
-          {technologies.map((tech, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Badge 
-                variant="secondary"
-                className="px-3 py-1.5 rounded-none font-light border border-border hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-200"
-              >
-                {tech}
-              </Badge>
-            </motion.div>
-          ))}
-        </div>
+            {tech}
+          </Badge>
+        ))}
       </div>
     </div>
   </motion.div>
@@ -149,52 +89,40 @@ const ProjectsSection = () => {
   const projects = [
     {
       title: "Agentic Support Orchestrator",
-      description: "A multi-agent system that autonomously handles Tier 1 & 2 support tickets by coordinating between RAG, CRM tools, and self-correction loops.",
-      impact: [
-        "75% Resolution Rate",
-        "85% Operational ROI",
-        "Sub-30s Avg Response",
-        "92% Hallucination-Free"
-      ],
+      description:
+        "A multi-agent system that handles Tier 1 and 2 support tickets on its own, coordinating retrieval, CRM tools, and self-correction loops.",
+      outcome:
+        "In production it resolves about 75 percent of those tickets without a human, usually in under 30 seconds, and stays hallucination-free roughly 92 percent of the time.",
       technologies: ["LangGraph", "OpenAI", "Python", "Pinecone"],
-      icon: Cpu
+      icon: Cpu,
     },
     {
       title: "Autonomous Engineering Agent",
-      description: "An AI agent engineered to perform complex codebase refactoring and documentation generation by understanding cross-file dependencies and logic.",
-      impact: [
-        "60% Faster Refactoring",
-        "100% Doc Coverage",
-        "Zero Logic Regressions",
-        "95% Engineer Approval"
-      ],
-      technologies: ["Claude 3.5", "TypeScript", "Tree-sitter", "Node.js"],
-      icon: Terminal
+      description:
+        "An agent that takes on real codebase refactoring and documentation by actually understanding cross-file dependencies, not just pattern matching.",
+      outcome:
+        "It refactors around 60 percent faster than doing it by hand, documents everything it touches, and ships without logic regressions. Engineers approved its changes about 95 percent of the time.",
+      technologies: ["Claude", "TypeScript", "Tree-sitter", "Node.js"],
+      icon: Terminal,
     },
     {
-      title: "Hybrid RAG Knowledge Graph",
-      description: "A production-grade RAG system that combines vector search with GraphDB to enable complex reasoning over structured and unstructured data.",
-      impact: [
-        "40% Accuracy Lift",
-        "Complex Query Support",
-        "Zero-Shot Success",
-        "Real-time Updates"
-      ],
+      title: "Enterprise Brain",
+      description:
+        "A knowledge graph and RAG system that acts as a company's single source of truth, connecting scattered documents, tickets, and databases so people can ask hard, cross-system questions and get grounded answers.",
+      outcome:
+        "Pairing a graph database with vector search lifted answer accuracy about 40 percent and made genuinely multi-hop questions answerable, with the graph staying current as the underlying data changes.",
       technologies: ["Neo4j", "LlamaIndex", "FastAPI", "React"],
-      icon: BookOpen
+      icon: Brain,
     },
     {
       title: "Gen AI Performance Engine",
-      description: "A specialized middleware for LLM orchestration that handles load balancing, semantic caching, and dynamic model routing to optimize cost and latency.",
-      impact: [
-        "65% Cost Reduction",
-        "40% Latency Drop",
-        "99.9% Uptime",
-        "3M+ Tokens/Day"
-      ],
+      description:
+        "Middleware for LLM orchestration: load balancing, semantic caching, and dynamic model routing to keep cost and latency under control at scale.",
+      outcome:
+        "Caching and routing cut model cost about 65 percent and latency about 40 percent, holding steady at over 3 million tokens a day.",
       technologies: ["Go", "Redis", "Prometheus", "Docker"],
-      icon: Box
-    }
+      icon: Box,
+    },
   ];
 
   return (
@@ -204,7 +132,7 @@ const ProjectsSection = () => {
         <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-6">
+      <div className="relative mx-auto max-w-6xl px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -212,31 +140,24 @@ const ProjectsSection = () => {
           variants={containerVariants}
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="mb-16 text-center">
-            <div className="space-y-8">
-              <div className="inline-block">
-                <span className="text-foreground font-light tracking-wider uppercase text-sm">Projects</span>
-                <div className="h-px w-full bg-foreground mt-2" />
-              </div>
-              <h2 className="text-5xl md:text-6xl font-thin text-foreground">
-                Featured Work
-              </h2>
-              <p className="text-muted-foreground text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                Innovative solutions driving real-world impact through advanced technology and thoughtful design.
-              </p>
-            </div>
+          <motion.div variants={itemVariants} className="mb-16 max-w-2xl">
+            <Eyebrow>Projects</Eyebrow>
+            <h2 className="mt-6 text-5xl font-thin tracking-tight text-foreground md:text-6xl">
+              Things I have built
+            </h2>
+            <p className="mt-4 text-lg font-light leading-relaxed text-muted-foreground">
+              A few systems that made it past the demo and into production, where
+              the numbers actually have to hold up.
+            </p>
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 gap-8 md:grid-cols-2"
           >
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={index}
-                {...project}
-              />
+            {projects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
             ))}
           </motion.div>
         </motion.div>

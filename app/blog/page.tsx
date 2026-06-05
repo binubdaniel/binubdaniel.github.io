@@ -7,7 +7,7 @@ import { SITE_URL } from "@/lib/site";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { FadeIn } from "@/components/ui/fade-in";
 
-// Rendered per request (reads the DB) — avoids any build-time DB dependency.
+// Rendered per request (reads the DB). Avoids any build-time DB dependency.
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default async function BlogIndexPage() {
   });
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-24 sm:py-32">
+    <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <header className="mb-16">
         <Eyebrow>Writing</Eyebrow>
         <h1 className="mt-6 text-4xl font-thin tracking-tight text-foreground sm:text-5xl">
@@ -48,7 +48,7 @@ export default async function BlogIndexPage() {
 
       {posts.length === 0 ? (
         <p className="font-light text-muted-foreground">
-          No posts yet — check back soon.
+          No posts yet. Check back soon.
         </p>
       ) : (
         <ul className="border-t border-border">

@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import {
   Linkedin,
@@ -9,7 +8,7 @@ import {
   Rocket,
   CalendarCheck,
   Target,
-  TrendingUp
+  TrendingUp,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -17,31 +16,15 @@ import Link from "next/link";
 import { ThemeSwitcher } from "../theme-switcher";
 
 const HeroSection = () => {
-  const [currentPhrase, setCurrentPhrase] = useState(0);
-  const bookPhrases = [
-    "From LLM Wrappers to Agentic Workflows",
-    "Architecting Defensible AI Moats",
-    "Engineering for Production Reliability",
-    "Strategic Advisory for AI-Native Leaders"
-  ];
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPhrase((prev) => (prev + 1) % bookPhrases.length);
-    }, 3500);
-    
-    return () => clearInterval(interval);
-  }, [bookPhrases.length]);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        duration: 0.8
-      }
-    }
+        duration: 0.8,
+      },
+    },
   };
 
   const itemVariants = {
@@ -51,11 +34,10 @@ const HeroSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number]
-      }
-    }
+        ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
+      },
+    },
   };
-
 
   return (
     <section className="relative min-h-screen bg-background text-foreground overflow-hidden">
@@ -77,7 +59,7 @@ const HeroSection = () => {
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full py-20"
         >
           {/* Left Column */}
-          <div className="space-y-12">
+          <div className="space-y-10">
             <motion.div variants={itemVariants} className="space-y-8">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -90,27 +72,27 @@ const HeroSection = () => {
                 </h1>
                 <div className="h-px w-32 bg-foreground" />
                 <p className="text-xl md:text-2xl text-muted-foreground font-light">
-                  AI Product Consultant
+                  AI Product Manager @Techjays
                 </p>
-                <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed font-light">
-                  Advising CEOs, Founders, and Product Leaders on building defensible, production-grade AI systems. {" "}
-                  <span className="text-foreground font-medium">The AI landscape is moving from chat to orchestrators. Are you ready?</span>
+                <p className="text-lg text-foreground max-w-2xl leading-relaxed font-light">
+                  Most AI products stall in the gap between a working demo and
+                  something you can ship. I help founders and product leaders
+                  close it, building agentic systems that are reliable,
+                  defensible, and genuinely production grade. The moat was never
+                  the model. It is the orchestration around it.
                 </p>
               </motion.div>
             </motion.div>
 
-            {/* Expertise Badges */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap gap-4"
-            >
+            {/* What I work on */}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Badge className="px-4 py-2 bg-foreground text-background border border-foreground rounded-none font-light hover:bg-foreground/80 transition-all duration-300">
                 <Target className="mr-2 h-4 w-4" />
                 Product Strategy
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <TrendingUp className="mr-2 h-4 w-4" />
-                Growth & Scale
+                Growth &amp; Scale
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <Rocket className="mr-2 h-4 w-4" />
@@ -122,64 +104,41 @@ const HeroSection = () => {
               </Badge>
             </motion.div>
 
-            {/* Contact Section */}
-            <motion.div
-              variants={itemVariants}
-              className="space-y-6"
-            >
-              <div className="space-y-4">
-                <h3 className="text-xl font-light text-foreground">Expert Consulting</h3>
-                <motion.p
-                  key={currentPhrase}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-foreground font-medium text-lg"
-                >
-                  {bookPhrases[currentPhrase]}
-                </motion.p>
-              </div>
-              
-              <p className="text-muted-foreground leading-relaxed">
-                Proven track record of delivering AI products that create defensible moats, 
-                drive sustainable growth, and establish market leadership through strategic 
-                product development and data-driven decision making.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+            {/* CTAs */}
+            <motion.div variants={itemVariants}>
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
                 <a
                   href="https://calendar.app.google/8aUmjsXDvFni8wF38"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-foreground text-background hover:bg-foreground/80 px-8 py-4 font-light transition-all duration-300"
+                  className="inline-flex items-center gap-3 whitespace-nowrap bg-foreground px-8 py-4 font-light text-background transition-all duration-300 hover:bg-foreground/80"
                 >
-                  <span>Book a Strategy Call</span>
+                  Book a Strategy Call
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                
+
                 <a
                   href="/product-playbook"
-                  className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-all duration-300 font-light"
+                  className="whitespace-nowrap font-light text-muted-foreground transition-all duration-300 hover:text-foreground"
                 >
-                  <span>AI Playbook</span>
+                  AI Playbook
                 </a>
 
                 <Link
                   href="/blog"
-                  className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-all duration-300 font-light"
+                  className="whitespace-nowrap font-light text-muted-foreground transition-all duration-300 hover:text-foreground"
                 >
-                  <span>Blog</span>
+                  Blog
                 </Link>
 
                 <a
                   href="https://linkedin.com/in/binubdaniel"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-all duration-300 font-light"
+                  className="inline-flex items-center gap-2 whitespace-nowrap font-light text-muted-foreground transition-all duration-300 hover:text-foreground"
                 >
-                  <Linkedin className="w-5 h-5" />
-                  <span>LinkedIn</span>
+                  <Linkedin className="h-5 w-5" />
+                  LinkedIn
                 </a>
               </div>
             </motion.div>
@@ -208,7 +167,7 @@ const HeroSection = () => {
                 />
               </div>
             </motion.div>
-            
+
             {/* Availability Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -221,9 +180,12 @@ const HeroSection = () => {
                   <CalendarCheck className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-light text-foreground mb-2">Available for Consulting</h4>
+                  <h4 className="text-sm font-light text-foreground mb-2">
+                    Let&apos;s connect
+                  </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed font-light">
-                    Ready to help transform your AI product development approach.
+                    If you are stuck between a promising prototype and a real
+                    product, that is exactly where I like to work.
                   </p>
                 </div>
               </div>
