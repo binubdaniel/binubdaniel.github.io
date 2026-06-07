@@ -44,20 +44,23 @@ const InsightCard: React.FC<InsightCardProps> = ({
     className="group border border-border p-8 transition-all duration-300 hover:border-foreground"
     whileHover={{ y: -2 }}
   >
-    <div className="flex items-start gap-6">
+    {/* Grid: on mobile, icon + heading share the top row and the body runs the
+        full card width below; on md+, the icon sits left of a stacked
+        heading/body column. */}
+    <div className="grid grid-cols-[auto_1fr] items-start gap-x-4 gap-y-3 md:gap-x-6">
       <motion.div
-        className="flex-shrink-0 bg-muted p-3 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
+        className="bg-muted p-3 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
         whileHover={{ scale: 1.1 }}
         transition={{ duration: 0.2 }}
       >
         <Icon className="h-5 w-5" />
       </motion.div>
-      <div className="space-y-3">
-        <h3 className="text-lg font-light text-foreground">{title}</h3>
-        <p className="text-sm font-light leading-relaxed text-muted-foreground">
-          {take}
-        </p>
-      </div>
+      <h3 className="self-center text-lg font-light text-foreground md:self-start">
+        {title}
+      </h3>
+      <p className="col-span-2 text-sm font-light leading-relaxed text-muted-foreground md:col-span-1 md:col-start-2">
+        {take}
+      </p>
     </div>
   </motion.div>
 );
