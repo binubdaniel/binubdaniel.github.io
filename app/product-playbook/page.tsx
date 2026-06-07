@@ -69,7 +69,7 @@ const ProductPlaybook = () => {
             { title: "Defensibility Framework", desc: "Build moats through data network effects, proprietary workflows, and domain expertise. Focus on creating switching costs and unique value propositions" },
             { title: "Value Chain Innovation", desc: "Identify new value chains that AI enables. Don't just automate existing processes; reimagine entire workflows and create new business models" },
             { title: "Competitive Differentiation", desc: "Move beyond feature parity to fundamental workflow transformation. Build products that competitors can't easily replicate due to data advantages" },
-            { title: "Ethical AI Governance", desc: "Establish responsible AI practices, bias detection, transparency, and review processes as a principle from day one. The implementation (guardrails, evals, human-in-the-loop) lives in the Agentic Engineering layer" }
+            { title: "Ethical AI Governance", desc: "Establish responsible AI practices, bias detection, transparency, and review processes as a principle from day one. The implementation (guardrails, evals, human-in-the-loop) lives in the Agentic Engineering section of Phase 2" }
           ]
         }
       ]
@@ -174,7 +174,7 @@ const ProductPlaybook = () => {
           items: [
             { title: "Data Strategy", desc: "Training data collection, labeling, quality, and synthetic data. Most agentic products need none of this; reach for a custom model only when prompting plus retrieval provably falls short" },
             { title: "Model Development", desc: "Algorithm selection, training or fine-tuning pipeline, hyperparameter tuning. Weigh it against the cost of staying on a frontier API you do not have to maintain" },
-            { title: "Orchestration, Evals & Guardrails", desc: "The production concerns (tracing, evaluation, guardrails, MLOps, human-in-the-loop) live in the Agentic Engineering phase below. This is where most of the real reliability work happens" }
+            { title: "Orchestration, Evals & Guardrails", desc: "The production concerns (tracing, evaluation, guardrails, MLOps, human-in-the-loop) live in the Agentic Engineering section below. This is where most of the real reliability work happens" }
           ]
         },
         {
@@ -216,8 +216,8 @@ const ProductPlaybook = () => {
       ]
     },
     agentic: {
-      title: "Agentic Engineering",
-      subtitle: "Make Agents Reliable Enough for Production",
+      title: "Phase 2 · Agentic Engineering",
+      subtitle: "The Engineering Core of Build",
       gotcha: "The demo that works once is not the product. Almost every failed Gen AI project died here: no evals, no tracing, no guardrails, so nobody could tell why it broke or trust it with real work.",
       sections: [
         {
@@ -581,8 +581,8 @@ const ProductPlaybook = () => {
             <div>
               <h3 className="text-lg font-light text-foreground mb-4">How to Use This Playbook</h3>
               <ul className="space-y-3 text-sm text-muted-foreground font-light">
-                    <li><strong className="text-foreground">Two layers, four phases</strong>: Cross-Cutting Themes and Agentic Engineering are layers you apply throughout; Strategy, Build, Launch, and Scale run in sequence</li>
-                    <li><strong className="text-foreground">Start with Cross-Cutting Themes</strong>: Establish these foundational elements before Phase 1, and apply Agentic Engineering while you build</li>
+                    <li><strong className="text-foreground">Foundations, then four phases</strong>: Cross-Cutting Themes apply throughout; Strategy, Build, Launch, and Scale run in sequence. Phase 2 has two parts: the general Build work and the Agentic Engineering that makes AI products reliable</li>
+                    <li><strong className="text-foreground">Start with Cross-Cutting Themes</strong>: Establish these foundational elements before Phase 1</li>
                     <li><strong className="text-foreground">Sequential but Iterative</strong>: Follow the phases in order, but expect to loop back as you learn</li>
                     <li><strong className="text-foreground">Customize for Context</strong>: Not every item applies to every product. Prioritize based on your needs</li>
                     <li><strong className="text-foreground">Metrics-Driven</strong>: Define success metrics at each phase and track religiously</li>
@@ -592,7 +592,7 @@ const ProductPlaybook = () => {
           </div>
         </div>
 
-        {/* Table of contents: jump to any layer or phase (expands + scrolls). */}
+        {/* Table of contents: jump to any section (expands + scrolls). */}
         <nav aria-label="Playbook contents" className="mb-12 border border-border p-8">
           <h3 className="mb-6 text-xl font-light text-foreground">Jump to a section</h3>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
