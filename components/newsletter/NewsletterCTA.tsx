@@ -6,7 +6,20 @@ import { Input } from "@/components/ui/input";
 
 type Status = "idle" | "loading" | "done" | "error";
 
-export function NewsletterCTA() {
+interface NewsletterCTAProps {
+  /** Heading copy. Defaults to the blog "new posts" framing. */
+  title?: string;
+  /** Supporting line under the heading. */
+  description?: string;
+  /** Submit button label. */
+  buttonLabel?: string;
+}
+
+export function NewsletterCTA({
+  title = "Get new posts by email",
+  description = "No spam. Just the occasional note when I publish something worth your time.",
+  buttonLabel = "Subscribe",
+}: NewsletterCTAProps = {}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -35,11 +48,10 @@ export function NewsletterCTA() {
   return (
     <section className="mt-16 border-t border-border pt-10">
       <h2 className="text-2xl font-thin tracking-tight text-foreground">
-        Get new posts by email
+        {title}
       </h2>
       <p className="mt-2 max-w-xl font-light leading-relaxed text-muted-foreground">
-        No spam. Just the occasional note when I publish something worth your
-        time.
+        {description}
       </p>
 
       {status === "done" ? (
@@ -56,7 +68,7 @@ export function NewsletterCTA() {
             aria-label="Email address"
           />
           <Button type="submit" disabled={status === "loading" || !email.trim()}>
-            {status === "loading" ? "Subscribing…" : "Subscribe"}
+            {status === "loading" ? "Subscribing…" : buttonLabel}
           </Button>
         </form>
       )}

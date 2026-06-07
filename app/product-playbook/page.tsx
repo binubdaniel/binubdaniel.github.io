@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ChevronDown, ChevronRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ChevronDown, ChevronRight, CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
 import { StructuredData, PlaybookArticleSchema } from '@/components/StructuredData';
 import { Eyebrow } from '@/components/ui/eyebrow';
+import { NewsletterCTA } from '@/components/newsletter/NewsletterCTA';
 
 const ProductPlaybook = () => {
   const [expandedPhase, setExpandedPhase] = useState<string | null>(null);
@@ -14,7 +15,7 @@ const ProductPlaybook = () => {
     crossCutting: {
       title: "Cross-Cutting Themes",
       subtitle: "Foundational Elements Across All Phases",
-      color: "bg-yellow-50 border-yellow-300",
+      gotcha: "Most teams treat these as docs to write later. The ones that ship wire up analytics, feedback, and risk tracking before the first line of product code, because retrofitting them hurts.",
       sections: [
         {
           name: "Customer Feedback & Research",
@@ -68,8 +69,7 @@ const ProductPlaybook = () => {
             { title: "Defensibility Framework", desc: "Build moats through data network effects, proprietary workflows, and domain expertise. Focus on creating switching costs and unique value propositions" },
             { title: "Value Chain Innovation", desc: "Identify new value chains that AI enables. Don't just automate existing processes; reimagine entire workflows and create new business models" },
             { title: "Competitive Differentiation", desc: "Move beyond feature parity to fundamental workflow transformation. Build products that competitors can't easily replicate due to data advantages" },
-            { title: "Ethical AI Governance", desc: "Establish responsible AI practices, bias detection, transparency measures, and ethical review processes from day one" },
-            { title: "Technical Architecture", desc: "Design for AI-first: scalable ML infrastructure, real-time inference, model versioning, and continuous learning capabilities" }
+            { title: "Ethical AI Governance", desc: "Establish responsible AI practices, bias detection, transparency, and review processes as a principle from day one. The implementation (guardrails, evals, human-in-the-loop) lives in the Agentic Engineering layer" }
           ]
         }
       ]
@@ -77,7 +77,7 @@ const ProductPlaybook = () => {
     strategy: {
       title: "Phase 1: Strategy",
       subtitle: "Define the What and Why",
-      color: "bg-blue-50 border-blue-200",
+      gotcha: "The common mistake is falling in love with a solution before validating the problem. If you cannot quantify how big and how painful the problem is, you are not ready to build.",
       sections: [
         {
           name: "Vision & Mission",
@@ -144,7 +144,7 @@ const ProductPlaybook = () => {
     build: {
       title: "Phase 2: Build (Product Execution)",
       subtitle: "Build and Validate",
-      color: "bg-green-50 border-green-200",
+      gotcha: "Teams over-invest in architecture and under-invest in shipping something real users touch. A perfect system nobody has tried is just an expensive guess.",
       sections: [
         {
           name: "Development Planning",
@@ -170,13 +170,11 @@ const ProductPlaybook = () => {
           ]
         },
         {
-          name: "AI/ML Development (If Applicable)",
+          name: "Custom Models & Fine-Tuning (If Applicable)",
           items: [
-            { title: "Data Strategy", desc: "Training data collection, labeling, quality, synthetic data" },
-            { title: "Model Development", desc: "Algorithm selection, training pipeline, hyperparameter tuning" },
-            { title: "MLOps Setup", desc: "Model versioning, deployment pipeline, monitoring, retraining" },
-            { title: "AI Ethics & Bias", desc: "Fairness assessment, bias detection, transparency, explainability" },
-            { title: "Responsible AI", desc: "Safety guardrails, human-in-the-loop, feedback mechanisms" }
+            { title: "Data Strategy", desc: "Training data collection, labeling, quality, and synthetic data. Most agentic products need none of this; reach for a custom model only when prompting plus retrieval provably falls short" },
+            { title: "Model Development", desc: "Algorithm selection, training or fine-tuning pipeline, hyperparameter tuning. Weigh it against the cost of staying on a frontier API you do not have to maintain" },
+            { title: "Orchestration, Evals & Guardrails", desc: "The production concerns (tracing, evaluation, guardrails, MLOps, human-in-the-loop) live in the Agentic Engineering phase below. This is where most of the real reliability work happens" }
           ]
         },
         {
@@ -217,10 +215,88 @@ const ProductPlaybook = () => {
         }
       ]
     },
+    agentic: {
+      title: "Agentic Engineering",
+      subtitle: "Make Agents Reliable Enough for Production",
+      gotcha: "The demo that works once is not the product. Almost every failed Gen AI project died here: no evals, no tracing, no guardrails, so nobody could tell why it broke or trust it with real work.",
+      sections: [
+        {
+          name: "Agent Orchestration & Control Flow",
+          items: [
+            { title: "Topology Decision", desc: "Start with the simplest thing that works: a single agent with good tools beats a multi-agent swarm until you can prove you need handoffs. Add agents for separation of concerns, not because it demos well" },
+            { title: "Workflow vs Autonomy", desc: "Use deterministic, coded workflows for steps you already understand; reserve open-ended agent loops for the genuinely ambiguous parts. The most reliable systems are mostly workflow with a small autonomous core" },
+            { title: "Explicit State Management", desc: "Make agent state a structured object you can log, inspect, and replay, not something buried in conversation history. Recursive loops need a termination condition and a step budget or they run forever" },
+            { title: "Routing & Decomposition", desc: "Break complex tasks into a planner that decomposes and workers that execute. Route by intent and difficulty so easy requests never hit your most expensive path" },
+            { title: "Loop Control", desc: "Cap iterations, detect no-progress loops, and define explicit success and failure exits. An agent that cannot finish is worse than one that fails fast" }
+          ]
+        },
+        {
+          name: "Context Engineering & Memory",
+          items: [
+            { title: "Context Budgeting", desc: "Treat the context window as a scarce budget, not a dumping ground. More context is not better; irrelevant tokens degrade reasoning and cost money. Curate ruthlessly" },
+            { title: "Retrieval (RAG) Quality", desc: "Retrieval quality, not the LLM, is usually the bottleneck. Invest in chunking, embeddings, and re-ranking, and evaluate retrieval on its own before blaming the model" },
+            { title: "Memory Layers", desc: "Separate short-term (this task), long-term (durable facts), and episodic memory. Decide what persists, what expires, and how memory gets written, or it becomes noise" },
+            { title: "Prompt & Instruction Design", desc: "Version system prompts like code. Be specific, give examples, and state what the agent must not do. Tool descriptions are prompts too: vague schemas cause bad calls" },
+            { title: "Grounding & Citations", desc: "Force answers to cite retrieved sources so outputs are checkable and hallucinations become visible. Ungrounded confidence is the failure mode that erodes trust fastest" }
+          ]
+        },
+        {
+          name: "Tool & Action Design",
+          items: [
+            { title: "Tool Schema Design", desc: "Tools are the agent's API to the world. Clear names, typed arguments, and tight descriptions matter more than model choice for reliable tool-calling" },
+            { title: "Idempotency & Side Effects", desc: "Assume the agent will retry, double-call, or call out of order. Make write actions idempotent and reversible where possible; never let a retry charge a card twice" },
+            { title: "Least-Privilege Permissions", desc: "Give each tool only the access it needs. An agent with broad write access is a security incident waiting to happen" },
+            { title: "Error Handling & Recovery", desc: "Return structured, actionable errors the agent can reason about, not raw stack traces. How a tool fails decides whether the agent recovers or spirals" },
+            { title: "Approval Gates", desc: "Put irreversible or high-stakes actions (moving money, emailing customers, deleting data) behind explicit human or policy approval" }
+          ]
+        },
+        {
+          name: "Evaluation & Testing",
+          items: [
+            { title: "Eval Harness First", desc: "Build the eval before you optimize. Without a way to measure task success you are tuning prompts by vibes. This is the single highest-leverage investment in an agent project" },
+            { title: "Golden Datasets", desc: "Curate representative test cases, including the messy and adversarial ones. Grow the set every time you find a failure in production" },
+            { title: "LLM-as-Judge", desc: "Use models to grade open-ended outputs against rubrics for scale, but calibrate the judge against human labels so you can trust the score" },
+            { title: "Regression Testing in CI", desc: "Every prompt, model, or tool change can silently break something that worked. Run evals in CI and gate releases on them" },
+            { title: "Offline vs Online Eval", desc: "Offline evals catch regressions before ship; online signals (task completion, escalation rate, thumbs-down) tell you what actually happens with real users. You need both" }
+          ]
+        },
+        {
+          name: "Observability & Tracing",
+          items: [
+            { title: "End-to-End Tracing", desc: "Trace every run as a tree of steps: prompts, tool calls, retrievals, outputs. When an agent misbehaves you debug the trace instead of guessing. Non-negotiable for production" },
+            { title: "Cost & Latency Telemetry", desc: "Track tokens, dollars, and latency per step and per task, not just per request. This is where margins live or die" },
+            { title: "Prompt & Completion Logging", desc: "Log inputs and outputs (with PII handling) so you can reproduce failures and mine real usage for new eval cases" },
+            { title: "Drift & Quality Monitoring", desc: "Watch for silent degradation from provider model updates, data drift, and prompt rot. Alert on success-rate drops, not just errors" },
+            { title: "Replay & Debugging", desc: "Be able to replay a failed run with the same inputs. Reproducibility turns a flaky bug report into a fixable test case" }
+          ]
+        },
+        {
+          name: "Guardrails, Safety & Reliability",
+          items: [
+            { title: "Input & Output Validation", desc: "Validate structured outputs against a schema and reject or repair malformed responses before they reach downstream systems" },
+            { title: "Prompt Injection Defense", desc: "Treat all retrieved and user content as untrusted. Anything in the context can try to hijack the agent; isolate instructions from data and constrain what tools untrusted input can trigger" },
+            { title: "Hallucination Mitigation", desc: "Ground answers in retrieval, let the model abstain when unsure, and verify critical facts with a tool rather than trusting generation" },
+            { title: "Fallbacks & Graceful Degradation", desc: "Plan for the model being slow, wrong, or down: timeouts, retries with backoff, model fallback routing, and a safe default when all else fails" },
+            { title: "PII & Content Safety", desc: "Redact sensitive data on the way in and filter unsafe content on the way out. Compliance is a launch blocker, not a follow-up" }
+          ]
+        },
+        {
+          name: "Cost, Latency & Human-in-the-Loop",
+          items: [
+            { title: "Model Tiering", desc: "Route with a cheap, fast model and escalate to an expensive one only for hard steps. Paying frontier prices for trivial calls kills unit economics" },
+            { title: "Caching & Reuse", desc: "Cache prompts, embeddings, and tool results aggressively. Prompt caching and memoized retrieval cut both cost and latency" },
+            { title: "Latency Engineering", desc: "Stream responses, parallelize independent tool calls, and precompute what you can. Perceived speed is part of the product" },
+            { title: "Unit Economics per Task", desc: "Know your fully-loaded cost per completed task and how it scales with usage. AI features can run negative margins at scale if you do not" },
+            { title: "Human-in-the-Loop Design", desc: "Decide where humans review, correct, or approve, and use confidence thresholds to escalate only the uncertain cases" },
+            { title: "Feedback Loops", desc: "Wire thumbs-up/down and corrections back into evals and fine-tuning. The compounding advantage comes from the loop, not the base model" }
+          ]
+        }
+      ]
+    },
     launch: {
       title: "Phase 3: Launch (GTM)",
       subtitle: "Go to Market",
-      color: "bg-purple-50 border-purple-200",
+      gotcha: "Most launches over-index on the launch-day spike and under-build the boring machine (onboarding, sales enablement, support) that turns attention into retained customers.",
       sections: [
         {
           name: "Market & Competitive Intelligence",
@@ -301,7 +377,7 @@ const ProductPlaybook = () => {
     scale: {
       title: "Phase 4: Scale (Post Launch)",
       subtitle: "Grow and Optimize",
-      color: "bg-orange-50 border-orange-200",
+      gotcha: "The trap is chasing new acquisition while a leaky retention bucket drains it. Fix activation and retention before you pour money into the top of the funnel.",
       sections: [
         {
           name: "Product-Market Fit Validation",
@@ -404,6 +480,36 @@ const ProductPlaybook = () => {
     setExpandedPhase(expandedPhase === phase ? null : phase);
   };
 
+  // Expand a phase and scroll it into view; used by the table of contents and
+  // by deep links (e.g. /product-playbook#scale).
+  const goToPhase = useCallback((phase: string) => {
+    setExpandedPhase(phase);
+    if (typeof window !== "undefined" && window.history.replaceState) {
+      window.history.replaceState(null, "", `#${phase}`);
+    }
+    // Defer the scroll so the phase has rendered its expanded content first.
+    requestAnimationFrame(() => {
+      document
+        .getElementById(`phase-${phase}`)
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, []);
+
+  // On load, honor a deep link to a specific phase.
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && hash in playbook) {
+      setExpandedPhase(hash);
+      requestAnimationFrame(() => {
+        document
+          .getElementById(`phase-${hash}`)
+          ?.scrollIntoView({ block: "start" });
+      });
+    }
+    // playbook is a stable literal defined in render; intentionally run once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const toggleSection = (phase: string, section: number) => {
     const key = `${phase}-${section}`;
     setExpandedSection(prev => ({
@@ -475,8 +581,9 @@ const ProductPlaybook = () => {
             <div>
               <h3 className="text-lg font-light text-foreground mb-4">How to Use This Playbook</h3>
               <ul className="space-y-3 text-sm text-muted-foreground font-light">
-                    <li><strong className="text-foreground">Start with Cross-Cutting Themes</strong>: These foundational elements should be established before Phase 1</li>
-                    <li><strong className="text-foreground">Sequential but Iterative</strong>: Follow phases in order, but expect to loop back as you learn</li>
+                    <li><strong className="text-foreground">Two layers, four phases</strong>: Cross-Cutting Themes and Agentic Engineering are layers you apply throughout; Strategy, Build, Launch, and Scale run in sequence</li>
+                    <li><strong className="text-foreground">Start with Cross-Cutting Themes</strong>: Establish these foundational elements before Phase 1, and apply Agentic Engineering while you build</li>
+                    <li><strong className="text-foreground">Sequential but Iterative</strong>: Follow the phases in order, but expect to loop back as you learn</li>
                     <li><strong className="text-foreground">Customize for Context</strong>: Not every item applies to every product. Prioritize based on your needs</li>
                     <li><strong className="text-foreground">Metrics-Driven</strong>: Define success metrics at each phase and track religiously</li>
                     <li><strong className="text-foreground">Cross-Functional</strong>: This requires engineering, design, sales, marketing, and support throughout</li>
@@ -485,11 +592,34 @@ const ProductPlaybook = () => {
           </div>
         </div>
 
+        {/* Table of contents: jump to any layer or phase (expands + scrolls). */}
+        <nav aria-label="Playbook contents" className="mb-12 border border-border p-8">
+          <h3 className="mb-6 text-xl font-light text-foreground">Jump to a section</h3>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {Object.entries(playbook).map(([key, phase]) => (
+              <button
+                key={key}
+                onClick={() => goToPhase(key)}
+                className="group flex items-start justify-between gap-3 border border-border p-4 text-left transition-all hover:border-foreground"
+              >
+                <span>
+                  <span className="block font-light text-foreground">{phase.title}</span>
+                  <span className="mt-1 block text-sm font-light text-muted-foreground">
+                    {phase.subtitle}
+                  </span>
+                </span>
+                <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
+              </button>
+            ))}
+          </div>
+        </nav>
+
         <div className="space-y-6">
           {Object.entries(playbook).map(([key, phase]) => (
             <div
               key={key}
-              className={`border border-border overflow-hidden`}
+              id={`phase-${key}`}
+              className={`scroll-mt-6 border border-border overflow-hidden`}
             >
               <button
                 onClick={() => togglePhase(key)}
@@ -508,6 +638,13 @@ const ProductPlaybook = () => {
 
               {expandedPhase === key && (
                 <div className="bg-background border-t border-border">
+                  {/* Point-of-view callout: the opinionated take for this phase. */}
+                  <div className="border-b border-border bg-muted/40 px-8 py-5">
+                    <p className="text-sm font-light leading-relaxed text-muted-foreground">
+                      <span className="font-medium text-foreground">What most teams get wrong: </span>
+                      {phase.gotcha}
+                    </p>
+                  </div>
                   {phase.sections.map((section, idx) => (
                     <div key={idx} className="border-b border-border last:border-b-0">
                       <button
@@ -574,6 +711,33 @@ const ProductPlaybook = () => {
               <p>Break down silos, align teams, and work together toward shared goals. AI products require deep collaboration between product, engineering, data science, and business teams.</p>
             </div>
           </div>
+        </div>
+
+        {/* Email capture: turn readers into subscribers (feeds the newsletter). */}
+        <NewsletterCTA
+          title="Get the playbook updates"
+          description="I refine this as the agentic stack changes. Drop your email and I will send the occasional update, plus new deep-dive posts. No spam."
+          buttonLabel="Send it to me"
+        />
+
+        {/* Primary conversion: book a call. */}
+        <div className="mt-12 flex flex-col items-start justify-between gap-6 border border-border p-8 md:flex-row md:items-center">
+          <div>
+            <h3 className="text-xl font-light text-foreground">Building something agentic?</h3>
+            <p className="mt-2 max-w-xl font-light leading-relaxed text-muted-foreground">
+              If you want a second set of eyes on strategy, architecture, or what
+              to ship next, let us talk through it.
+            </p>
+          </div>
+          <a
+            href="https://calendar.app.google/8aUmjsXDvFni8wF38"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-shrink-0 items-center gap-3 bg-foreground px-8 py-4 font-light text-background transition-all duration-300 hover:bg-foreground/80"
+          >
+            <span>Book a strategy call</span>
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
 
         {/* Footer */}
