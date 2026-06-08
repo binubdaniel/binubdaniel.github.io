@@ -4,14 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import {
   Linkedin,
   ArrowRight,
-  Zap,
-  Rocket,
+  Workflow,
+  Gauge,
   CalendarCheck,
   Target,
   TrendingUp,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroSection = () => {
   const containerVariants = {
@@ -80,20 +81,20 @@ const HeroSection = () => {
             {/* What I work on */}
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Badge className="px-4 py-2 bg-foreground text-background border border-foreground rounded-none font-light hover:bg-foreground/80 transition-all duration-300">
+                <Workflow className="mr-2 h-4 w-4" />
+                Agentic Systems
+              </Badge>
+              <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <Target className="mr-2 h-4 w-4" />
-                Product Strategy
+                AI Product Strategy
+              </Badge>
+              <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
+                <Gauge className="mr-2 h-4 w-4" />
+                Evals &amp; Reliability
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <TrendingUp className="mr-2 h-4 w-4" />
-                Growth &amp; Scale
-              </Badge>
-              <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
-                <Rocket className="mr-2 h-4 w-4" />
-                Go-to-Market
-              </Badge>
-              <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
-                <Zap className="mr-2 h-4 w-4" />
-                Market Research
+                0&rarr;1 to Scale
               </Badge>
             </motion.div>
 
@@ -112,15 +113,24 @@ const HeroSection = () => {
                 </a>
               </div>
 
-              <a
-                href="https://linkedin.com/in/binubdaniel"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-light text-muted-foreground transition-colors duration-300 hover:text-foreground"
-              >
-                <Linkedin className="h-4 w-4" />
-                LinkedIn
-              </a>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                <Link
+                  href="/product-playbook"
+                  className="font-light transition-colors duration-300 hover:text-foreground"
+                >
+                  Playbook
+                </Link>
+                <span aria-hidden className="h-3.5 w-px bg-border" />
+                <a
+                  href="https://linkedin.com/in/binubdaniel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-light transition-colors duration-300 hover:text-foreground"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </a>
+              </div>
             </motion.div>
           </div>
 
