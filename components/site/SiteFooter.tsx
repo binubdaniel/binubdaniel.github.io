@@ -24,7 +24,7 @@ export function SiteFooter() {
               Home
             </Link>
             <Link href="/blog" className="transition-colors hover:text-foreground">
-              Writing
+              Essays &amp; Notes
             </Link>
             <Link
               href="/product-playbook"

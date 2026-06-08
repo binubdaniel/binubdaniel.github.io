@@ -4,7 +4,6 @@ import { PostStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { formatDate } from "@/lib/utils";
 import { SITE_URL } from "@/lib/site";
-import { Eyebrow } from "@/components/ui/eyebrow";
 import { FadeIn } from "@/components/ui/fade-in";
 import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
 
@@ -12,7 +11,7 @@ import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Writing",
+  title: "Essays & Notes",
   description:
     "Writing on AI product strategy, LLM engineering, and building production-ready agentic systems.",
   alternates: { canonical: `${SITE_URL}/blog` },
@@ -37,9 +36,8 @@ export default async function BlogIndexPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
       <header className="mb-16">
-        <Eyebrow>Writing</Eyebrow>
-        <h1 className="mt-6 text-4xl font-thin tracking-tight text-foreground sm:text-5xl">
-          Notes &amp; essays
+        <h1 className="text-4xl font-thin tracking-tight text-foreground sm:text-5xl">
+          Essays &amp; Notes
         </h1>
         <p className="mt-4 max-w-xl font-light leading-relaxed text-muted-foreground">
           On AI product strategy, LLM engineering, and shipping agentic systems

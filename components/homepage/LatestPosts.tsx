@@ -48,7 +48,7 @@ export default async function LatestPosts() {
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="mb-16 flex items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <Eyebrow>Writing</Eyebrow>
+            <Eyebrow>Essays &amp; Notes</Eyebrow>
             <h2 className="mt-6 text-5xl font-thin tracking-tight text-foreground md:text-6xl">
               Latest writing
             </h2>
