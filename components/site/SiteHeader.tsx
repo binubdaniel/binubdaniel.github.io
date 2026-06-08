@@ -10,11 +10,11 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="flex items-center gap-2.5 text-lg font-light tracking-tight text-foreground transition-colors hover:text-muted-foreground"
+          aria-label="Binu Babu, home"
+          className="transition-opacity hover:opacity-80"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/favicon-96x96.png" alt="" aria-hidden className="h-7 w-7" />
-          Binu Babu
+          <img src="/favicon-96x96.png" alt="Binu Babu" className="h-8 w-8 rounded-md" />
         </Link>
         <nav className="flex items-center gap-5 text-sm font-light text-muted-foreground sm:gap-6">
           <Link

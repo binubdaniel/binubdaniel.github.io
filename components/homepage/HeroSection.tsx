@@ -69,11 +69,12 @@ const HeroSection = () => {
                   AI Product Manager @Techjays
                 </p>
                 <p className="text-lg text-foreground max-w-2xl leading-relaxed font-light">
-                  Most AI products stall in the gap between a working demo and
-                  something you can ship. I help founders and product leaders
-                  close it, building agentic systems that are reliable,
-                  defensible, and genuinely production grade. The moat was never
-                  the model. It is the orchestration around it.
+                  So your AI demo blew everyone away, and then production
+                  happened. That is the gap I live in. I help founders and
+                  product teams turn impressive prototypes into agentic systems
+                  that are reliable, defensible, and genuinely production grade.
+                  Because the moat was never the model. It is the orchestration
+                  around it.
                 </p>
               </motion.div>
             </motion.div>
