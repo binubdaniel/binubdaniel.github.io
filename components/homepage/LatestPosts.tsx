@@ -50,7 +50,7 @@ export default async function LatestPosts() {
           <div className="max-w-2xl">
             <Eyebrow>Writing</Eyebrow>
             <h2 className="mt-6 text-5xl font-thin tracking-tight text-foreground md:text-6xl">
-              Latest from the blog
+              Latest writing
             </h2>
             <p className="mt-4 text-lg font-light leading-relaxed text-muted-foreground">
               Notes on AI product strategy, LLM engineering, and shipping

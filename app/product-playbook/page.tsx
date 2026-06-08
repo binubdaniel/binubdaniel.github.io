@@ -521,27 +521,6 @@ const ProductPlaybook = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <StructuredData type="Article" data={PlaybookArticleSchema} />
-      
-      {/* Header */}
-          <header className="border-b border-border py-8">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Link 
-                    href="/"
-                    className="text-2xl font-light text-foreground hover:text-muted-foreground transition-colors duration-300"
-                  >
-                    Binu Babu
-                  </Link>
-                  <p className="text-sm text-muted-foreground font-light">AI Product Consultant</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm text-muted-foreground font-light">AI & Gen AI Agents Playbook</p>
-                  <p className="text-xs text-muted-foreground font-light">Strategic Framework for Agentic Orchestration</p>
-                </div>
-              </div>
-            </div>
-          </header>
 
       <div className="max-w-6xl mx-auto px-6 py-20">
         <div className="mb-16 max-w-3xl">

@@ -12,8 +12,6 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { ThemeSwitcher } from "../theme-switcher";
 
 const HeroSection = () => {
   const containerVariants = {
@@ -44,11 +42,6 @@ const HeroSection = () => {
       {/* Minimal background */}
       <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.02]">
         <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:80px_80px]" />
-      </div>
-
-      {/* Theme switcher */}
-      <div className="absolute top-8 right-8 z-10">
-        <ThemeSwitcher />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative min-h-screen flex items-center">
@@ -104,9 +97,10 @@ const HeroSection = () => {
               </Badge>
             </motion.div>
 
-            {/* CTAs */}
-            <motion.div variants={itemVariants}>
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+            {/* CTAs: primary action first, secondary links demoted to a
+                quieter second row that wraps cleanly on small screens. */}
+            <motion.div variants={itemVariants} className="space-y-5">
+              <div>
                 <a
                   href="https://calendar.app.google/8aUmjsXDvFni8wF38"
                   target="_blank"
@@ -116,31 +110,17 @@ const HeroSection = () => {
                   Book a Strategy Call
                   <ArrowRight className="h-4 w-4" />
                 </a>
-
-                <a
-                  href="/product-playbook"
-                  className="whitespace-nowrap font-light text-muted-foreground transition-all duration-300 hover:text-foreground"
-                >
-                  AI Playbook
-                </a>
-
-                <Link
-                  href="/blog"
-                  className="whitespace-nowrap font-light text-muted-foreground transition-all duration-300 hover:text-foreground"
-                >
-                  Blog
-                </Link>
-
-                <a
-                  href="https://linkedin.com/in/binubdaniel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 whitespace-nowrap font-light text-muted-foreground transition-all duration-300 hover:text-foreground"
-                >
-                  <Linkedin className="h-5 w-5" />
-                  LinkedIn
-                </a>
               </div>
+
+              <a
+                href="https://linkedin.com/in/binubdaniel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-light text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </a>
             </motion.div>
           </div>
 

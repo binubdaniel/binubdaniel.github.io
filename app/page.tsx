@@ -1,4 +1,5 @@
 // Import all components
+import { SiteHeader } from '@/components/site/SiteHeader';
 import HeroSection from '@/components/homepage/HeroSection';
 import AIStrategyInsights from '@/components/homepage/AIStrategyInsights';
 import ExperienceSection from '@/components/homepage/ExperienceSection';
@@ -12,6 +13,9 @@ export const dynamic = 'force-dynamic';
 const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Site-wide top nav */}
+      <SiteHeader />
+
       {/* Hero Section */}
       <HeroSection />
 

@@ -24,7 +24,7 @@ export function SiteFooter() {
               Home
             </Link>
             <Link href="/blog" className="transition-colors hover:text-foreground">
-              Blog
+              Writing
             </Link>
             <Link
               href="/product-playbook"
@@ -43,7 +43,7 @@ export function SiteFooter() {
           </nav>
         </div>
         <p className="mt-8 border-t border-border pt-6 text-xs font-light text-muted-foreground">
-          © {year} Binu Babu. Built in Kerala, India.
+          © {year} Binu Babu.
         </p>
       </div>
     </footer>

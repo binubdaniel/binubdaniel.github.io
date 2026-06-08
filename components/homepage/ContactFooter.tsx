@@ -150,7 +150,7 @@ export const Footer = () => {
           {/* Copyright */}
           <div className="border-t border-border pt-8">
             <p className="text-sm font-light text-muted-foreground">
-              © {currentYear} Binu Babu. Built in Kerala, India.
+              © {currentYear} Binu Babu.
             </p>
           </div>
         </motion.div>
