@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { resend, RESEND_AUDIENCE_ID } from "@/lib/resend";
+import { sendWelcomeEmail } from "@/lib/newsletter";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -38,9 +39,15 @@ export async function POST(request: Request) {
 
     // Resend errors on an already-existing contact; treat that as success so a
     // repeat subscribe just reassures the reader rather than showing an error.
+    // Only a clean (new-contact) success gets a welcome email, so repeat
+    // submits do not re-spam an existing subscriber.
     if (error) {
       return NextResponse.json({ ok: true, message: "You are on the list." });
     }
+
+    // Best-effort welcome email; never blocks or fails the subscribe response.
+    await sendWelcomeEmail(email);
+
     return NextResponse.json({ ok: true, message: "You are subscribed. Thanks." });
   } catch {
     return NextResponse.json(

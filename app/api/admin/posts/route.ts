@@ -4,6 +4,7 @@ import { getAdminUser } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { uniqueSlug } from "@/lib/posts";
 import { normalizeTags, normalizeFaq } from "@/lib/blog-format";
+import { createPostBroadcastDraft } from "@/lib/newsletter";
 
 export async function POST(request: Request) {
   const user = await getAdminUser();
@@ -66,6 +67,11 @@ export async function POST(request: Request) {
       publishedAt: status === PostStatus.PUBLISHED ? new Date() : null,
     },
   });
+
+  // Created already published: queue a draft broadcast for review in Resend.
+  if (post.status === PostStatus.PUBLISHED) {
+    await createPostBroadcastDraft(post);
+  }
 
   return NextResponse.json({ post }, { status: 201 });
 }

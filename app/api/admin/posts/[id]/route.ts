@@ -4,6 +4,7 @@ import { getAdminUser } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { uniqueSlug } from "@/lib/posts";
 import { normalizeTags, normalizeFaq } from "@/lib/blog-format";
+import { createPostBroadcastDraft } from "@/lib/newsletter";
 
 export async function PATCH(
   request: Request,
@@ -65,16 +66,26 @@ export async function PATCH(
       : Prisma.DbNull;
   }
 
+  // Tracks the first draft -> published transition so we only ever queue one
+  // broadcast per post (re-publishing or editing a live post will not re-send).
+  let firstPublish = false;
   if (body.status === "PUBLISHED" || body.status === "DRAFT") {
     const status = body.status as PostStatus;
     data.status = status;
     // First publish stamps publishedAt; re-publishing keeps the original date.
     if (status === PostStatus.PUBLISHED && !existing.publishedAt) {
       data.publishedAt = new Date();
+      firstPublish = true;
     }
   }
 
   const post = await prisma.post.update({ where: { id }, data });
+
+  // On first publish, queue a draft broadcast to review and send in Resend.
+  if (firstPublish) {
+    await createPostBroadcastDraft(post);
+  }
+
   return NextResponse.json({ post });
 }
 
