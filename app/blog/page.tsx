@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PostStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { formatDate } from "@/lib/utils";
 import { SITE_URL } from "@/lib/site";
-import { FadeIn } from "@/components/ui/fade-in";
 import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
+import { BlogBrowser } from "@/components/blog/BlogBrowser";
 
 // Rendered per request (reads the DB). Avoids any build-time DB dependency.
 export const dynamic = "force-dynamic";
@@ -33,9 +31,19 @@ export default async function BlogIndexPage() {
     },
   });
 
+  const items = posts.map((p) => ({
+    id: p.id,
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    tags: p.tags,
+    coverImage: p.coverImage,
+    date: (p.publishedAt ?? p.updatedAt).toISOString(),
+  }));
+
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
-      <header className="mb-16">
+      <header className="mb-12">
         <h1 className="text-4xl font-thin tracking-tight text-foreground sm:text-5xl">
           Essays &amp; Notes
         </h1>
@@ -45,67 +53,12 @@ export default async function BlogIndexPage() {
         </p>
       </header>
 
-      {posts.length === 0 ? (
+      {items.length === 0 ? (
         <p className="font-light text-muted-foreground">
           No posts yet. Check back soon.
         </p>
       ) : (
-        <ul className="border-t border-border">
-          {posts.map((post, i) => (
-            <li key={post.id} className="border-b border-border">
-              <FadeIn delay={i * 0.05}>
-                <article className="py-8">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group flex items-start justify-between gap-6"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <h2 className="text-2xl font-light tracking-tight text-foreground transition-colors group-hover:text-muted-foreground">
-                        {post.title}
-                      </h2>
-                      {post.excerpt && (
-                        <p className="mt-2 font-light leading-relaxed text-muted-foreground">
-                          {post.excerpt}
-                        </p>
-                      )}
-                      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                        <time
-                          dateTime={(post.publishedAt ?? post.updatedAt).toISOString()}
-                        >
-                          {formatDate(
-                            (post.publishedAt ?? post.updatedAt).toISOString(),
-                          )}
-                        </time>
-                        {post.tags.length > 0 && (
-                          <span className="flex flex-wrap gap-2 normal-case tracking-normal">
-                            {post.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="border border-border px-2 py-0.5"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {post.coverImage && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={post.coverImage}
-                        alt=""
-                        loading="lazy"
-                        className="hidden aspect-video w-32 shrink-0 border border-border object-cover grayscale transition-all duration-500 group-hover:grayscale-0 sm:block md:w-44"
-                      />
-                    )}
-                  </Link>
-                </article>
-              </FadeIn>
-            </li>
-          ))}
-        </ul>
+        <BlogBrowser posts={items} />
       )}
 
       <NewsletterCTA />
