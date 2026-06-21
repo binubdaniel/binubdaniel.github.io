@@ -16,6 +16,8 @@ export type BlogListPost = {
 };
 
 const PER_PAGE = 6;
+// Only the most-used tags show by default; the rest sit behind a "+N more".
+const TOP_TAGS = 8;
 
 // Client-side browse experience for the blog index: instant search over
 // title/excerpt/tags, tag chips, and pagination. The full first page is still
@@ -25,6 +27,7 @@ export function BlogBrowser({ posts }: { posts: BlogListPost[] }) {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [page, setPage] = useState(1);
+  const [showAllTags, setShowAllTags] = useState(false);
 
   // Unique tags, most frequent first then alphabetical.
   const tags = useMemo(() => {
@@ -36,6 +39,15 @@ export function BlogBrowser({ posts }: { posts: BlogListPost[] }) {
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .map(([t]) => t);
   }, [posts]);
+
+  // Default to the most-used tags; keep an active-but-hidden tag visible so the
+  // current filter never disappears when the list is collapsed.
+  const visibleTags = useMemo(() => {
+    if (showAllTags) return tags;
+    const top = tags.slice(0, TOP_TAGS);
+    if (activeTag && !top.includes(activeTag)) top.push(activeTag);
+    return top;
+  }, [tags, showAllTags, activeTag]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -79,7 +91,7 @@ export function BlogBrowser({ posts }: { posts: BlogListPost[] }) {
             active={!activeTag}
             onClick={() => setActiveTag(null)}
           />
-          {tags.map((t) => (
+          {visibleTags.map((t) => (
             <TagChip
               key={t}
               label={t}
@@ -87,6 +99,15 @@ export function BlogBrowser({ posts }: { posts: BlogListPost[] }) {
               onClick={() => setActiveTag(activeTag === t ? null : t)}
             />
           ))}
+          {tags.length > TOP_TAGS && (
+            <button
+              type="button"
+              onClick={() => setShowAllTags((v) => !v)}
+              className="border border-dashed border-border px-3 py-1 text-xs font-light text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+            >
+              {showAllTags ? "Show less" : `+${tags.length - TOP_TAGS} more`}
+            </button>
+          )}
         </div>
       )}
 
