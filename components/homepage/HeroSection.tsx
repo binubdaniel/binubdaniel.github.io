@@ -69,12 +69,12 @@ const HeroSection = () => {
                   AI Product Leader @Techjays · Enterprise AI at scale
                 </p>
                 <p className="text-lg text-foreground max-w-2xl leading-relaxed font-light">
-                  Your AI demo wowed everyone. Then production happened. Most
-                  enterprise AI stalls in that gap, between an impressive pilot
-                  and a product that holds up at scale. That is where I work:
-                  turning prototypes into agentic systems that are reliable,
-                  defensible, and production grade. The moat was never the model.
-                  It is the product strategy and orchestration around it.
+                  Your AI demo wowed everyone. Then production happened. That
+                  gap, between an impressive pilot and a product that holds up at
+                  scale, is where I work: turning prototypes into agentic systems
+                  that are reliable, defensible, and production grade. The moat
+                  was never the model. It is the product strategy and
+                  orchestration around it.
                 </p>
               </motion.div>
             </motion.div>
