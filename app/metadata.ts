@@ -4,26 +4,26 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   metadataBase: new URL('https://binubabu.in'),
   title: {
-    default: "AI Product Consultant | Binu Babu",
+    default: "Autonomous Operational Systems (AOS) | Binu Babu",
     template: "%s | Binu Babu"
   },
-  description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership. Specialist in building production-ready Gen AI agents and agentic workflows.",
+  description: "Binu Babu designs Autonomous Operational Systems (AOS): AI that runs real operational work end to end, where agents do the work and people set goals, judge exceptions, and own the outcome. Autonomy matched to reversibility; trust earned with evidence.",
   keywords: [
-    "AI Product Consultant",
+    "Autonomous Operational Systems",
+    "AOS",
+    "Autonomous Agents",
+    "Agentic Systems",
+    "Agent Autonomy Design",
+    "AI Delegation",
     "Gen AI Agent Architecture",
-    "Agentic Workflows",
-    "LLM Engineering", 
-    "AI Product Strategy", 
-    "AI Consulting", 
-    "Technology Consultant", 
-    "AI Product Development", 
+    "Multi-Agent Orchestration",
+    "Agent Memory Systems",
+    "AI Evals and Guardrails",
+    "AI Product Leader",
+    "AI Product Strategy",
+    "Enterprise AI Platforms",
     "Production-Ready AI Systems",
-    "AI Product Management", 
-    "AI Strategy Consulting", 
-    "AI Product Roadmap", 
-    "AI Agent Engineering",
-    "AI Go-to-Market", 
-    "AI Growth Strategy", 
+    "Human-in-the-Loop AI",
     "AI Product Playbook"
   ],
   authors: [{ name: "Binu Babu" }],
@@ -32,22 +32,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://binubabu.in",
-    title: "AI Product Consultant | Binu Babu",
-    description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership. Specialist in building production-ready Gen AI agents and agentic workflows.",
+    title: "Autonomous Operational Systems (AOS) | Binu Babu",
+    description: "Binu Babu designs Autonomous Operational Systems (AOS): AI that runs real operational work end to end. Autonomy matched to reversibility; trust earned with evidence.",
     siteName: "Binu Babu",
     images: [
       {
         url: "/homepage.webp",
         width: 1200,
         height: 630,
-        alt: "Binu Babu - AI Product Architect & Technology Consultant"
+        alt: "Binu Babu - Autonomous Operational Systems (AOS)"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Product Consultant | Binu Babu",
-    description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership.",
+    title: "Autonomous Operational Systems (AOS) | Binu Babu",
+    description: "AI that runs real operational work end to end, where agents do the work and people set goals and judge. Autonomy matched to reversibility; trust earned with evidence.",
     images: ["/homepage.webp"]
   },
   icons: {

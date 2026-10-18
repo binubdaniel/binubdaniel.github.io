@@ -94,9 +94,9 @@ export const ContactSection = () => {
                 Working on something?
               </h2>
               <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-muted-foreground">
-                If you are building an AI product and want a second brain on the
-                strategy or the engineering, I am around. The first call is free
-                and usually pretty useful.
+                If you are figuring out which operational work to hand to agents,
+                and how to design it so the business can trust the result, I am
+                around. The first call is free and usually pretty useful.
               </p>
             </div>
           </motion.div>
@@ -144,7 +144,9 @@ export const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-2xl font-light text-foreground">Binu Babu</h3>
             <div className="mx-auto h-px w-16 bg-foreground" />
-            <p className="font-light text-muted-foreground">AI Product Consultant</p>
+            <p className="font-light text-muted-foreground">
+              I design Autonomous Operational Systems
+            </p>
           </div>
 
           {/* Copyright */}

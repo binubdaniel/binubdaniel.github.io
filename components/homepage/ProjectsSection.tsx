@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { Box, Terminal, Cpu, Brain } from "lucide-react";
+import { Activity, Network, Database, Workflow, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
 import { Eyebrow } from "@/components/ui/eyebrow";
 
@@ -88,40 +88,49 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Agentic Support Orchestrator",
+      title: "AI Operations Intelligence Platform",
       description:
-        "A multi-agent system that handles Tier 1 and 2 support tickets on its own, coordinating retrieval, CRM tools, and self-correction loops.",
+        "A multi-agent copilot for leadership teams that unifies meeting intelligence, performance synthesis, project run-rate, revenue-bleed detection, and CSAT into a single decision surface. Specialised sub-agents sit under an orchestrator, each with scoped tools.",
       outcome:
-        "In production it resolves about 75 percent of those tickets without a human, usually in under 30 seconds, and stays hallucination-free roughly 92 percent of the time.",
-      technologies: ["LangGraph", "OpenAI", "Python", "Pinecone"],
-      icon: Cpu,
+        "Replaced roughly six hours a week of manual status assembly per leader, turning fragmented dashboards and standups into one place where the work is read, decided, and acted on.",
+      technologies: ["LangGraph", "MCP", "Multi-Agent", "OpenAI"],
+      icon: Activity,
     },
     {
-      title: "Autonomous Engineering Agent",
+      title: "AI Enterprise Brain",
       description:
-        "An agent that takes on real codebase refactoring and documentation by actually understanding cross-file dependencies, not just pattern matching.",
+        "An organisational knowledge substrate for autonomous systems: an EBITDA-weighted knowledge graph that models the company as a navigable map of people, relationships, beliefs, facts, and observations. Value Causation Trees tie every node to a financial driver.",
       outcome:
-        "It refactors around 60 percent faster than doing it by hand, documents everything it touches, and ships without logic regressions. Engineers approved its changes about 95 percent of the time.",
-      technologies: ["Claude", "TypeScript", "Tree-sitter", "Node.js"],
-      icon: Terminal,
+        "Agents prioritise by causal impact on the P&L rather than semantic similarity, and reason over an executable substrate, so the output is a playbook that acts, not a passage retrieved.",
+      technologies: ["Knowledge Graph", "Value Causation Trees", "Weaviate"],
+      icon: Network,
     },
     {
-      title: "Enterprise Brain",
+      title: "Memory Systems for Agents",
       description:
-        "A knowledge graph and RAG system that acts as a company's single source of truth, connecting scattered documents, tickets, and databases so people can ask hard, cross-system questions and get grounded answers.",
+        "The memory and state layer that lets agents carry context instead of starting cold: structured short-term, episodic, and semantic memory, with persistent episodic memory per user and team and a shared tool registry across calendar, transcripts, project management, and finance.",
       outcome:
-        "Pairing a graph database with vector search lifted answer accuracy about 40 percent and made genuinely multi-hop questions answerable, with the graph staying current as the underlying data changes.",
-      technologies: ["Neo4j", "LlamaIndex", "FastAPI", "React"],
-      icon: Brain,
+        "Agents remember what happened, who it involved, and what was decided, so delegated work compounds over time rather than repeating itself, and oversight has a trail to review.",
+      technologies: ["Episodic Memory", "Semantic Memory", "Weaviate", "LangGraph"],
+      icon: Database,
     },
     {
-      title: "Gen AI Performance Engine",
+      title: "Lending Workflow Automation",
       description:
-        "Middleware for LLM orchestration: load balancing, semantic caching, and dynamic model routing to keep cost and latency under control at scale.",
+        "An agentic system for regulated financial services that runs multi-stage lending end to end: document intake, structured extraction, policy-grounded reasoning, and decisioning, with human-in-the-loop checkpoints held at every high-stakes decision node.",
       outcome:
-        "Caching and routing cut model cost about 65 percent and latency about 40 percent, holding steady at over 3 million tokens a day.",
-      technologies: ["Go", "Redis", "Prometheus", "Docker"],
-      icon: Box,
+        "A deliberate ceiling on autonomy given the regulatory exposure: strict tool-calling boundaries, structured-output validation, and RAG over internal policy with groundedness evaluation on every answer.",
+      technologies: ["RAG", "MCP", "Structured Extraction", "HITL"],
+      icon: Workflow,
+    },
+    {
+      title: "Customer Support Agents",
+      description:
+        "Production RAG support agents running across four enterprise SaaS customers, owning the full path from ingestion and chunking through embedding, retrieval tuning, and generation guardrails.",
+      outcome:
+        "Backed by an evaluation framework covering correctness, groundedness, and latency, with regression checks that catch hallucination drift before it ships.",
+      technologies: ["RAG", "Evals", "Weaviate", "OpenAI"],
+      icon: MessageSquare,
     },
   ];
 
@@ -143,11 +152,12 @@ const ProjectsSection = () => {
           <motion.div variants={itemVariants} className="mb-16 max-w-2xl">
             <Eyebrow>Projects</Eyebrow>
             <h2 className="mt-6 text-5xl font-thin tracking-tight text-foreground md:text-6xl">
-              Things I have built
+              Systems people hand work to
             </h2>
             <p className="mt-4 text-lg font-light leading-relaxed text-muted-foreground">
-              A few systems that made it past the demo and into production, where
-              the numbers actually have to hold up.
+              Operational systems that made it past the demo and into production,
+              where agents run the work, people manage the exceptions, and the
+              numbers actually have to hold up.
             </p>
           </motion.div>
 

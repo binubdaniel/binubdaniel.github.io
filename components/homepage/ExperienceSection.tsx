@@ -3,7 +3,7 @@ import { FadeIn } from "@/components/ui/fade-in";
 
 const roles = [
   {
-    role: "AI Product Manager",
+    role: "AI Product Lead",
     company: "Techjays",
     period: "Jul 2025 to Present",
   },
@@ -46,10 +46,13 @@ const ExperienceSection = () => {
             className="space-y-6 text-lg font-light leading-relaxed text-muted-foreground md:col-span-2"
           >
           <p>
-            These days I lead AI product at Techjays, building multi-agent
-            systems that run real enterprise workflows. The hard part is almost
-            never the model. It is making agents reliable enough that a business
-            can hand them work and trust the result.
+            These days I lead AI product at Techjays, designing Autonomous
+            Operational Systems: multi-agent systems that run real enterprise
+            workflows end to end. I own two flagship platforms, an AI Operations
+            Intelligence Platform and an AI Enterprise Brain, and hold review
+            authority over the firm&apos;s AI portfolio. The hard part is almost
+            never the model. It is matching autonomy to risk and earning enough
+            trust that a business will actually hand over the work.
           </p>
           <p>
             Before that I was technical lead for AI integration at Bridge
@@ -81,8 +84,9 @@ const ExperienceSection = () => {
           <p className="text-foreground">
             The thread through all of it is the same. Strategy only matters once
             it survives contact with real customers, and the part I like best is
-            the messy middle between a promising idea and a product people depend
-            on.
+            the messy middle, deciding which work a business can safely hand over,
+            and designing the system so it earns that trust one piece of evidence
+            at a time.
           </p>
         </FadeIn>
 

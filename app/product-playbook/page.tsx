@@ -526,29 +526,107 @@ const ProductPlaybook = () => {
         <div className="mb-16 max-w-3xl">
           <Eyebrow>Playbook</Eyebrow>
           <h1 className="mt-6 text-5xl font-thin tracking-tight text-foreground md:text-6xl">
-            AI &amp; Gen AI Agents Playbook
+            The AOS Playbook
           </h1>
           <p className="mt-6 text-lg font-light leading-relaxed text-muted-foreground">
-            This is the actual checklist I work from when taking an AI product
-            from idea to scale: cross-cutting themes, then strategy, engineering,
-            orchestration, and growth. It is long on purpose. You are meant to
-            cherry-pick what fits your situation, not follow it like a recipe.
+            The method I actually work from to take operational work from
+            &ldquo;where can we use AI?&rdquo; to an Autonomous Operational
+            System a business will hand real work to. It runs in two halves:
+            discovery, to find where autonomy creates outsized value, then
+            design, to make that autonomy earn trust. Below the method sits the
+            deeper build, launch, and scale checklist I pull from. It is long on
+            purpose, so cherry-pick what fits your situation rather than
+            following it like a recipe.
           </p>
         </div>
 
-        {/* Strategic Context */}
+        {/* The AOS method: the discovery -> design -> rollout spine. */}
         <div className="mb-12 border border-border p-8">
-          <h3 className="text-xl font-light text-foreground mb-6">Strategic Context: The AI Revolution</h3>
+          <h3 className="text-xl font-light text-foreground">The AOS method</h3>
+          <p className="mt-3 max-w-3xl text-sm font-light leading-relaxed text-muted-foreground">
+            Stop asking where AI fits. Start redesigning the work around
+            autonomy, then design it to earn trust. The rule underneath all of
+            it: delegate where the expected loss is lower than the value
+            released, and match autonomy to how reversible a decision is.
+          </p>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {/* Discovery */}
+            <div className="border border-border p-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Discovery
+              </p>
+              <h4 className="mt-3 font-light text-foreground">
+                Find where autonomy pays
+              </h4>
+              <p className="mt-2 text-sm font-light leading-relaxed text-muted-foreground">
+                Start from an outcome and a constraint, never a tool.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm font-light text-muted-foreground">
+                <li><span className="text-foreground">Frame</span> &middot; which number moves, and who notices?</li>
+                <li><span className="text-foreground">Map</span> &middot; where does work actually wait?</li>
+                <li><span className="text-foreground">Ask</span> &middot; what happens when it goes wrong?</li>
+                <li><span className="text-foreground">Score</span> &middot; where is value high and effort low?</li>
+                <li><span className="text-foreground">Validate</span> &middot; does it hold on real cases?</li>
+              </ul>
+            </div>
+
+            {/* Design */}
+            <div className="border border-border p-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Design
+              </p>
+              <h4 className="mt-3 font-light text-foreground">
+                Make autonomy earn trust
+              </h4>
+              <p className="mt-2 text-sm font-light leading-relaxed text-muted-foreground">
+                Decide, per decision, how much the agent may do.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm font-light text-muted-foreground">
+                <li><span className="text-foreground">Tool rung</span> &middot; use the simplest that meets the bar</li>
+                <li><span className="text-foreground">Autonomy level</span> &middot; suggest, draft, act, or act silently</li>
+                <li><span className="text-foreground">Delegation test</span> &middot; expected loss vs value released</li>
+                <li><span className="text-foreground">Agentic UX</span> &middot; mission control, not a form</li>
+                <li><span className="text-foreground">Guardrails</span> &middot; a badge, a role, and a budget</li>
+                <li><span className="text-foreground">Failure</span> &middot; storyboard escalation and the kill switch</li>
+              </ul>
+            </div>
+
+            {/* Rollout */}
+            <div className="border border-border p-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Rollout
+              </p>
+              <h4 className="mt-3 font-light text-foreground">
+                Earn autonomy with evidence
+              </h4>
+              <p className="mt-2 text-sm font-light leading-relaxed text-muted-foreground">
+                Autonomy is earned stage by stage, not configured up front.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm font-light text-muted-foreground">
+                <li><span className="text-foreground">Shadow</span> &middot; the agent proposes; people act</li>
+                <li><span className="text-foreground">Assist</span> &middot; it drafts; people send</li>
+                <li><span className="text-foreground">Limited release</span> &middot; it acts with approval</li>
+                <li><span className="text-foreground">Scaled</span> &middot; it acts and reports, sampled review</li>
+                <li><span className="text-foreground">Counter-metrics</span> &middot; demote a level when they slip</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Strategic context, reframed to the AOS thesis. */}
+        <div className="mb-12 border border-border p-8">
+          <h3 className="text-xl font-light text-foreground mb-6">Why this is the work now</h3>
           <div className="grid md:grid-cols-2 gap-8 text-sm text-muted-foreground font-light">
             <div>
-              <h4 className="font-light text-foreground mb-3">The Shift to Agentic AI</h4>
-              <p className="mb-4">We are moving beyond text generation to autonomous execution. Defensibility no longer comes from the model itself (which is commoditized), but from the orchestration of agentic workflows that integrate with proprietary data.</p>
-              <p>Focus on building systems that solve complex, multi-step business problems through reliable tool-calling and recursive state management.</p>
+              <h4 className="font-light text-foreground mb-3">Deciding is the premium</h4>
+              <p className="mb-4">When every team can call the same models and ship in a weekend, building stops being the moat. What compounds is judgment: which operation to hand over, where work actually waits, and what a customer would never forgive.</p>
+              <p>Everyone gets the same models. Not everyone gets the same judgment, built into data, workflows, and trust.</p>
             </div>
             <div>
-              <h4 className="font-light text-foreground mb-3">Engineering for Reliability</h4>
-              <p className="mb-4">Most Gen AI experiments never make it to production, and it is usually an engineering problem rather than a model one. This playbook focuses on the work that makes agents reliable, observable, and safe enough for real enterprise use.</p>
-              <p>Build products that fundamentally change how work gets done, creating new value chains through agentic autonomy.</p>
+              <h4 className="font-light text-foreground mb-3">Trust is earned, not configured</h4>
+              <p className="mb-4">Autonomy is not a toggle you flip. It is earned with evidence: evals, logs, visible reasoning, and undo are product features, not compliance add-ons.</p>
+              <p>Your agent will be wrong. Design what happens next before launch, and treat every agent like a new employee with a badge, a role, and a budget.</p>
             </div>
           </div>
         </div>
@@ -560,6 +638,7 @@ const ProductPlaybook = () => {
             <div>
               <h3 className="text-lg font-light text-foreground mb-4">How to Use This Playbook</h3>
               <ul className="space-y-3 text-sm text-muted-foreground font-light">
+                    <li><strong className="text-foreground">Method first, then the checklist</strong>: The AOS method above (discovery, design, rollout) is how you decide what to build and how much autonomy it earns. The phases below are the deeper reference for actually building it</li>
                     <li><strong className="text-foreground">Foundations, then four phases</strong>: Cross-Cutting Themes apply throughout; Strategy, Build, Launch, and Scale run in sequence. Phase 2 has two parts: the general Build work and the Agentic Engineering that makes AI products reliable</li>
                     <li><strong className="text-foreground">Start with Cross-Cutting Themes</strong>: Establish these foundational elements before Phase 1</li>
                     <li><strong className="text-foreground">Sequential but Iterative</strong>: Follow the phases in order, but expect to loop back as you learn</li>
@@ -702,10 +781,11 @@ const ProductPlaybook = () => {
         {/* Primary conversion: book a call. */}
         <div className="mt-12 flex flex-col items-start justify-between gap-6 border border-border p-8 md:flex-row md:items-center">
           <div>
-            <h3 className="text-xl font-light text-foreground">Building something agentic?</h3>
+            <h3 className="text-xl font-light text-foreground">Designing an Autonomous Operational System?</h3>
             <p className="mt-2 max-w-xl font-light leading-relaxed text-muted-foreground">
-              If you want a second set of eyes on strategy, architecture, or what
-              to ship next, let us talk through it.
+              If you want a second set of eyes on what to hand over, how much
+              autonomy it should earn, or how to prove it is working, let us talk
+              it through.
             </p>
           </div>
           <a
@@ -730,7 +810,7 @@ const ProductPlaybook = () => {
                 >
                   Binu Babu
                 </Link>
-                <p className="text-sm text-muted-foreground font-light">AI Product Consultant</p>
+                <p className="text-sm text-muted-foreground font-light">I design Autonomous Operational Systems</p>
               </div>
               <div className="text-right">
                 <p className="text-sm text-muted-foreground font-light">Contact</p>

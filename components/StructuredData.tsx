@@ -23,33 +23,34 @@ export const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) =>
 // Predefined structured data for Binu Babu
 export const BinuBabuPersonSchema = {
   name: "Binu Babu",
-  jobTitle: "AI Product Consultant",
-  description: "Bridging the gap between cutting-edge LLM engineering and strategic product leadership. Specialist in building production-ready Gen AI agents and agentic workflows.",
+  jobTitle: "AI Product Leader",
+  description: "Binu Babu designs Autonomous Operational Systems (AOS): AI that runs real operational work end to end, where agents do the work and people set goals, judge exceptions, and own the outcome. Autonomy matched to reversibility; trust earned with evidence.",
   url: "https://binubabu.in",
   sameAs: [
     "https://linkedin.com/in/binubdaniel"
   ],
   knowsAbout: [
-    "Gen AI Agent Architecture",
-    "Agentic Workflows",
-    "LLM Engineering",
-    "AI Product Strategy",
-    "Production-Ready AI Systems",
-    "AI Product Management",
-    "AI Consulting",
-    "Technology Strategy",
-    "Product Architecture"
+    "Autonomous Operational Systems",
+    "Autonomous Agents",
+    "Agentic Systems",
+    "Agent Autonomy Design",
+    "Multi-Agent Orchestration",
+    "Agent Memory Systems",
+    "AI Delegation and Human-in-the-Loop Design",
+    "AI Evaluation and Guardrails",
+    "Enterprise AI Platforms",
+    "AI Product Strategy"
   ],
   hasOccupation: {
     "@type": "Occupation",
-    "name": "AI & Gen AI Agents Architect",
-    "description": "Strategic AI product engineering and agentic system consulting"
+    "name": "AI Product Leader",
+    "description": "Designing Autonomous Operational Systems: agents that run real operational work, with autonomy matched to reversibility and trust earned with evidence"
   }
 };
 
 export const WebsiteSchema = {
   name: "Binu Babu",
-  description: "AI & Gen AI Agents Architect - Engineering production-ready agentic systems and AI products",
+  description: "Binu Babu designs Autonomous Operational Systems (AOS): agents that run real operational work end to end, with autonomy matched to reversibility and trust earned with evidence",
   url: "https://binubabu.in",
   author: {
     "@type": "Person",
@@ -63,8 +64,8 @@ export const WebsiteSchema = {
 };
 
 export const PlaybookArticleSchema = {
-  headline: "AI Product Development Playbook",
-  description: "Comprehensive framework for building defensible AI products from concept to scale",
+  headline: "The AOS Playbook: Autonomous Operational Systems",
+  description: "The method for designing Autonomous Operational Systems: discovery to find where autonomy creates outsized value, then design to make it earn trust, with autonomy matched to reversibility and earned stage by stage",
   author: {
     "@type": "Person",
     "name": "Binu Babu"
@@ -82,15 +83,15 @@ export const PlaybookArticleSchema = {
   about: [
     {
       "@type": "Thing",
-      "name": "AI Product Development"
-    },
-    {
-      "@type": "Thing", 
-      "name": "AI Product Strategy"
+      "name": "Autonomous Operational Systems"
     },
     {
       "@type": "Thing",
-      "name": "Defensible AI Products"
+      "name": "Agent Autonomy Design"
+    },
+    {
+      "@type": "Thing",
+      "name": "AI Delegation and Human-in-the-Loop Design"
     }
   ]
 };

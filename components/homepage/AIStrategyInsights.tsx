@@ -68,24 +68,24 @@ const InsightCard: React.FC<InsightCardProps> = ({
 const AIStrategyInsights = () => {
   const opinions = [
     {
-      icon: Shield,
-      title: "The moat moved off the model",
-      take: "When every team can call the same models, the model stops being the moat. Defensibility lives in the orchestration: the workflows, the proprietary data your agents reason over, and the execution loops that compound the more they run. That is the part a competitor cannot copy by swapping in a new LLM.",
+      icon: Target,
+      title: "Autonomy follows reversibility",
+      take: "Match how much an agent can do to how reversible the decision is. Behind two-way doors, agents move fast and report. At one-way doors, closing an account, filing with a network, a person stays in the loop. The delegation test is simple: hand over the work only where the expected loss is lower than the value released. The right autonomy level is a design decision per decision, not a model setting.",
     },
     {
       icon: TrendingUp,
-      title: "From point and click to instruct and execute",
-      take: "SaaS is shifting from software you operate to software that operates for you. The products worth building are not bolting a chat box onto an old workflow; they rebuild the workflow so the software is the one doing the work. That changes the interface, the pricing, and what done even means.",
+      title: "Deciding is the premium; building is the commodity",
+      take: "When every team can call the same models and ship in a weekend, building stops being the moat. What compounds is judgment built into data, workflows and trust: knowing which operation to hand over, where work actually waits, and what a customer would never forgive. Everyone gets the same models. Not everyone gets the same judgment.",
     },
     {
       icon: Zap,
-      title: "Reliability is an engineering problem, not a model one",
-      take: "A demo that works once is not a product. Production agents need error handling, evaluation, guardrails, and observability: the unglamorous parts that decide whether a business can trust an agent with real work. Most failed Gen AI projects died here, long before the model was the limit.",
+      title: "Trust is earned with evidence, not configured",
+      take: "Evals, logs, visible reasoning and undo are product features, not compliance add-ons. Autonomy isn't a toggle you flip; it's earned stage by stage, shadow, assist, limited release, scaled, each gated by evidence. And it's demoted without drama the moment the counter-metrics slip. Stepping back a level is a designed state, not a failure.",
     },
     {
-      icon: Target,
-      title: "Build the stack AI native",
-      take: "Adding AI as a feature on top of an existing architecture rarely holds. The systems that last are designed around data flow and agent autonomy from day one: modular enough to swap models, structured enough that outputs are reliable, observable enough that you debug a trace instead of guessing.",
+      icon: Shield,
+      title: "Design for failure, or the agent designs it for you",
+      take: "Your agent will be wrong. Treat every one like a new employee with a badge, a role and a budget: its own identity, permissions scoped to the job, hard spend caps, and a logged, reversible trail. Then storyboard the failure paths, escalation, degraded mode, kill switch, recovery, before launch. Guardrails are structural, not instructions bolted on afterwards.",
     },
   ];
 
@@ -110,8 +110,8 @@ const AIStrategyInsights = () => {
               A few opinions, strongly held
             </h2>
             <p className="mt-4 text-lg font-light leading-relaxed text-muted-foreground">
-              On where defensibility actually comes from, and why most AI
-              products stall before they reach production.
+              Stop asking where AI fits. Start redesigning the work around
+              autonomy, and design it to earn trust.
             </p>
           </motion.div>
 
@@ -132,9 +132,10 @@ const AIStrategyInsights = () => {
                 The whole playbook
               </h3>
               <p className="mb-6 font-light leading-relaxed text-muted-foreground">
-                I wrote down the full framework I use to take AI products from
-                idea to scale: strategy, execution, launch, and growth. It is
-                long, opinionated, and free.
+                I wrote down the full framework I use to take operational work
+                from &ldquo;where can we use AI?&rdquo; to a system people hand
+                work to: discovery, delegation, guardrails, agentic UX, and the
+                rollout that earns autonomy. Long, opinionated, and free.
               </p>
               <a
                 href="/product-playbook"

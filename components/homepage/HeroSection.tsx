@@ -66,15 +66,21 @@ const HeroSection = () => {
                 </h1>
                 <div className="h-px w-32 bg-foreground" />
                 <p className="text-xl md:text-2xl text-muted-foreground font-light">
-                  AI Product Leader @Techjays · Enterprise AI at scale
+                  AI Product Leader @Techjays · I design Autonomous Operational
+                  Systems
                 </p>
                 <p className="text-lg text-foreground max-w-2xl leading-relaxed font-light">
-                  Your AI demo wowed everyone. Then production happened. That
-                  gap, between an impressive pilot and a product that holds up at
-                  scale, is where I work: turning prototypes into agentic systems
-                  that are reliable, defensible, and production grade. The moat
-                  was never the model. It is the product strategy and
-                  orchestration around it.
+                  Everyone has the same models now. Almost no one has AI
+                  they&apos;d trust with real operational work. Closing that gap
+                  is what I do. I design{" "}
+                  <span className="text-foreground font-normal">
+                    Autonomous Operational Systems (AOS)
+                  </span>
+                  : agents that run the work end to end, while people set the
+                  goals, judge the exceptions, and own the outcome. The moat was
+                  never the model. It&apos;s knowing what to hand over, matching
+                  autonomy to how reversible a decision is, and earning trust one
+                  piece of evidence at a time.
                 </p>
               </motion.div>
             </motion.div>
@@ -83,19 +89,19 @@ const HeroSection = () => {
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Badge className="px-4 py-2 bg-foreground text-background border border-foreground rounded-none font-light hover:bg-foreground/80 transition-all duration-300">
                 <Workflow className="mr-2 h-4 w-4" />
-                Agentic Systems
+                Autonomous Operational Systems
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <Target className="mr-2 h-4 w-4" />
-                AI Product Strategy
+                Delegation &amp; Autonomy Design
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <Gauge className="mr-2 h-4 w-4" />
-                Evals &amp; Reliability
+                Evals, Guardrails &amp; Trust
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <TrendingUp className="mr-2 h-4 w-4" />
-                0&rarr;1 to Scale
+                0&rarr;1 to Scaled Autonomy
               </Badge>
             </motion.div>
 
@@ -175,8 +181,8 @@ const HeroSection = () => {
                     Let&apos;s connect
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed font-light">
-                    If you are stuck between a promising prototype and a real
-                    product, that is exactly where I like to work.
+                    If you have a promising agent demo but can&apos;t yet hand it
+                    real work, that gap is exactly where I like to work.
                   </p>
                 </div>
               </div>
