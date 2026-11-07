@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { Activity, Network, Database, Workflow, MessageSquare } from "lucide-react";
+import { Activity, Network, Database, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
 import { Eyebrow } from "@/components/ui/eyebrow";
 
@@ -90,46 +90,37 @@ const ProjectsSection = () => {
     {
       title: "AI Operations Intelligence Platform",
       description:
-        "A multi-agent copilot for leadership teams that unifies meeting intelligence, performance synthesis, project run-rate, revenue-bleed detection, and CSAT into a single decision surface. Specialised sub-agents sit under an orchestrator, each with scoped tools.",
+        "One decision surface for leadership: meeting intelligence, performance, project run-rate, revenue-bleed detection, and CSAT, unified so leaders read, decide, and act in one place instead of across a dozen dashboards. Specialised sub-agents run under an orchestrator, each with scoped tools.",
       outcome:
-        "Replaced roughly six hours a week of manual status assembly per leader, turning fragmented dashboards and standups into one place where the work is read, decided, and acted on.",
-      technologies: ["LangGraph", "MCP", "Multi-Agent", "OpenAI"],
+        "Gave back roughly six hours a week per leader and turned scattered status work into a single operational view. I own its vision, roadmap, and commercial outcomes.",
+      technologies: ["Multi-Agent", "LangGraph", "MCP"],
       icon: Activity,
     },
     {
-      title: "AI Enterprise Brain",
+      title: "Context Layer for Enterprise",
       description:
-        "An organisational knowledge substrate for autonomous systems: an EBITDA-weighted knowledge graph that models the company as a navigable map of people, relationships, beliefs, facts, and observations. Value Causation Trees tie every node to a financial driver.",
+        "An EBITDA-weighted model of the organisation, its people, relationships, and decisions, with Value Causation Trees tying every node to a financial driver, so agents prioritise by causal impact on the P&L rather than by what merely looks relevant.",
       outcome:
-        "Agents prioritise by causal impact on the P&L rather than semantic similarity, and reason over an executable substrate, so the output is a playbook that acts, not a passage retrieved.",
-      technologies: ["Knowledge Graph", "Value Causation Trees", "Weaviate"],
+        "It is the substrate the firm now funds AI work against: every proposed intervention has to carry a quantified financial claim before it earns headcount. I own the product.",
+      technologies: ["Knowledge Graph", "Value Causation Trees", "P&L Modelling"],
       icon: Network,
     },
     {
       title: "Memory Systems for Agents",
       description:
-        "The memory and state layer that lets agents carry context instead of starting cold: structured short-term, episodic, and semantic memory, with persistent episodic memory per user and team and a shared tool registry across calendar, transcripts, project management, and finance.",
+        "The memory layer that lets agents carry context instead of starting cold: structured short-term, episodic, and semantic memory, with persistent per-user and per-team history across calendar, transcripts, delivery, and finance.",
       outcome:
-        "Agents remember what happened, who it involved, and what was decided, so delegated work compounds over time rather than repeating itself, and oversight has a trail to review.",
-      technologies: ["Episodic Memory", "Semantic Memory", "Weaviate", "LangGraph"],
+        "Part of a shared platform layer that stopped every engagement rebuilding its own stack and cut time-to-ship for new AI capabilities by over 40 percent.",
+      technologies: ["Episodic Memory", "Semantic Memory", "Shared Tool Registry"],
       icon: Database,
-    },
-    {
-      title: "Lending Workflow Automation",
-      description:
-        "An agentic system for regulated financial services that runs multi-stage lending end to end: document intake, structured extraction, policy-grounded reasoning, and decisioning, with human-in-the-loop checkpoints held at every high-stakes decision node.",
-      outcome:
-        "A deliberate ceiling on autonomy given the regulatory exposure: strict tool-calling boundaries, structured-output validation, and RAG over internal policy with groundedness evaluation on every answer.",
-      technologies: ["RAG", "MCP", "Structured Extraction", "HITL"],
-      icon: Workflow,
     },
     {
       title: "Customer Support Agents",
       description:
-        "Production RAG support agents running across four enterprise SaaS customers, owning the full path from ingestion and chunking through embedding, retrieval tuning, and generation guardrails.",
+        "Production support agents across four enterprise SaaS customers, owning the full path from retrieval strategy through generation guardrails, measured by an evaluation framework for correctness, groundedness, and latency.",
       outcome:
-        "Backed by an evaluation framework covering correctness, groundedness, and latency, with regression checks that catch hallucination drift before it ships.",
-      technologies: ["RAG", "Evals", "Weaviate", "OpenAI"],
+        "The first AI beachhead that proved the model and set the reliability bar, regression checks that catch hallucination drift before it ships, that later work inherited.",
+      technologies: ["RAG", "Evals", "Observability"],
       icon: MessageSquare,
     },
   ];
@@ -155,9 +146,9 @@ const ProjectsSection = () => {
               Systems people hand work to
             </h2>
             <p className="mt-4 text-lg font-light leading-relaxed text-muted-foreground">
-              Operational systems that made it past the demo and into production,
+              Operational systems I have owned from strategy through production,
               where agents run the work, people manage the exceptions, and the
-              numbers actually have to hold up.
+              outcome is a number someone signed up for.
             </p>
           </motion.div>
 

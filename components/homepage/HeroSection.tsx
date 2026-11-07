@@ -66,8 +66,7 @@ const HeroSection = () => {
                 </h1>
                 <div className="h-px w-32 bg-foreground" />
                 <p className="text-xl md:text-2xl text-muted-foreground font-light">
-                  AI Product Leader @Techjays · I design Autonomous Operational
-                  Systems
+                  AI Product Leader @Techjays · AI you can hand real work to
                 </p>
                 <p className="text-lg text-foreground max-w-2xl leading-relaxed font-light">
                   Everyone has the same models now. Almost no one has AI
@@ -93,15 +92,15 @@ const HeroSection = () => {
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <Target className="mr-2 h-4 w-4" />
-                Delegation &amp; Autonomy Design
+                AI Portfolio Strategy
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <Gauge className="mr-2 h-4 w-4" />
-                Evals, Guardrails &amp; Trust
+                Delegation &amp; Autonomy Design
               </Badge>
               <Badge className="px-4 py-2 bg-transparent text-foreground border border-foreground rounded-none font-light hover:bg-foreground hover:text-background transition-all duration-300">
                 <TrendingUp className="mr-2 h-4 w-4" />
-                0&rarr;1 to Scaled Autonomy
+                Outcome Ownership
               </Badge>
             </motion.div>
 

@@ -3,22 +3,22 @@ import { FadeIn } from "@/components/ui/fade-in";
 
 const roles = [
   {
-    role: "AI Product Lead",
+    titles: ["AI Product Lead", "AI Product Manager"],
     company: "Techjays",
     period: "Jul 2025 to Present",
   },
   {
-    role: "Technical Lead, AI Integration",
+    titles: ["Technical Lead, AI Integration"],
     company: "Bridge Global",
     period: "Sep 2024 to Jul 2025",
   },
   {
-    role: "Founder and CEO",
+    titles: ["Founder and CEO"],
     company: "Socife Technologies",
     period: "2019 to 2024",
   },
   {
-    role: "Co-Founder",
+    titles: ["Co-Founder"],
     company: "College-Shore",
     period: "2016 to 2018",
   },
@@ -46,31 +46,35 @@ const ExperienceSection = () => {
             className="space-y-6 text-lg font-light leading-relaxed text-muted-foreground md:col-span-2"
           >
           <p>
-            These days I lead AI product at Techjays, designing Autonomous
-            Operational Systems: multi-agent systems that run real enterprise
-            workflows end to end. I own two flagship platforms, an AI Operations
-            Intelligence Platform and an AI Enterprise Brain, and hold review
-            authority over the firm&apos;s AI portfolio. The hard part is almost
-            never the model. It is matching autonomy to risk and earning enough
-            trust that a business will actually hand over the work.
+            These days I lead AI product at Techjays, where I own two flagship
+            platforms, an AI Operations Intelligence Platform and a Context Layer
+            for Enterprise, and hold portfolio-level review authority over the
+            firm&apos;s AI work: three projects across five delivery teams. I fund
+            what maps to a quantified financial outcome and cut what does not,
+            using Value Causation Trees that tie every proposed intervention to
+            the P&amp;L before it earns headcount. I grew the AI product function
+            from four people to eighteen and was promoted to Lead within eleven
+            months. The hard part is almost never the model. It is deciding what a
+            business can safely hand to agents, and designing the system so it
+            earns that trust.
           </p>
           <p>
-            Before that I was technical lead for AI integration at Bridge
-            Global, where I spent a year turning experimental RAG and LLM
-            pipelines into systems that held up in production. One rebuild cut
-            hallucinations by about 45 percent; another brought inference
-            latency down by roughly 60 percent. I also helped a group of
-            engineers make the jump from full stack to AI native work, which
-            taught me as much as the systems did.
+            Before that I built the AI capability from zero at Bridge Global,
+            owning architecture, vendor selection, and production delivery across
+            three client engagements. I ran discovery with the actual end users
+            instead of stakeholder proxies, which cut six weeks of scope before
+            anyone wrote code, and set the data-quality, evaluation, and prompt
+            standards the team kept using. The reliability work underneath,
+            cutting hallucinations and latency by roughly half, was always in
+            service of one thing: systems a client would trust in production.
           </p>
           <p>
             I come at product from the founder side too. I started Socife
-            Technologies and ran it for about five years, wearing every hat a
-            founder wears: setting the strategy, running day to day operations,
-            hiring and building the team, and owning the numbers, not just the
-            code. I took products from a rough MVP to something people actually
-            paid for, and learned that a sustainable business is its own kind of
-            engineering, with its own failure modes.
+            Technologies and ran it for six years, owning the strategy, the P&amp;L,
+            hiring, fundraising, and the investor relationships, not just the
+            code. I took it from zero to ten thousand users, made the hard call to
+            pivot when the first model stalled, and learned that a sustainable
+            business is its own kind of engineering, with its own failure modes.
           </p>
           <p>
             Before that I co-founded College-Shore, an education platform
@@ -97,7 +101,11 @@ const ExperienceSection = () => {
             <ul className="space-y-6">
               {roles.map((r) => (
                 <li key={r.company} className="border-l border-border pl-4">
-                  <p className="font-light text-foreground">{r.role}</p>
+                  {r.titles.map((t) => (
+                    <p key={t} className="font-light text-foreground">
+                      {t}
+                    </p>
+                  ))}
                   <p className="text-sm font-light text-muted-foreground">
                     {r.company}
                   </p>
